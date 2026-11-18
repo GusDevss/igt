@@ -1,0 +1,352 @@
+#!/usr/bin/env python3
+"""Genera el sitio de Integral Gym Tech en public/.
+
+    python3 tools/build_site.py            # build completo
+    python3 tools/build_site.py --fast     # sin AVIF (más rápido para desarrollo)
+
+Entradas:
+  site/templates/   plantillas Jinja2 (layout, parciales y una plantilla por página)
+  site/css/         CSS propio (se concatena y minifica)
+  site/js/          JS propio (se minifica con esbuild)
+  site/icons/       iconos SVG (se genera un sprite solo con los usados en cada página)
+  site/fonts/       fuentes WOFF2
+  site/static/      archivos que se copian tal cual (enviar.php, .htaccess, robots.txt…)
+  source/assets/uploads/  imágenes originales (se generan variantes WebP/AVIF responsivas)
+"""
+import hashlib
+import html as htmlmod
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import datetime
+
+from jinja2 import Environment, FileSystemLoader, pass_context
+from markupsafe import Markup
+from PIL import Image
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import seo  # noqa: E402
+
+SITE = os.path.join(ROOT, "site")
+OUT = os.path.join(ROOT, "public")
+UPLOADS = os.path.join(ROOT, "source", "assets", "uploads")
+CACHE = os.path.join(ROOT, ".cache", "img")
+FAST = "--fast" in sys.argv
+TODAY = datetime.date.today().isoformat()
+WIDTHS = [360, 480, 768, 1024, 1366, 1920]
+ESBUILD = os.environ.get("ESBUILD") or shutil.which("esbuild") or os.path.join(ROOT, "node_modules", ".bin", "esbuild")
+
+# ----------------------------------------------------------------------------- imágenes
+_img_meta = {}
+
+
+def _src_path(src):
+    p = os.path.join(UPLOADS, src)
+    if not os.path.exists(p):
+        raise FileNotFoundError("imagen no encontrada: " + src)
+    return p
+
+
+def _variant(src, width, fmt):
+    """Crea (con caché) una variante redimensionada; devuelve la URL pública."""
+    p = _src_path(src)
+    base = re.sub(r"\.[a-z0-9]+$", "", src, flags=re.I)
+    name = f"{base}-{width}.{fmt}"
+    out = os.path.join(OUT, "img", name)
+    cache = os.path.join(CACHE, name)
+    if not os.path.exists(cache) or os.path.getmtime(cache) < os.path.getmtime(p):
+        os.makedirs(os.path.dirname(cache), exist_ok=True)
+        im = Image.open(p)
+        has_alpha = im.mode in ("RGBA", "LA", "P") and ("transparency" in im.info or im.mode != "P")
+        im = im.convert("RGBA" if has_alpha else "RGB")
+        if im.width > width:
+            im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+        if fmt == "webp":
+            im.save(cache, "WEBP", quality=80, method=6)
+        elif fmt == "avif":
+            im.save(cache, "AVIF", quality=55, speed=6)
+        else:
+            im.save(cache, fmt.upper())
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    if not os.path.exists(out):
+        shutil.copy2(cache, out)
+    return "/img/" + name
+
+
+def img_size(src):
+    if src not in _img_meta:
+        with Image.open(_src_path(src)) as im:
+            _img_meta[src] = im.size
+    return _img_meta[src]
+
+
+def picture(src, alt, sizes="100vw", cls="", loading="lazy", priority=False, width=None, height=None,
+            max_w=None, attrs=""):
+    """<picture> con AVIF + WebP en varios anchos. `src` es relativo a source/assets/uploads."""
+    w0, h0 = img_size(src)
+    top = min(max_w or w0, w0)
+    widths = sorted({w for w in WIDTHS if w < top} | {top})
+    fmts = ["webp"] if FAST else ["avif", "webp"]
+    sources = []
+    for fmt in fmts:
+        srcset = ", ".join(f"{_variant(src, w, fmt)} {w}w" for w in widths)
+        sources.append(f'<source type="image/{fmt}" srcset="{srcset}" sizes="{sizes}">')
+    fallback = _variant(src, widths[min(len(widths) - 1, 2)], "webp")
+    width = width or top
+    height = height or round(h0 * top / w0)
+    load = 'loading="eager" fetchpriority="high"' if priority else f'loading="{loading}"'
+    return Markup(
+        f'<picture class="{cls}">' + "".join(sources) +
+        f'<img src="{fallback}" alt="{htmlmod.escape(alt)}" width="{width}" height="{height}" {load} decoding="async" {attrs}></picture>'
+    )
+
+
+def img_url(src, width=1366, fmt="webp"):
+    w0, _ = img_size(src)
+    return _variant(src, min(width, w0), fmt)
+
+
+def bg_set(src, widths=(768, 1366, 1920)):
+    """image-set() para fondos CSS (inline style)."""
+    w0, _ = img_size(src)
+    big = img_url(src, max(w for w in widths if w <= w0) if any(w <= w0 for w in widths) else w0)
+    small = img_url(src, min(768, w0))
+    return Markup(f"--bg:url({big});--bg-sm:url({small})")
+
+
+# ----------------------------------------------------------------------------- iconos
+_icons_used = set()
+
+
+SPRITE_URL = {"url": ""}
+
+
+_ratio = {}
+
+
+def icon(name, cls="", label=None):
+    """Icono del sprite. Alto = 1em (se controla con font-size); ancho según la proporción del glifo."""
+    _icons_used.add(name)
+    if name not in _ratio:
+        vb = re.search(r'viewBox="([^"]+)"', open(os.path.join(SITE, "icons", name + ".svg")).read()).group(1).split()
+        _ratio[name] = round(float(vb[2]) / float(vb[3]), 3)
+    aria = f'role="img" aria-label="{htmlmod.escape(label)}"' if label else 'aria-hidden="true"'
+    return Markup(f'<svg class="ic {cls}" width="{_ratio[name]}em" height="1em" {aria}><use href="{SPRITE_URL["url"]}#i-{name}"></use></svg>')
+
+
+def sprite(names):
+    parts = []
+    for n in sorted(names):
+        svg = open(os.path.join(SITE, "icons", n + ".svg")).read()
+        vb = re.search(r'viewBox="([^"]+)"', svg).group(1)
+        root = re.match(r"<svg[^>]*>", svg.strip()).group(0)
+        extra = "".join(f' {a}="{v}"' for a, v in re.findall(r'\b(fill|stroke)="([^"]+)"', root))
+        inner = re.sub(r"^<svg[^>]*>|</svg>$", "", svg.strip())
+        parts.append(f'<symbol id="i-{n}" viewBox="{vb}"{extra}>{inner}</symbol>')
+    return '<svg xmlns="http://www.w3.org/2000/svg">' + "".join(parts) + "</svg>"
+
+
+def build_sprite():
+    names = [f[:-4] for f in os.listdir(os.path.join(SITE, "icons")) if f.endswith(".svg")]
+    data = sprite(names)
+    h = hashlib.md5(data.encode()).hexdigest()[:8]
+    rel = f"/assets/icons.{h}.svg"
+    open(os.path.join(OUT, rel.lstrip("/")), "w").write(data)
+    SPRITE_URL["url"] = rel
+
+
+def derived():
+    """Imágenes fijas usadas desde CSS u Open Graph."""
+    d = os.path.join(OUT, "img")
+    os.makedirs(d, exist_ok=True)
+    jobs = [("2023/09/Ellipse-coming2.png", "footer-bg.webp", 1920)]
+    for src, name, w in jobs:
+        im = Image.open(_src_path(src)).convert("RGBA")
+        if im.width > w:
+            im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+        im.save(os.path.join(d, name), "WEBP", quality=78, method=6)
+    # imagen para compartir en redes (1200x630)
+    og = Image.new("RGB", (1200, 630), (17, 14, 16))
+    hero = Image.open(_src_path("2023/09/bg1-1.png")).convert("RGB")
+    hero = hero.resize((1200, round(hero.height * 1200 / hero.width)))
+    og.paste(hero.crop((0, 0, 1200, 630)), (0, 0))
+    eq = Image.open(_src_path("2026/09/igt-jungla-buge.webp")).convert("RGBA")
+    eq.thumbnail((640, 520))
+    og.paste(eq, (560, 70), eq)
+    logo = Image.open(os.path.join(SITE, "static", "img", "logo-igt.png")).convert("RGBA").resize((356, 160))
+    og.paste(logo, (80, 235), logo)
+    og.save(os.path.join(d, "og-igt.jpg"), "JPEG", quality=84, optimize=True)
+
+
+# ----------------------------------------------------------------------------- CSS / JS
+def run_esbuild(entry, out, loader=None):
+    args = [ESBUILD, entry, "--minify", "--outfile=" + out, "--log-level=warning", "--target=es2018,chrome90,safari14"]
+    if entry.endswith(".js"):
+        args.append("--bundle")
+    if loader:
+        args.append(loader)
+    subprocess.run(args, check=True)
+
+
+def build_css():
+    order = [l.strip() for l in open(os.path.join(SITE, "css", "_order.txt")) if l.strip() and not l.startswith("#")]
+    tmp = os.path.join(ROOT, ".cache", "bundle.css")
+    os.makedirs(os.path.dirname(tmp), exist_ok=True)
+    with open(tmp, "w") as f:
+        for name in order:
+            f.write(f"/* {name} */\n" + open(os.path.join(SITE, "css", name)).read() + "\n")
+    out = os.path.join(ROOT, ".cache", "bundle.min.css")
+    run_esbuild(tmp, out)
+    return open(out).read()
+
+
+def build_js():
+    res = {}
+    for name in ("main.js", "flipbook.js"):
+        src = os.path.join(SITE, "js", name)
+        if not os.path.exists(src):
+            continue
+        data = open(src).read()
+        h = hashlib.md5(data.encode()).hexdigest()[:8]
+        rel = f"/assets/js/{name[:-3]}.{h}.js"
+        run_esbuild(src, os.path.join(OUT, rel.lstrip("/")))
+        res[name] = rel
+    return res
+
+
+# ----------------------------------------------------------------------------- páginas
+NAV = [
+    {"label": "IGT", "href": "/nosotros/"},
+    {"label": "Servicios", "children": [
+        ("Mantenimiento de equipo", "/mantenimiento-de-equipo/", "fal-tools"),
+        ("Arrendamiento", "/arrendamiento/", "far-piggy-bank"),
+        ("Diseño de espacios", "/diseno-de-espacios/", "far-ruler-triangle"),
+    ]},
+    {"label": "Productos", "children": [
+        ("Cardio", "/cardio/", "far-heartbeat"),
+        ("Peso libre", "/peso-libre/", "far-dumbbell"),
+        ("Peso integrado", "/peso-integrado/", "far-weight-hanging"),
+        ("Multifuncionales", "/multifuncionales/", "far-layer-group"),
+        ("Pilates", "/pilates/", "fal-child"),
+        ("Accesorios", "/accesorios/", "fas-dumbbell"),
+        ("Reacondicionado", "/reacondicionado/", "far-recycle"),
+    ]},
+    {"label": "Tipo de proyecto", "children": [
+        ("Apertura o remodelación de gimnasio", "/gimnasio-apertura-remodelacion/", "far-dumbbell"),
+        ("Gimnasio en casa", "/gimnasio-casa/", "far-house-return"),
+        ("Condominios / Residenciales", "/condominios-residenciales/", "fal-building"),
+        ("Clínicas de fisioterapia", "/clinicas-fisioterapia/", "far-hospital-user"),
+        ("Estudio de pilates", "/estudio-pilates/", "far-child"),
+        ("Hoteles", "/hoteles/", "far-hotel"),
+        ("Empresas", "/empresas/", "far-briefcase"),
+        ("Universidades", "/universidades/", "far-graduation-cap"),
+        ("Gubernamentales", "/gubernamentales/", "far-landmark"),
+    ]},
+]
+
+
+def json_ld(slug):
+    title, desc, kws, crumb, stype, ogimg = seo.PAGES[slug]
+    S = seo.SITE
+    url = S + ("/" if slug == "index" else f"/{slug}/")
+    b = seo.BUSINESS
+    org = S + "/#organization"
+    img = S + (ogimg or "/img/og-igt.jpg")
+    graph = [
+        {"@type": ["Organization", "LocalBusiness", "SportingGoodsStore"], "@id": org,
+         "name": b["name"], "legalName": b["legalName"], "alternateName": ["IGT", "IntegralGYMTech"],
+         "url": S + "/", "logo": S + "/img/logo-igt.png", "image": S + "/img/og-igt.jpg",
+         "description": seo.PAGES["index"][1], "telephone": b["telephone"], "email": b["email"],
+         "foundingDate": "2008", "priceRange": "$$",
+         "address": {"@type": "PostalAddress", "streetAddress": b["street"], "addressLocality": b["locality"],
+                     "addressRegion": b["region"], "postalCode": b["postal"], "addressCountry": b["country"]},
+         "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
+                                        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                                        "opens": "09:00", "closes": "18:00"}],
+         "areaServed": [{"@type": "State", "name": "Querétaro"}, {"@type": "Country", "name": "México"}],
+         "hasMap": b["maps"], "sameAs": [b["facebook"], b["instagram"]],
+         "brand": {"@type": "Brand", "name": "BUGE"},
+         "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "74", "bestRating": "5"},
+         "knowsAbout": ["Equipo para gimnasio", "Equipamiento de gimnasios", "Mantenimiento de equipo fitness",
+                        "Arrendamiento de equipo de gimnasio", "Diseño de gimnasios", "Pilates"]},
+        {"@type": "WebSite", "@id": S + "/#website", "url": S + "/", "name": "IntegralGYMTech",
+         "inLanguage": "es-MX", "publisher": {"@id": org}},
+        {"@type": stype if stype in ("WebPage", "AboutPage", "CollectionPage") else "WebPage",
+         "@id": url + "#webpage", "url": url, "name": title, "description": desc, "inLanguage": "es-MX",
+         "isPartOf": {"@id": S + "/#website"}, "about": {"@id": org}, "dateModified": TODAY,
+         "primaryImageOfPage": {"@type": "ImageObject", "url": img}, "breadcrumb": {"@id": url + "#breadcrumb"}},
+        {"@type": "BreadcrumbList", "@id": url + "#breadcrumb", "itemListElement":
+            [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": S + "/"}] +
+            ([] if slug == "index" else [{"@type": "ListItem", "position": 2, "name": crumb, "item": url}])},
+    ]
+    if stype == "Service":
+        graph.append({"@type": "Service", "name": crumb, "serviceType": crumb, "description": desc,
+                      "provider": {"@id": org}, "areaServed": "México", "url": url})
+    if stype == "CollectionPage":
+        graph.append({"@type": "OfferCatalog", "name": "Catálogo " + crumb + " BUGE", "url": url,
+                      "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Product", "name": k[:1].upper() + k[1:],
+                                                                             "brand": {"@type": "Brand", "name": "BUGE"}}}
+                                          for k in kws[:6]]})
+    return Markup(json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/"))
+
+
+def minify_html(s):
+    # elimina comentarios y espacios entre etiquetas (sin tocar <pre>/<textarea>/<script>)
+    s = re.sub(r"<!--(?!\[).*?-->", "", s, flags=re.S)
+    s = re.sub(r">\s+<", "> <", s)
+    s = re.sub(r"\n\s*", "\n", s)
+    return s.strip() + "\n"
+
+
+def main():
+    if os.path.exists(OUT):
+        shutil.rmtree(OUT)
+    os.makedirs(OUT)
+    # estáticos
+    shutil.copytree(os.path.join(SITE, "static"), OUT, dirs_exist_ok=True)
+    shutil.copytree(os.path.join(SITE, "fonts"), os.path.join(OUT, "assets", "fonts"))
+    derived()
+    os.makedirs(os.path.join(OUT, "assets"), exist_ok=True)
+    build_sprite()
+    css = build_css()
+    js = build_js()
+    env = Environment(loader=FileSystemLoader(os.path.join(SITE, "templates")), autoescape=True,
+                      trim_blocks=True, lstrip_blocks=True)
+    env.globals.update(picture=picture, img_url=img_url, img_size=img_size, bg_set=bg_set, icon=icon, NAV=NAV,
+                       BUSINESS=seo.BUSINESS, SITE_URL=seo.SITE, YEAR=datetime.date.today().year, JS=js)
+    pages = sorted(f[:-5] for f in os.listdir(os.path.join(SITE, "templates", "pages")) if f.endswith(".html"))
+    for slug in pages:
+        _icons_used.clear()
+        title, desc, kws, crumb, stype, ogimg = seo.PAGES[slug]
+        url = seo.SITE + ("/" if slug == "index" else f"/{slug}/")
+        ctx = dict(slug=slug, path=("/" if slug == "index" else f"/{slug}/"), title=title, description=desc,
+                   keywords=", ".join(dict.fromkeys(kws + seo.BASE_KW)), canonical=url, crumb=crumb,
+                   og_image=seo.SITE + (ogimg or "/img/og-igt.jpg"), json_ld=json_ld(slug), css=Markup(css))
+        out = env.get_template(f"pages/{slug}.html").render(**ctx)
+        out = minify_html(out)
+        dest = os.path.join(OUT, "404.html" if slug == "404" else ("index.html" if slug == "index" else f"{slug}/index.html"))
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        open(dest, "w").write(out)
+        print(f"  {dest[len(ROOT)+1:]:45} {len(out)//1024:4d} KB")
+    write_sitemap(pages)
+
+
+def write_sitemap(pages):
+    rows = []
+    for s in pages:
+        if s == "404":
+            continue
+        loc = seo.SITE + ("/" if s == "index" else f"/{s}/")
+        pr = "1.0" if s == "index" else ("0.3" if s in ("terminos-y-condiciones", "politica-devoluciones") else "0.8")
+        rows.append(f"  <url><loc>{loc}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{pr}</priority></url>")
+    open(os.path.join(OUT, "sitemap.xml"), "w").write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(rows) + "\n</urlset>\n")
+
+
+if __name__ == "__main__":
+    main()

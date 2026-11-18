@@ -1,0 +1,55 @@
+{% import "partials/ui.html" as ui with context %}
+<section class="contact" id="contacto" aria-labelledby="contacto-t">
+  <div class="wrap contact__grid">
+    <div class="contact__intro">
+      {{ ui.stroke('CONTACTO', 'contact__bg') }}
+      <h2 class="contact__t" id="contacto-t">¿Listo para equipar tu espacio?</h2>
+      <p class="contact__p">Agenda una visita a nuestro Showroom o solicita una cotización hoy mismo</p>
+    </div>
+    <form class="form" action="/enviar.php" method="post" novalidate data-form>
+      <input type="hidden" name="pagina" value="{{ slug }}">
+      <input type="hidden" name="ts" value="">
+      <div class="form__hp" aria-hidden="true"><label for="f-web">Sitio web</label><input type="text" id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="form__row">
+        <div class="field field--full">
+          <label for="f-nombre">Nombre <span class="req">*</span></label>
+          <input id="f-nombre" type="text" name="your-name" maxlength="400" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-correo">Correo <span class="req">*</span></label>
+          <input id="f-correo" type="email" name="your-email" maxlength="400" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="f-tel">Teléfono <span class="req">*</span></label>
+          <input id="f-tel" type="tel" name="your-tel" maxlength="40" required autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="f-asunto">Asunto</label>
+          <input id="f-asunto" type="text" name="your-subject" maxlength="400">
+        </div>
+        <div class="field">
+          <label for="f-proyecto">Tipo de proyecto <span class="req">*</span></label>
+          <div class="select">
+            <select id="f-proyecto" name="select-100" required>
+              <option value="">Selecciona una opción</option>
+              <option>Apertura/remodelación de gimnasio</option>
+              <option>Gimnasio en casa</option>
+              <option>Condominio - Residenciales</option>
+              <option>Clínicas de fisioterapia</option>
+              <option>Hoteles</option>
+              <option>Empresa</option>
+              <option>Universidades</option>
+            </select>
+            {{ icon('caseicon-angle-arrow-down', 'select__ic') }}
+          </div>
+        </div>
+        <div class="field field--full">
+          <label for="f-mensaje">Mensaje</label>
+          <textarea id="f-mensaje" name="textarea-823" rows="6" maxlength="2000"></textarea>
+        </div>
+      </div>
+      {{ ui.btn('Enviar', ic='far-angle-double-right', tag='button', cls='btn--icl form__btn') }}
+      <p class="form__out" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>

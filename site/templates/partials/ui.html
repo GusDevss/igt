@@ -1,0 +1,40 @@
+{# ---------------------------------------------------------------- macros de interfaz #}
+
+{# Tres diagonales "///" que acompañan a los títulos #}
+{% macro slashes(color='#FF4D24', cls='') -%}
+<svg class="slashes {{ cls }}" width="35" height="10" viewBox="0 0 35 10" aria-hidden="true"><path d="M15.1 0h-5L1 9.06h5zM24.74 0h-4.98l-9.18 9.06h4.99zM34.37 0h-4.99l-9.17 9.06h4.98z" fill="{{ color }}"/></svg>
+{%- endmacro %}
+
+{% macro kicker(text, cls='', color='#FF4D24', tag='p') -%}
+<{{ tag }} class="kicker {{ cls }}">{{ slashes(color) }}<span>{{ text }}</span></{{ tag }}>
+{%- endmacro %}
+
+{# Texto decorativo con contorno (se dibuja en bucle). Puramente decorativo: aria-hidden #}
+{% macro stroke(text, cls='', animate=True) -%}
+<svg class="stroke {{ cls }}{% if animate %} stroke--draw{% endif %}" aria-hidden="true" focusable="false"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">{{ text }}</text></svg>
+{%- endmacro %}
+
+{# Botón con barras laterales que se cierran al pasar el cursor #}
+{% macro btn(text, href='#', ic='far-plus', cls='', tag='a', type='submit', accent=False) -%}
+{% if tag == 'a' %}<a class="btn{% if accent %} btn--red{% endif %} {{ cls }}" href="{{ href }}">{% else %}<button class="btn{% if accent %} btn--red{% endif %} {{ cls }}" type="{{ type }}">{% endif %}
+<span class="btn__txt" data-wobble>{{ text }}</span>{% if ic %}{{ icon(ic, 'btn__ic') }}{% endif %}
+{% if tag == 'a' %}</a>{% else %}</button>{% endif %}
+{%- endmacro %}
+
+{# Título de sección con palabra de contorno detrás #}
+{% macro section_title(text, bg, tag='h2', cls='', center=True) -%}
+<div class="stitle {% if center %}stitle--center{% endif %} {{ cls }}">
+  {{ stroke(bg, 'stitle__bg') }}
+  <{{ tag }} class="stitle__h">{{ text }}</{{ tag }}>
+</div>
+{%- endmacro %}
+
+{# Encabezado principal de las páginas interiores (h1 con aspecto de h2) #}
+{% macro page_title(text, cls='') -%}
+<h1 class="ptitle {{ cls }}">{{ text }}</h1>
+{%- endmacro %}
+
+{# Caja de icono + título (usada en Cardio, Mantenimiento, etc.) #}
+{% macro feature(ic, title, cls='') -%}
+<li class="feat {{ cls }}"><span class="feat__ic">{{ icon(ic) }}</span><h3 class="feat__t">{{ title }}</h3></li>
+{%- endmacro %}

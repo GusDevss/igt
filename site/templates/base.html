@@ -1,0 +1,57 @@
+{% import "partials/ui.html" as ui with context %}
+<!doctype html>
+<html lang="es-MX" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<meta name="keywords" content="{{ keywords }}">
+<meta name="robots" content="{{ 'noindex, follow' if slug == '404' else 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}">
+<meta name="author" content="Integral Gym Tech">
+<meta name="theme-color" content="#000000">
+<meta name="geo.region" content="MX-QUE">
+<meta name="geo.placename" content="Querétaro">
+{% if slug != '404' %}<link rel="canonical" href="{{ canonical }}">
+<link rel="alternate" hreflang="es-MX" href="{{ canonical }}">{% endif %}
+<meta property="og:locale" content="es_MX">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IntegralGYMTech">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<link rel="icon" href="/favicon.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="preload" href="/assets/fonts/plateia-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+{% block preload %}{% endblock %}
+<style>{{ css }}</style>
+<script type="application/ld+json">{{ json_ld }}</script>
+</head>
+<body class="pg-{{ slug }}">
+
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+{% include "partials/header.html" %}
+
+<main id="contenido" class="main {% block main_class %}{% endblock %}">
+{% block content %}{% endblock %}
+</main>
+
+{% block contact %}{% include "partials/contact.html" %}{% endblock %}
+{% include "partials/footer.html" %}
+
+<a class="wa" href="https://wa.me/5214421270018?text=Hola%2C%20me%20interesa%20cotizar%20equipo%20para%20gimnasio" target="_blank" rel="noopener" aria-label="Solicita tu cotización por WhatsApp">
+  <span class="wa__tip">Solicita tu cotización</span>
+  <span class="wa__btn">{{ icon('fab-whatsapp') }}</span>
+</a>
+<div class="cursor" aria-hidden="true"></div>
+<script src="{{ JS['main.js'] }}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

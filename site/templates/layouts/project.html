@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap proj">
+  <article class="proj__main">
+    {{ picture(image, image_alt, sizes="(min-width:1330px) 948px, (min-width:768px) 73vw, 100vw", cls="proj__img", priority=True) }}
+    {{ ui.page_title(heading, 'proj__title') }}
+    <div class="proj__text">{% block text %}{% endblock %}</div>
+  </article>
+  {% include "partials/promo.html" %}
+</div>
+{% endblock %}

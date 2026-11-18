@@ -1,0 +1,32 @@
+{% import "partials/ui.html" as ui with context %}
+<footer class="ftr">
+  <div class="ftr__main">
+    <div class="wrap ftr__grid">
+      <div class="ftr__brand">
+        <a href="/" class="ftr__logo"><img src="/img/logo-igt.png" width="178" height="80" alt="Integral Gym Tech" loading="lazy"></a>
+        <p class="ftr__claim">Equipos que dan {{ ui.stroke('resultados', 'ftr__stroke') }}<span class="sr">resultados</span></p>
+      </div>
+      <div class="ftr__col ftr__col--contact">
+        <h2 class="ftr__h">Llámanos</h2>
+        <a class="ftr__phone" href="tel:+524421270018">442 127 0018</a>
+        <h2 class="ftr__h">Visítanos</h2>
+        <address class="ftr__addr"><a href="{{ BUSINESS.maps }}" target="_blank" rel="noopener">Calle 1, #303, Parque Industrial Jurica, 76120 Qro, Querétaro, México.</a></address>
+        <p class="ftr__addr">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+      </div>
+      <div class="ftr__col">
+        <h2 class="ftr__h">Políticas</h2>
+        <ul class="ftr__links">
+          <li><a href="/terminos-y-condiciones/">Términos y condiciones</a></li>
+          <li><a href="/politica-devoluciones/">Politicas de devoluciones</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrap ftr__bottom">
+    <p class="ftr__copy">Copy@ {{ YEAR }} <a href="/">IntegralGYMTech</a><strong>.</strong> Por <a href="https://mediamaster.mx" target="_blank" rel="noopener">Mediamaster</a></p>
+    <ul class="ftr__social">
+      <li><a href="{{ BUSINESS.facebook }}" target="_blank" rel="noopener" aria-label="Facebook de Integral Gym Tech">{{ icon('fab-facebook-f') }}</a></li>
+      <li><a href="{{ BUSINESS.instagram }}" target="_blank" rel="noopener" aria-label="Instagram de Integral Gym Tech">{{ icon('fab-instagram') }}</a></li>
+    </ul>
+  </div>
+</footer>

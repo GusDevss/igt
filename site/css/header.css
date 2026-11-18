@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Cabecera: barra superior, barra principal, menú, cabecera fija,
+   panel lateral de contacto y menú móvil
+   ========================================================================== */
+.hdr{position:relative;z-index:50;background:#000}
+
+/* --- Barra superior --- */
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;height:37px;padding:5px 34px 2px 61px;border-top:1px solid var(--line);font-size:13px;line-height:24px;color:#fff}
+.topbar__info{display:flex;gap:52px}
+.topbar__info a{position:relative;display:flex;align-items:center;white-space:nowrap}
+.topbar__info a:hover{color:var(--orange)}
+.topbar__info li:not(:last-child) a::before{content:"";position:absolute;right:-30px;top:3px;width:1px;height:18px;background:#fff}
+.topbar__mail{font-size:15px;margin-right:11px}
+.topbar__wa{font-size:16px;margin:0 16px 0 0}
+.topbar__pin{font-size:16px;margin-right:13px}
+.topbar__social{display:flex;gap:16px;padding-top:5px}
+.topbar__social .ic{font-size:16px}
+.topbar__social a:hover{color:var(--orange)}
+
+/* --- Barra principal --- */
+.hdr__bar{background:#000;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hdr__inner{display:grid;grid-template-columns:21.05% 1fr 74px;align-items:stretch;height:74px;padding-left:55px}
+.hdr__logo{align-self:center;width:116px}
+.hdr__logo img{width:116px;height:52px}
+.hdr__nav{display:flex;justify-content:flex-end;margin-right:calc(19.3vw - 94px)}
+.nav{display:flex;gap:68px;height:73px;padding-left:38px;border-left:1px solid var(--line)}
+.nav__item{position:relative}
+.nav__link{position:relative;display:block;font-size:13px;font-weight:500;line-height:73px;letter-spacing:1px;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav__item.is-active>.nav__link{color:var(--orange);padding-left:31px}
+.nav__item.is-active>.nav__link::before{content:"";position:absolute;left:-12px;top:36px;width:32px;height:1px;background:var(--orange)}
+.nav__sub{position:absolute;left:0;top:72px;min-width:251px;padding:26px 0;background:#000;border:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(15px);transition:.25s linear;z-index:5}
+.nav__item:hover>.nav__sub,.nav__item:focus-within>.nav__sub{opacity:1;visibility:visible;transform:none}
+.nav__sub li{padding:0 35px}
+.nav__sub a{display:flex;align-items:center;padding:5px 0;font-size:13px;font-weight:500;line-height:23px;letter-spacing:1px;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav__sub a .ic{font-size:13px;margin-right:10px}
+.nav__sub a:hover,.nav__sub a[aria-current]{color:var(--orange)}
+
+/* Botón del panel lateral */
+.burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:74px;height:74px;margin-top:-1px;padding:0 24px;background:var(--orange)}
+.burger span{display:block;height:2px;background:#fff;transition:.3s}
+.burger:hover span:nth-child(2){transform:translateX(-6px)}
+.mburger{display:none}
+
+/* --- Cabecera fija al hacer scroll (>100px) --- */
+.is-stuck .hdr__bar{position:fixed;top:0;left:0;right:0;z-index:60;box-shadow:0 3px 18px rgba(2,21,78,.09);animation:slideDown .6s cubic-bezier(.24,.74,.58,1)}
+.is-stuck .hdr{padding-bottom:76px}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:none}}
+
+@media (max-width:1399px){
+  .topbar{padding:5px 33px 2px 25px}
+  .hdr__inner{padding-left:25px}
+}
+
+/* --- Tablet / móvil (<1200px) --- */
+@media (max-width:1199px){
+  .topbar,.hdr__nav,.burger{display:none}
+  .hdr__bar{border:0;box-shadow:0 3px 18px rgba(2,21,78,.09)}
+  .hdr__inner{display:flex;justify-content:space-between;align-items:center;height:85px;padding:0 15px}
+  .hdr__logo,.hdr__logo img{width:122px;height:55px}
+  .mburger{display:flex;flex-direction:column;justify-content:center;gap:6px;width:34px;height:40px}
+  .mburger span{display:block;height:2px;background:#fff}
+  .mburger span:nth-child(2){width:24px;margin-left:auto}
+  .is-stuck .hdr{padding-bottom:85px}
+}
+
+/* --- Panel lateral de contacto --- */
+.panel,.mnav{position:fixed;inset:0;z-index:200;visibility:hidden;pointer-events:none}
+.panel.is-open,.mnav.is-open{visibility:visible;pointer-events:auto}
+.panel__overlay,.mnav__overlay{position:absolute;inset:0;background:rgba(8,8,8,.6);opacity:0;transition:opacity .4s}
+.is-open .panel__overlay,.is-open .mnav__overlay{opacity:1}
+.panel__box{position:absolute;top:0;right:0;width:600px;max-width:100%;height:100%;overflow-y:auto;padding:60px 40px 60px;background:#000;transform:translateX(100%);transition:transform .5s var(--ease)}
+.panel.is-open .panel__box{transform:none}
+.panel__close,.mnav__close{position:absolute;width:54px;height:54px;border-radius:50%;background:#111}
+.panel__close{top:35px;right:15px}
+.panel__close::before,.panel__close::after,.mnav__close::before,.mnav__close::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;margin:-1px 0 0 -7px;background:#fff;transform:rotate(45deg);transition:transform .3s}
+.panel__close::after,.mnav__close::after{transform:rotate(-45deg)}
+.panel__close:hover::before,.panel__close:hover::after{transform:rotate(0)}
+.panel__logo{display:block;width:178px;margin-top:70px}
+.panel__lead{margin:40px 0 0}
+.panel__title{margin-top:44px;margin-bottom:28px;font-size:18px;line-height:22.5px}
+.panel__title .slashes{margin-bottom:10px}
+.panel__list li{margin-bottom:30px}
+.panel__list li:nth-child(3){margin-bottom:45px}
+.panel__list a,.panel__row{display:flex;align-items:flex-start;gap:30px;color:var(--text)}
+.panel__ic{display:grid;place-items:center;width:75px;height:70px;flex:none;border-radius:3px;background:#110e10;color:var(--orange)}
+.panel__ic .ic{font-size:20px}
+.panel__list b{display:block;margin-top:5px;font-size:20px;font-weight:600;line-height:35px;color:#fff}
+.panel__list a:hover b{color:var(--orange)}
+.panel__social{display:flex;gap:25px;margin-top:0}
+.panel__social a{color:#4d4d4d}
+.panel__social .ic{font-size:20px}
+.panel__social a:hover{color:var(--orange)}
+
+/* --- Menú móvil --- */
+.mnav__box{position:absolute;inset:0 0 0 auto;width:100%;max-width:420px;height:100%;overflow-y:auto;padding:40px 35px;background:#000;transform:translateX(100%);transition:transform .45s var(--ease)}
+.mnav.is-open .mnav__box{transform:none}
+.mnav__close{top:0;right:0;width:36px;height:36px;border-radius:0;background:rgba(255,255,255,.12)}
+.mnav__close::before,.mnav__close::after{width:18px;margin-left:-9px}
+.mnav__logo{display:block;width:122px}
+.mnav__search{position:relative;margin:20px 0 20px}
+.mnav__search input{width:100%;height:44px;padding:0 50px 0 22px;border:0;border-radius:0;background:rgba(255,255,255,.12);color:#fff;font-size:16px;outline:0}
+.mnav__search input::placeholder{color:rgba(255,255,255,.67)}
+.mnav__search button{position:absolute;right:0;top:0;width:44px;height:44px;display:grid;place-items:center;color:#fff;font-size:13px}
+.mnav__item{position:relative;border-bottom:1px solid rgba(255,255,255,.08)}
+.mnav__link{display:block;padding-right:40px;font-size:15px;font-weight:600;line-height:46px;text-transform:uppercase;color:#fff}
+.mnav__item.is-active>.mnav__link{color:var(--orange)}
+.mnav__toggle{position:absolute;right:0;top:10px;width:28px;height:28px;display:grid;place-items:center;border-radius:3px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:10px;transition:transform .3s}
+.mnav__toggle[aria-expanded="true"]{transform:rotate(180deg)}
+.mnav__sub{display:none;padding:0 0 12px 15px}
+.mnav__sub.is-open{display:block}
+.mnav__sub a{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:14px;font-weight:500;line-height:24px;text-transform:uppercase;color:#fff}
+.mnav__sub a .ic{font-size:13px}
+.mnav__sub a:hover,.mnav__sub a[aria-current]{color:var(--orange)}
+@media (max-width:767px){.mnav__box{max-width:none}}

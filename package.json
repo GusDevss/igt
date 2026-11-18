@@ -1,0 +1,12 @@
+{
+  "name": "integralgymtech-sitio",
+  "private": true,
+  "description": "Sitio estático de Integral Gym Tech",
+  "scripts": {
+    "build": "python3 tools/build_site.py",
+    "dev": "python3 tools/build_site.py --fast && php -S 127.0.0.1:8080 -t public"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.0"
+  }
+}

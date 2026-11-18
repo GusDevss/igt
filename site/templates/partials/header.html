@@ -1,0 +1,81 @@
+{% macro menu(mobile=False) %}
+<ul class="{{ 'mnav__list' if mobile else 'nav' }}">
+  {% for item in NAV %}
+  {% set active = (item.href == path) or (item.children and (item.children | selectattr(1, 'equalto', path) | list)) %}
+  <li class="{{ 'mnav__item' if mobile else 'nav__item' }}{% if item.children %} has-sub{% endif %}{% if active %} is-active{% endif %}">
+    {% if item.children %}
+      <a href="#" class="{{ 'mnav__link' if mobile else 'nav__link' }}" aria-haspopup="true">{{ item.label }}</a>
+      {% if mobile %}<button class="mnav__toggle" type="button" aria-label="Abrir submenú {{ item.label }}" aria-expanded="false">{{ icon('caseicon-angle-arrow-down') }}</button>{% endif %}
+      <ul class="{{ 'mnav__sub' if mobile else 'nav__sub' }}">
+        {% for label, href, ic in item.children %}
+        <li><a href="{{ href }}"{% if href == path %} aria-current="page"{% endif %}>{{ icon(ic) }}<span>{{ label }}</span></a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <a href="{{ item.href }}" class="{{ 'mnav__link' if mobile else 'nav__link' }}"{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+<header class="hdr" id="inicio">
+  <div class="topbar">
+    <ul class="topbar__info">
+      <li><a href="mailto:{{ BUSINESS.email }}">{{ icon('ui-mail', 'topbar__mail') }}{{ BUSINESS.email }}</a></li>
+      <li><a href="https://wa.me/5214421270018" target="_blank" rel="noopener">{{ icon('fab-whatsapp', 'topbar__wa') }}442 127 0018</a></li>
+      <li><a href="{{ BUSINESS.maps }}" target="_blank" rel="noopener">{{ icon('ui-pin', 'topbar__pin') }}Calle 1, #303, Parque Industrial Jurica, 76120 Qro, Méx.</a></li>
+    </ul>
+    <ul class="topbar__social">
+      <li><a href="{{ BUSINESS.facebook }}" target="_blank" rel="noopener" aria-label="Facebook de Integral Gym Tech">{{ icon('fab-facebook-f') }}</a></li>
+      <li><a href="{{ BUSINESS.instagram }}" target="_blank" rel="noopener" aria-label="Instagram de Integral Gym Tech">{{ icon('fab-instagram') }}</a></li>
+    </ul>
+  </div>
+  <div class="hdr__bar">
+    <div class="hdr__inner">
+      <a class="hdr__logo" href="/" aria-label="Integral Gym Tech – Inicio">
+        <img src="/img/logo-igt.png" width="116" height="52" alt="Integral Gym Tech – equipo para gimnasio en Querétaro">
+      </a>
+      <nav class="hdr__nav" aria-label="Menú principal">{{ menu() }}</nav>
+      <button class="burger" type="button" data-open="panel" aria-label="Abrir información de contacto" aria-controls="panel" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="mburger" type="button" data-open="mnav" aria-label="Abrir menú" aria-controls="mnav" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+{# Panel lateral de contacto (escritorio) #}
+<div class="panel" id="panel" aria-hidden="true">
+  <div class="panel__overlay" data-close></div>
+  <aside class="panel__box" role="dialog" aria-modal="true" aria-label="Contacto">
+    <button class="panel__close" type="button" data-close aria-label="Cerrar"></button>
+    <a href="/" class="panel__logo"><img src="/img/logo-igt.png" width="178" height="80" alt="Integral Gym Tech" loading="lazy"></a>
+    <p class="panel__lead">Venta de equipos para gimnasio en Querétaro</p>
+    {{ ui.kicker('Contáctanos', 'panel__title') }}
+    <ul class="panel__list">
+      <li><a href="tel:+524421270018"><span class="panel__ic">{{ icon('fal-phone-rotary') }}</span><span><b>Teléfono</b>442 127 0018</span></a></li>
+      <li><a href="mailto:{{ BUSINESS.email }}"><span class="panel__ic">{{ icon('fal-envelope') }}</span><span><b>Correo</b>{{ BUSINESS.email }}</span></a></li>
+      <li><a href="{{ BUSINESS.maps }}" target="_blank" rel="noopener"><span class="panel__ic">{{ icon('fal-map-marker-alt') }}</span><span><b>Dirección</b>Calle 1, #303, Parque Industrial Jurica, 76120 Qro, Querétaro, México.</span></a></li>
+      <li><span class="panel__row"><span class="panel__ic">{{ icon('far-clock') }}</span><span><b>Horario</b>Lunes a Viernes: 9:00 AM – 6:00 PM</span></span></li>
+    </ul>
+    {{ ui.kicker('Síguenos', 'panel__title') }}
+    <ul class="panel__social">
+      <li><a href="{{ BUSINESS.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">{{ icon('fab-facebook-f') }}</a></li>
+      <li><a href="{{ BUSINESS.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon('fab-instagram') }}</a></li>
+    </ul>
+  </aside>
+</div>
+
+{# Menú móvil #}
+<div class="mnav" id="mnav" aria-hidden="true">
+  <div class="mnav__overlay" data-close></div>
+  <div class="mnav__box" role="dialog" aria-modal="true" aria-label="Menú">
+    <button class="mnav__close" type="button" data-close aria-label="Cerrar menú"></button>
+    <a href="/" class="mnav__logo"><img src="/img/logo-igt.png" width="122" height="55" alt="Integral Gym Tech" loading="lazy"></a>
+    <form class="mnav__search" role="search" action="/" data-search>
+      <label class="sr" for="q">Buscar en el sitio</label>
+      <input id="q" type="search" name="q" placeholder="Buscar..." autocomplete="off">
+      <button type="submit" aria-label="Buscar">{{ icon('caseicon-search') }}</button>
+    </form>
+    <nav aria-label="Menú móvil">{{ menu(True) }}</nav>
+  </div>
+</div>
