@@ -245,3 +245,6 @@ https://integralgymtech.com/wp-content/plugins/interactive-3d-flipbook-powered-p
 https://integralgymtech.com/wp-content/plugins/interactive-3d-flipbook-powered-physics-engine/assets/css/short-white-book-view.css
 https://integralgymtech.com/wp-content/plugins/interactive-3d-flipbook-powered-physics-engine/assets/js/default-book-view.js
 https://integralgymtech.com/wp-content/plugins/interactive-3d-flipbook-powered-physics-engine/assets/templates/default-book-view.html
+https://integralgymtech.com/wp-content/uploads/2026/09/Llegando-equipo-reacondicionado-a-IGT.mp4
+https://integralgymtech.com/wp-content/uploads/2023/08/Ellipse-coming.png
+https://integralgymtech.com/wp-content/uploads/2023/08/Sparks_1-1-min.png

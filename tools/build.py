@@ -112,6 +112,11 @@ def rewrite_urls(text):
     def rel(m):
         return m.group(1) + page_link(m.group(2)) + m.group(3)
     text = re.sub(r'(href=")(/[a-z0-9\-]+)(")', rel, text)
+    # rutas relativas a recursos de WordPress: "/wp-content/uploads/x.mp4" -> "/assets/uploads/x.mp4"
+    text = re.sub(r'(["\'(])/wp-content/(uploads|plugins)/([^"\')*]+\.[a-z0-9]{2,4})(?=["\')])',
+                  lambda m: m.group(1) + "/assets/" + m.group(2) + "/" + m.group(3), text)
+    text = re.sub(r'(["\'(])/wp-content/themes/hadkaur/([^"\')*]+\.[a-z0-9]{2,4})(?=["\')])',
+                  lambda m: m.group(1) + "/assets/theme/" + m.group(2), text)
     return text
 
 
@@ -294,7 +299,7 @@ def improve_body(text, slug, kws):
     text = re.sub(r"<img\b[^>]*\balt=\"\"[^>]*>", alt, text)
     text = re.sub(r"<img\b(?![^>]*\balt=)([^>]*)>", lambda m: '<img alt="' + htmlmod.escape(title + " – Integral Gym Tech") + '"' + m.group(1) + ">", text)
     # lazy-loading para imágenes sin atributo loading
-    text = re.sub(r"<img\b(?![^>]*\bloading=)", '<img loading="lazy" decoding="async"', text)
+    text = re.sub(r"<img\b(?![^>]*\bdecoding=)", '<img decoding="async"', text)
     # enlaces externos seguros
     text = re.sub(r'(<a\b[^>]*target="_blank")(?![^>]*rel=)', r'\1 rel="noopener"', text)
     # Encabezado principal -> h1 (las páginas internas usaban h2 y el home tenía varios h1 en contadores)
@@ -321,6 +326,9 @@ def build_page(slug):
     text = open(os.path.join(SRC_PAGES, slug + ".html"), encoding="utf-8").read()
     text = strip_tags(text)
     text = fix_flipbook(text)
+    # errores de la plantilla 404 del tema (rutas a localhost y PHP sin procesar)
+    text = text.replace("http://localhost/hadkaur/wp-content/uploads/", "/assets/uploads/")
+    text = text.replace("Sparks_1-1-min.png'); ?>", "Sparks_1-1-min.png")
     text = rewrite_urls(text)
     text, kws = replace_seo_head(text, slug)
     text = fix_form(text, slug)
@@ -357,6 +365,7 @@ def copy_assets():
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             if fn.endswith((".css", ".js", ".html")) and "pdf.worker" not in fn and "pdf.min" not in fn:
                 s = open(src, encoding="utf-8", errors="surrogateescape").read()
+                s = s.replace("https://rawgit.com/marcobiedermann/playground/master/three.js/smoke-particles/dist/assets/images/clouds.png", "/assets/img/clouds.png")
                 s2 = rewrite_urls(s) if ("integralgymtech.com" in s or "fonts.gstatic.com" in s) else s
                 with open(dst, "w", encoding="utf-8", errors="surrogateescape") as f:
                     f.write(s2)

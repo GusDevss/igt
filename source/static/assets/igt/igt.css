@@ -12,3 +12,6 @@
 }
 /* contadores: antes eran <h1>, se conservan sus medidas */
 .pxl--counter-value.h1 { line-height: 1.25; margin: 0; }
+@media screen and (max-width: 767px) {
+  .pxl--counter-value.h1 { line-height: 1.2; }
+}

@@ -119,3 +119,9 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready);
   else ready();
 })();
+
+/* Al cargar todo, recalcula carruseles/sliders (el sitio estático carga más rápido que el original
+   y algunos se inicializaban antes de que terminara el layout). */
+window.addEventListener('load', function () {
+  setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 300);
+});
