@@ -1,0 +1,92 @@
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/flaticon.eot");
+  src: url("../fonts/flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/flaticon.woff2") format("woff2"),
+       url("../fonts/flaticon.woff") format("woff"),
+       url("../fonts/flaticon.ttf") format("truetype"),
+       url("../fonts/flaticon.svg#flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"], [class*=" flaticon-"] {
+    display: inline-flex;
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+  font-size: inherit;
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+.flaticon-visible:before {
+    content: "\f101";
+}
+.flaticon-share:before {
+    content: "\f102";
+}
+.flaticon-pass:before {
+    content: "\f103";
+}
+.flaticon-water-bottle:before {
+    content: "\f104";
+}
+.flaticon-towel:before {
+    content: "\f105";
+}
+.flaticon-shoes:before {
+    content: "\f106";
+}
+.flaticon-sleeveless:before {
+    content: "\f107";
+}
+.flaticon-protein-bar:before {
+    content: "\f108";
+}
+.flaticon-gym:before {
+    content: "\f109";
+}
+.flaticon-pilates:before {
+    content: "\f10a";
+}
+.flaticon-waist:before {
+    content: "\f10b";
+}
+.flaticon-heart-beat:before {
+    content: "\f10c";
+}
+.flaticon-kettlebell:before {
+    content: "\f10d";
+}
+.flaticon-weight:before {
+    content: "\f10e";
+}
+.flaticon-virtual-reality-fitness:before {
+    content: "\f10f";
+}
+.flaticon-star:before {
+    content: "\f110";
+}
+.flaticon-maximize:before {
+    content: "\f111";
+}
+.flaticon-business-and-finance:before {
+    content: "\f112";
+}
+.flaticon-fitness:before {
+    content: "\f113";
+}
+.flaticon-kettlebell-1:before {
+    content: "\f114";
+}

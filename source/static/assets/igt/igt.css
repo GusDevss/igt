@@ -1,0 +1,14 @@
+/* Integral Gym Tech – estilos propios añadidos a la migración */
+.igt-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+.wpcf7 form.submitting button[type="submit"] {
+  opacity: .7;
+  cursor: wait;
+}
+/* contadores: antes eran <h1>, se conservan sus medidas */
+.pxl--counter-value.h1 { line-height: 1.25; margin: 0; }
