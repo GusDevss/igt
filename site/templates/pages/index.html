@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/blocks.html" as bl with context %}
+{% block main_class %}home{% endblock %}
+{% block preload %}<link rel="preload" as="image" href="{{ img_url('2023/09/bg1-1.png', 1920) }}" fetchpriority="high">{% endblock %}
+{% block content %}
+{# --- Portada --- #}
+<section class="hero" style="--bg:url({{ img_url('2023/09/bg1-1.png', 1920) }});--bg-sm:url({{ img_url('2023/09/bg1-1.png', 768) }})">
+  {{ ui.stroke('FITNESS', 'hero__fit', animate=False) }}
+  <img class="hero__vec" src="{{ img_url('2023/09/Vector1.png', 480) }}" width="465" height="453" alt="" aria-hidden="true">
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <p class="hero__k">Proveedores líderes de aparatos para gimnasio</p>
+      <h1 class="hero__t"><span>Equipo para gimnasio</span> profesional y residencial en Querétaro</h1>
+      {{ ui.btn('Cotiza tus equipos', href='#contacto', ic='far-plus', accent=True, cls='btn--icr') }}
+    </div>
+    <div class="hero__img">{{ picture('2026/09/igt-jungla-buge.webp', 'Multiestación jungla BUGE, equipo para gimnasio profesional en Querétaro', sizes="(min-width:768px) 692px, 100vw", priority=True, max_w=1536) }}</div>
+  </div>
+</section>
+
+{# --- Tipos de proyecto --- #}
+<section class="projects" id="proyecto" aria-labelledby="proj-t" style="--bg:url({{ img_url('2023/09/bg-home3-12.png', 1920) }})">
+  <div class="wrap">
+    <div class="stitle stitle--center projects__title">
+      {{ ui.stroke('Proyecto', 'stitle__bg') }}
+      <h2 class="stitle__h" id="proj-t">¿Qué proyecto tienes en mente?</h2>
+    </div>
+    <ul class="projects__grid">
+      {% for href, t, img in [
+        ('/gimnasio-apertura-remodelacion/', 'Apertura o remodelación de Gimnasio', '2023/09/igt-apertura-o-remodelacion-de-gym.webp'),
+        ('/gimnasio-casa/', 'Gimnasio en casa', '2023/09/igt-gimansio-en-casa.webp'),
+        ('/condominios-residenciales/', 'Condominios – residenciales', '2023/09/igt-equipamos-tu-condominio.webp'),
+        ('/clinicas-fisioterapia/', 'Clínicas de fisioterapia', '2023/09/ig-clinicas-de-fisioterapia.webp'),
+        ('/hoteles/', 'Hoteles', '2023/09/distrito-hotel-gym-07.webp'),
+        ('/empresas/', 'Empresas', '2023/09/igt-equipamos-tu-empresa.webp'),
+        ('/universidades/', 'Universidades', '2023/09/igt-equipamos-universidades.webp'),
+        ('/estudio-pilates/', 'Estudio de pilates', '2023/09/igt-pilates.jpg')] %}
+      <li>
+        <a class="pcard" href="{{ href }}">
+          {{ picture(img, 'Equipamiento de gimnasio para ' ~ t | lower ~ ' – Integral Gym Tech', sizes="(min-width:768px) 310px, 100vw", cls="pcard__img", max_w=768) }}
+          <span class="pcard__body">
+            {{ ui.slashes('#F08126') }}
+            <h3 class="pcard__t">{{ t }}</h3>
+            <span class="pcard__more">Saber más <svg width="25" height="8" viewBox="0 0 25 8" aria-hidden="true"><path d="M0 4h23M20 1l3.5 3L20 7" stroke="#fff" fill="none"/></svg></span>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{{ bl.counters() }}
+
+{# --- Equipo por categoría --- #}
+<section class="cats" aria-labelledby="cats-t">
+  <div class="wrap">
+    <div class="stitle stitle--center cats__title">
+      {{ ui.stroke('CATEGORÍAS', 'stitle__bg') }}
+      <h2 class="stitle__h stitle__h--lg" id="cats-t">Equipo por categoría</h2>
+    </div>
+  </div>
+  <ul class="cats__grid" style="--bg:url({{ img_url('2023/08/Ellipse-coming.png', 1024) }})">
+    {% for href, t, img, wide in [
+      ('/multifuncionales/', 'Multifuncionales', '2023/09/igt-multifuncionales.webp', True),
+      ('/peso-integrado/', 'Peso integrado', '2023/09/igt-buge-peso-integrado-maquinas.webp', False),
+      ('/peso-libre/', 'Peso libre', '2026/09/igt-buge-peso-libre-mancuernas.webp', False),
+      ('/cardio/', 'Cardio', '2023/09/igt-buge-cardio-elipticas.jpg', False),
+      ('/accesorios/', 'Accesorios', '2023/09/IGT-accesorios.jpg', True),
+      ('/pilates/', 'Pilates', '2023/09/igt-categoria-pilates.jpg', False)] %}
+    <li class="{{ 'cats__wide' if wide }}">
+      <a class="ccard" href="{{ href }}">
+        {{ picture(img, t ~ ' – equipo para gimnasio BUGE', sizes=("(min-width:768px) 50vw, 100vw" if wide else "(min-width:768px) 25vw, 100vw"), max_w=1366) }}
+        <span class="ccard__ov"><svg class="ccard__ar" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><path d="M4 32 32 4M11 4h21v21" stroke="#fff" stroke-width="2.4" fill="none"/></svg><span class="ccard__t">{{ t }}</span></span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{# --- Quiénes somos --- #}
+<section class="who" aria-labelledby="who-t" style="--bg:url({{ img_url('2023/09/Vector3.png', 1920) }})">
+  <div class="wrap who__grid">
+    <div class="who__img">{{ picture('2023/09/img-home2-1.png', 'Atleta entrenando con mancuerna – Integral Gym Tech', sizes="(min-width:768px) 638px, 100vw") }}</div>
+    <div class="who__text">
+      {{ ui.slashes('#F08126', 'who__sl') }}
+      {{ ui.stroke('IGT', 'who__bg') }}
+      <h2 class="who__t" id="who-t">¿Quiénes somos?</h2>
+      <p>Fundada en Querétaro en 2008, somos un proveedor líder en la industria fitness mexicana y <strong>distribuidores exclusivos de la creciente marca BUGE</strong> desde 2020. Ofrecemos equipos seguros y de alta calidad para diversos clientes: desarrollos inmobiliarios, hoteles, empresas, universidades, gimnasios (<em>profesionales, residenciales, hogar</em>), y más.</p>
+      {{ ui.btn('Cónocenos', href='/nosotros/', ic='far-plus', accent=True, cls='btn--icr who__btn') }}
+    </div>
+  </div>
+</section>
+
+{{ bl.why() }}
+{{ bl.testimonials() }}
+
+{# --- Expande tu negocio / distribuidor --- #}
+<section class="wrap biz" aria-label="Oportunidades de negocio">
+  <a class="biz__card" href="#contacto">
+    <img src="{{ img_url('2026/10/igt-expande-tu-negocio-203x238.webp', 203) }}" width="203" height="238" alt="Empresario revisando equipo de gimnasio – expande tu negocio" loading="lazy">
+    <span class="biz__body">{{ ui.slashes() }}<h2 class="biz__t">Expande tu negocio</h2><span class="biz__l">Descubre como <span aria-hidden="true">»</span></span></span>
+  </a>
+  <a class="biz__card biz__card--rev" href="#contacto">
+    <img src="{{ img_url('2026/10/igt-distribuidor-203x238.webp', 203) }}" width="203" height="238" alt="Distribuidor de equipo de gimnasio Integral Gym Tech" loading="lazy">
+    <span class="biz__body">{{ ui.slashes() }}<h2 class="biz__t">Sé nuestro distribuidor</h2><span class="biz__l">Registrate <span aria-hidden="true">»</span></span></span>
+  </a>
+</section>
+{% endblock %}

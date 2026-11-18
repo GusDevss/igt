@@ -101,10 +101,9 @@ function strokes() {
   const fit = () => $$('svg.stroke').forEach((svg) => {
     const t = svg.querySelector('text');
     if (!t) return;
-    const fs = parseFloat(getComputedStyle(t).fontSize);
     try {
-      const w = t.getComputedTextLength();
-      if (w) { svg.setAttribute('width', Math.ceil(w)); svg.setAttribute('height', Math.round(fs)); }
+      const b = t.getBBox();
+      if (b.width) { svg.setAttribute('width', Math.ceil(b.width)); svg.setAttribute('height', Math.ceil(b.height)); }
     } catch (e) { /* noop */ }
   });
   fit();

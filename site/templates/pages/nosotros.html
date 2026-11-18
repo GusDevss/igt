@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/blocks.html" as bl with context %}
+{% block main_class %}about{% endblock %}
+{% block content %}
+<div class="wrap about__intro">
+  {{ picture('2023/09/about1.jpg', 'Equipo de Integral Gym Tech: proveedor de equipo para gimnasio en Querétaro desde 2008', sizes="(min-width:1330px) 1300px, 100vw", priority=True) }}
+  <h1 class="about__t">Integral Gym Tech – IGT</h1>
+  <p class="about__p">Fundada en Querétaro en 2008, somos un proveedor líder en la industria fitness mexicana y<strong> distribuidores exclusivos de la creciente marca BUGE</strong> desde 2020. Ofrecemos equipos seguros y de alta calidad para diversos clientes: desarrollos inmobiliarios, hoteles, empresas, universidades, gimnasios (<em>profesionales, residenciales, hogar)</em>, y más.</p>
+  <h2 class="about__h">Impulsando el Fitness en Cada Espacio.</h2>
+  <p class="about__p about__p--2">En INTEGRAL GYM TECH S.A. DE C.V., nos enorgullece ser el socio de confianza. Hemos tenido el privilegio de equipar espacios dedicados a mejorar la salud y el bienestar de miles de personas.</p>
+  {{ bl.counters('stats--boxed') }}
+</div>
+{{ bl.why('Arrendamiento financiero', 'Equipos de alta calidad', 'why--about') }}
+{{ bl.testimonials('testi--about') }}
+<section class="wrap cta" aria-label="Contacto con un asesor">
+  <div class="cta__box">
+    <div>
+      <p class="cta__k">{{ ui.slashes('#fff') }}<span>¿Estás listo para equipar tu espacio?</span></p>
+      <h2 class="cta__t">Somos líderes en el mercado</h2>
+    </div>
+    <a class="cta__btn" href="https://wa.me/5214421270018?text=Hola%2C%20quiero%20hablar%20con%20un%20asesor" target="_blank" rel="noopener">{{ icon('fab-whatsapp') }}<span class="cta__sep"></span><span data-wobble>Hablar con un asesor</span></a>
+  </div>
+</section>
+{% endblock %}
+{% block contact %}{% endblock %}

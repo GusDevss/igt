@@ -1,0 +1,136 @@
+{# ---------------------------------------------------------------- bloques compartidos (Inicio y Nosotros) #}
+{% import "partials/ui.html" as ui with context %}
+
+{# Contadores sobre banda roja #}
+{% macro counters(cls='') -%}
+<section class="stats {{ cls }}" aria-label="Integral Gym Tech en números">
+  <ul class="stats__list">
+    {% for label, pre, val, suf in [('Proveedores','#',1,''),('Años de experiencia','',18,'+'),('Proyectos realizados','',500,'+'),('Productos','',200,'+')] %}
+    <li class="stat">
+      <p class="stat__label">{{ ui.slashes('#fff', 'stat__sl') }}<span>{{ label }}</span></p>
+      <p class="stat__num">{% if pre %}<span class="stat__pre">{{ pre }}</span>{% endif %}<span class="stat__val" data-count="{{ val }}" data-from="1">{{ val }}</span>{% if suf %}<span class="stat__suf">{{ suf }}</span>{% endif %}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{%- endmacro %}
+
+{# "¿Por qué elegirnos?" con pestañas #}
+{% macro why(first_title='Arrendamiento financiero / Leasing', second_title='Equipos robustos y duraderos', cls='') -%}
+{% set items = [
+  ('far-piggy-bank', first_title, 'Equipa o moderniza tu gimnasio sin descapitalizarte. Nuestro esquema de leasing te permite acceder a equipo fitness mediante esquemas de pago flexibles.'),
+  ('flaticon-weight', second_title, 'Nuestros equipos de gimnasio están hechos con materiales de alta calidad, asegurando durabilidad y rendimiento incluso con uso intenso. Invertir en ellos significa tener un gimnasio confiable y duradero.'),
+  ('flaticon-gym', 'Asesoría para Todos los Niveles', 'Sabemos que cada gimnasio tiene necesidades distintas, por eso ofrecemos equipos adaptables para todo tipo de gimnasios, desde principiantes hasta atletas avanzados.'),
+  ('flaticon-virtual-reality-fitness', 'Soporte Técnico y Garantías', 'No estás solo en tu compra. Nuestro equipo de expertos te ofrece asesoría personalizada para ayudarte a elegir el equipo de gimnasio que mejor se adapte a tus necesidades y objetivos.'),
+  ('far-shipping-fast', 'Envíos a todo México', 'Llevamos tus equipos de gimnasio hasta donde tu quieras, con envíos rápidos y seguros a cualquier parte del país, asegurando que lleguen en perfectas condiciones y listos para usar y transformar tu espacio.'),
+  ('far-shield-check', 'Pago Seguro', 'Contamos con métodos de pago seguros para que puedas adquirir el equipo que necesitas sin comprometer tu presupuesto.'),
+] %}
+<section class="why {{ cls }}" data-tabs aria-labelledby="why-t">
+  <div class="wrap why__grid">
+    <div class="why__media">{{ picture('2023/09/bg-home3-2.png', 'Mujer entrenando con mancuernas – asesoría fitness Integral Gym Tech', sizes="(min-width:768px) 569px, 100vw") }}</div>
+    <div class="why__panels">
+      {% for ic, t, d in items %}
+      <div class="why__card" role="tabpanel" id="why-p{{ loop.index }}" aria-labelledby="why-b{{ loop.index }}" {% if not loop.first %}hidden{% endif %} data-reveal>
+        <div class="why__face">{{ icon(ic, 'why__ic') }}<h3 class="why__ct">{{ t }}</h3><p>{{ d }}</p></div>
+        <div class="why__face why__face--back" aria-hidden="true">{{ icon(ic, 'why__ic') }}<p class="why__ct">{{ t }}</p><p>{{ d }}</p></div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="why__side">
+      {{ ui.slashes('#F08126', 'why__sl') }}
+      <h2 class="why__t" id="why-t">¿Por qué elegirnos?</h2>
+      <div class="why__tabs" role="tablist" aria-label="Razones para elegir Integral Gym Tech">
+        {% for ic, t, d in items %}
+        <button class="why__tab" role="tab" id="why-b{{ loop.index }}" aria-controls="why-p{{ loop.index }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ 0 if loop.first else -1 }}"><span class="why__tic">{{ icon(ic) }}</span><span>{{ t }}</span></button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+{# Reseñas de Google #}
+{% set REVIEWS = [
+  ('Jahzzel Sandoval García', 'hace 2 meses', 'Excelentes equipos, y asesoría personalizada. Súper recomendados.', 'r1'),
+  ('luis garcia', 'hace 5 meses', 'Bien', 'r2'),
+  ('Oscar Sanchez roque', 'hace 5 meses', 'Proveedor muy confiable,excelente servicio, sus aparatos son de la mejor calidad,lo recomiendo al 100%', 'r3'),
+  ('Keren rg', 'hace 1 año', 'Excelente servicio, la señorita Sandy nos dio una muy buena asesoría sobre los equipos, incluso nos ayudó con algunas técnicas y tips para usar el equipo. Adquirimos tapetes y mancuernas Nos encantó el equipo 100 % recomendable .. Muchas felicidades Sandy, tienes muy buena atención al cliente.', 'r4'),
+] %}
+
+{% macro stars(n=5, half=False, cls='') -%}
+<span class="stars {{ cls }}" role="img" aria-label="{{ n }}{% if half %}.5{% endif %} de 5 estrellas">{% for i in range(5) %}<svg viewBox="0 0 20 20" aria-hidden="true"><defs>{% if half and i == 4 %}<linearGradient id="hs"><stop offset="50%" stop-color="#F6BB06"/><stop offset="50%" stop-color="#ccc"/></linearGradient>{% endif %}</defs><path d="M10 1.3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L10 15l-5.4 3 1.1-6.1L1.2 7.7l6.1-.8z" fill="{{ 'url(#hs)' if (half and i == 4) else ('#F6BB06' if i < n else '#ccc') }}"/></svg>{% endfor %}</span>
+{%- endmacro %}
+
+{% macro google_icon() -%}
+<svg class="g-ic" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
+{%- endmacro %}
+
+{% macro reviews(cls='') -%}
+<div class="rev {{ cls }}">
+  <div class="rev__sum">
+    <img class="rev__logo" src="/favicon.png" width="65" height="65" alt="Integral Gym Tech" loading="lazy">
+    <div>
+      <p class="rev__name">Integral Tech Gym</p>
+      {{ stars(4, True, 'stars--lg') }}
+      <p class="rev__count"><strong>74 reseñas</strong> Google</p>
+      <a class="rev__write" href="https://search.google.com/local/writereview?placeid=ChIJcdpQ3nFa04URIJ9903NBxsc" target="_blank" rel="noopener">Escribe una reseña</a>
+    </div>
+  </div>
+  <div class="rev__car" data-carousel='{"view":1,"bp":{"768":2,"1100":3},"loop":true,"autoplay":5000,"pause":true}'>
+    <div class="car__vp">
+      <ul class="car__track">
+        {% for name, when, text, img in REVIEWS %}
+        <li class="car__slide">
+          <article class="rcard">
+            <header class="rcard__h">
+              <img src="/img/reviews/{{ img }}.webp" width="40" height="40" alt="" loading="lazy">
+              <div><p class="rcard__n">{{ name }}</p><p class="rcard__d">{{ when }}</p></div>
+              {{ google_icon() }}
+            </header>
+            <p class="rcard__s">{{ stars(5) }}<svg class="rcard__v" viewBox="0 0 16 16" aria-label="Reseña verificada"><circle cx="8" cy="8" r="8" fill="#4285F4"/><path d="m4.5 8.2 2.3 2.2 4.7-4.7" stroke="#fff" stroke-width="1.6" fill="none"/></svg></p>
+            <p class="rcard__t">{{ text }}</p>
+          </article>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <button class="car__btn car__btn--prev" type="button" data-dir="-1" aria-label="Reseña anterior">{{ icon('caseicon-angle-arrow-down') }}</button>
+    <button class="car__btn car__btn--next" type="button" data-dir="1" aria-label="Reseña siguiente">{{ icon('caseicon-angle-arrow-down') }}</button>
+  </div>
+</div>
+{%- endmacro %}
+
+{# Logos de clientes #}
+{% set LOGOS = [
+  ('igt-cliente-universidad-mondragon','Universidad Mondragón'),('igt-cliente-samsung','Samsung'),('igt-cliente-otomi-residencial','Otomí Residencial'),
+  ('igt-cliente-moduvated','Moduvated'),('igt-cliente-indorama-ventures','Indorama Ventures'),('igt-cliente-hwawei','Huawei'),
+  ('igt-cliente-elite-fitness','Elite Fitness'),('igt-cliente-cuartel-studio','Cuartel Studio'),('igt-cliente-comfort-aqutics','Comfort Aquatics'),
+  ('igt-cliente-cemento-cruz-azul','Cemento Cruz Azul'),('clientes-logos_22','Cliente de Integral Gym Tech'),('clientes-logos_21','Cliente de Integral Gym Tech'),
+  ('clientes-logos_20','Cliente de Integral Gym Tech'),('cliente-igt-revolution-fitness','Revolution Fitness'),('cliente-igt-re-form-pilates-studio','Re-Form Pilates Studio'),
+  ('cliente-igt-real-de-querenda','Real de Querenda'),('cliente-igt-la-ceiba','La Ceiba'),('cliente-igt-EV','EV'),
+  ('cliente-igt-eulen-flexiplan','Eulen Flexiplan'),('cliente-igt-ebc','EBC'),('cliente-igt-CR','CR'),('cliente-igt-complex','Complex Fitness Center')] %}
+
+{% macro logos(cls='') -%}
+<div class="logos {{ cls }}" data-carousel='{"view":2,"bp":{"768":4,"1200":6},"loop":true,"autoplay":2000,"pause":true}' aria-label="Clientes que confían en Integral Gym Tech">
+  <div class="car__vp">
+    <ul class="car__track">
+      {% for f, name in LOGOS %}
+      <li class="car__slide"><img src="{{ img_url('2026/09/' ~ f ~ '.png', 400) }}" width="172" height="172" alt="Logo de {{ name }}, cliente de Integral Gym Tech" loading="lazy" decoding="async"></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro testimonials(cls='') -%}
+<section class="testi {{ cls }}" aria-labelledby="testi-t">
+  <div class="wrap">
+    <div class="stitle stitle--center testi__title">
+      {{ ui.stroke('Testimonios', 'stitle__bg') }}
+      <h2 class="stitle__h stitle__h--lg" id="testi-t">Ellos ya confían en nosotros</h2>
+    </div>
+  </div>
+  <div class="wrap wrap--wide">{{ reviews() }}</div>
+  <div class="wrap wrap--wide">{{ logos() }}</div>
+</section>
+{%- endmacro %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/product.html" as pr with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap prod">
+  {{ pr.hero('2026/09/IGT-REACONDICIONADO-PORTADA.webp', 'Caminadoras reacondicionadas de marca premium listas para entrega') }}
+  {{ ui.page_title('Reacondicionado', 'prod__title') }}
+  <p class="psub">Equipo usado como nuevo<br>Calidad de primera, inversión inteligente.</p>
+  <div class="mt-23 prod__plain">
+    <p>Encuentra equipos seminuevos reacondicionados de marcas reconocidas, seleccionados y preparados para ofrecerte un excelente desempeño a una fracción de su costo original.</p>
+    <p class="mt-30">Revisamos y reacondicionamos cada equipo para que puedas equipar o renovar tu gimnasio con tecnología y calidad premium, aprovechando mejor tu inversión.</p>
+  </div>
+  {{ pr.head('¿Por qué elegir nuestro reacondicionado?', 'mt-60') }}
+  <div class="reac">
+    <a class="reac__video" href="/video/llegando-equipo-reacondicionado-a-igt.mp4" data-lightbox="video" style="background-image:url({{ img_url('2026/09/IGT-REACONDICIONADO-PORTADA.webp', 1024) }})" aria-label="Reproducir video: llegada de equipo reacondicionado a IGT">
+      <span class="reac__play">Play</span>
+    </a>
+    <ul class="reac__grid">
+      {% for ic, t, d, on in [
+        ('far-search', 'Inspección <br>360'|safe, 'Cada equipo es desarmado, evaluado y reconstruido por nuestros técnicos especializados para garantizar un funcionamiento biomecánico impecable.', True),
+        ('far-tools', 'Piezas originales y pintura nueva', 'Reemplazamos piezas de desgaste, bandas y tapicería. Además, aplicamos acabados estéticos para que el equipo luzca como recién salido de fábrica.', False),
+        ('fal-award', 'Garantía <br>IGT'|safe, 'Tu inversión está protegida. Todos nuestros equipos reacondicionados cuentan con garantía directa y respaldo de nuestro equipo de mantenimiento.', False),
+        ('far-dumbbell', 'Marcas premium a tu alcance', 'Equipa tu gimnasio u hotel con tecnología líder en la industria de marcas de prestigio mundial, optimizando tu capital.', True)] %}
+      <li class="flip{% if on %} is-on{% endif %}" tabindex="0">
+        <div class="flip__in">
+          <div class="flip__face">{{ icon(ic, 'flip__ic') }}<h3 class="flip__t">{{ t }}</h3><p class="flip__d">{{ d }}</p></div>
+          <div class="flip__face flip__face--back" aria-hidden="true">{{ icon(ic, 'flip__ic') }}<p class="flip__t">{{ t }}</p><p class="flip__d">{{ d }}</p></div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {{ pr.head('¿Buscas una máquina en específico para tu proyecto?', 'mt-76') }}
+  <p class="mt-30 prod__plain">Nuestro inventario de equipos reacondicionados se renueva constantemente. Platícanos qué necesitas y te ayudamos a encontrar la solución ideal para tu espacio.</p>
+  <div class="mt-41">{{ pr.gallery(['2026/09/IGT-REACONDICIONADO-PORTADA-1.webp','2026/09/IGT-REACONDICIONADO-PLANET-FITNESS.webp','2026/09/IGT-REACONDICIONADO-PLANETFITNESS.webp','2026/09/IGT-REACONDICIONADO-EQUIPO-PLANET-FIRNESS.webp','2026/09/IGT-REACONDICIONADO-ELIPTICAS.webp','2026/09/IGT-REACONDICIONADO-ELPTICAS02.webp','2026/09/IGT-REACONDICIONADO-CAMINADORAS.webp'], 'reac', alt_prefix='Caminadoras y elípticas reacondicionadas de marcas premium') }}</div>
+</div>
+{% endblock %}
