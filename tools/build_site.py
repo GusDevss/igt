@@ -85,13 +85,15 @@ def img_size(src):
 
 
 def picture(src, alt, sizes="100vw", cls="", loading="lazy", priority=False, width=None, height=None,
-            max_w=None, attrs=""):
+            max_w=None, attrs="", skip_mobile=False):
     """<picture> con AVIF + WebP en varios anchos. `src` es relativo a source/assets/uploads."""
     w0, h0 = img_size(src)
     top = min(max_w or w0, w0)
     widths = sorted({w for w in WIDTHS if w < top} | {top})
     fmts = ["webp"] if FAST else ["avif", "webp"]
     sources = []
+    if skip_mobile:  # imagen oculta en móvil: se sirve un GIF de 1px
+        sources.append('<source media="(max-width:767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">')
     for fmt in fmts:
         srcset = ", ".join(f"{_variant(src, w, fmt)} {w}w" for w in widths)
         sources.append(f'<source type="image/{fmt}" srcset="{srcset}" sizes="{sizes}">')
@@ -110,12 +112,33 @@ def img_url(src, width=1366, fmt="webp"):
     return _variant(src, min(width, w0), fmt)
 
 
-def bg_set(src, widths=(768, 1366, 1920)):
-    """image-set() para fondos CSS (inline style)."""
+def bg(src, big=1920, small=768, lazy=True, q=None):
+    """Atributos para un fondo CSS responsivo (AVIF + WebP, grande y móvil).
+
+    Devuelve `class="bg ..." style="--bw:...;--ba:...;--sw:...;--sa:..."`. Con lazy=True el fondo
+    solo se descarga cuando la sección se acerca a la pantalla.
+    """
     w0, _ = img_size(src)
-    big = img_url(src, max(w for w in widths if w <= w0) if any(w <= w0 for w in widths) else w0)
-    small = img_url(src, min(768, w0))
-    return Markup(f"--bg:url({big});--bg-sm:url({small})")
+    big, small = min(big, w0), min(small, w0)
+    v = {
+        "bw": _variant(src, big, "webp"), "sw": _variant(src, small, "webp"),
+        "ba": _variant(src, big, "avif") if not FAST else _variant(src, big, "webp"),
+        "sa": _variant(src, small, "avif") if not FAST else _variant(src, small, "webp"),
+    }
+    style = ";".join(f"--{k}:url({u})" for k, u in v.items())
+    cls = "bg" + (" bg--lazy" if lazy else "")
+    return Markup(f'data-bgcls="{cls}" style="{style}"')
+
+
+def bg_preload(src, big=1920, small=768):
+    """<link rel=preload> para el fondo principal (LCP), uno por tamaño de pantalla."""
+    w0, _ = img_size(src)
+    fmt = "webp" if FAST else "avif"
+    a = _variant(src, min(small, w0), fmt)
+    b = _variant(src, min(big, w0), fmt)
+    return Markup(
+        f'<link rel="preload" as="image" href="{a}" type="image/{fmt}" media="(max-width:767px)" fetchpriority="high">'
+        f'<link rel="preload" as="image" href="{b}" type="image/{fmt}" media="(min-width:768px)" fetchpriority="high">')
 
 
 # ----------------------------------------------------------------------------- catálogos PDF
@@ -212,12 +235,6 @@ def derived():
     """Imágenes fijas usadas desde CSS u Open Graph."""
     d = os.path.join(OUT, "img")
     os.makedirs(d, exist_ok=True)
-    jobs = [("2023/09/Ellipse-coming2.png", "footer-bg.webp", 1920)]
-    for src, name, w in jobs:
-        im = Image.open(_src_path(src)).convert("RGBA")
-        if im.width > w:
-            im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
-        im.save(os.path.join(d, name), "WEBP", quality=78, method=6)
     # imagen para compartir en redes (1200x630)
     og = Image.new("RGB", (1200, 630), (17, 14, 16))
     hero = Image.open(_src_path("2023/09/bg1-1.png")).convert("RGB")
@@ -343,6 +360,18 @@ def json_ld(slug):
     return Markup(json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/"))
 
 
+def merge_bg_class(html):
+    """Une data-bgcls="bg ..." con el class="..." del mismo elemento."""
+    def fix(m):
+        tag = m.group(0)
+        extra = re.search(r'data-bgcls="([^"]*)"', tag).group(1)
+        tag = re.sub(r'\s*data-bgcls="[^"]*"', "", tag)
+        if re.search(r'\bclass="', tag):
+            return re.sub(r'\bclass="([^"]*)"', lambda c: f'class="{c.group(1)} {extra}"', tag, count=1)
+        return tag[:-1] + f' class="{extra}">'
+    return re.sub(r"<[a-z][^>]*data-bgcls=\"[^\"]*\"[^>]*>", fix, html)
+
+
 def minify_html(s):
     # elimina comentarios y espacios entre etiquetas (sin tocar <pre>/<textarea>/<script>)
     s = re.sub(r"<!--(?!\[).*?-->", "", s, flags=re.S)
@@ -365,7 +394,7 @@ def main():
     js = build_js()
     env = Environment(loader=FileSystemLoader(os.path.join(SITE, "templates")), autoescape=True,
                       trim_blocks=True, lstrip_blocks=True)
-    env.globals.update(catalog=catalog, picture=picture, img_url=img_url, img_size=img_size, bg_set=bg_set, icon=icon, NAV=NAV,
+    env.globals.update(catalog=catalog, picture=picture, img_url=img_url, img_size=img_size, bg=bg, bg_preload=bg_preload, icon=icon, NAV=NAV,
                        BUSINESS=seo.BUSINESS, SITE_URL=seo.SITE, YEAR=datetime.date.today().year, JS=js)
     pages = sorted(f[:-5] for f in os.listdir(os.path.join(SITE, "templates", "pages")) if f.endswith(".html"))
     for slug in pages:
@@ -376,6 +405,7 @@ def main():
                    keywords=", ".join(dict.fromkeys(kws + seo.BASE_KW)), canonical=url, crumb=crumb,
                    og_image=seo.SITE + (ogimg or "/img/og-igt.jpg"), json_ld=json_ld(slug), css=Markup(css))
         out = env.get_template(f"pages/{slug}.html").render(**ctx)
+        out = merge_bg_class(out)
         out = minify_html(out)
         dest = os.path.join(OUT, "404.html" if slug == "404" else ("index.html" if slug == "index" else f"{slug}/index.html"))
         os.makedirs(os.path.dirname(dest), exist_ok=True)

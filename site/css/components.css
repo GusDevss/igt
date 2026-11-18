@@ -24,6 +24,7 @@
 .stroke{overflow:hidden;pointer-events:none;user-select:none;font-weight:400;text-transform:none;letter-spacing:0}
 .stroke text{font-family:var(--f-head);fill:transparent;stroke:var(--gray);stroke-width:1.2px;letter-spacing:2.16px}
 .stroke--draw text{stroke-dasharray:500;stroke-dashoffset:500;animation:dash 5s linear infinite}
+.stroke--draw.is-off text{animation-play-state:paused}
 @keyframes dash{to{stroke-dashoffset:0}}
 
 /* --- Título de sección centrado con palabra de contorno detrás --- */

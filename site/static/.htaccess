@@ -30,7 +30,7 @@ RewriteRule ^(feed|comments/feed|wp-json|xmlrpc\.php|wp-login\.php|wp-admin)(/.*
 RewriteRule ^(tienda|shop|carrito|cart|checkout|finalizar-compra|mi-cuenta|my-account)(/.*)?$ / [R=301,L]
 RewriteRule ^sitemap_index\.xml$ /sitemap.xml [R=301,L]
 RewriteRule ^(page|post|product)-sitemap\.xml$ /sitemap.xml [R=301,L]
-RewriteRule ^wp-content/uploads/(.*)$ /assets/uploads/$1 [R=301,L]
+RewriteRule ^(wp-content|wp-includes|assets/uploads|assets/plugins|assets/theme)/.*$ - [G,L]
 
 # Agregar "/" final a las páginas (ej. /cardio -> /cardio/)
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -40,7 +40,7 @@ RewriteRule ^(.*[^/])$ /$1/ [R=301,L]
 
 # Compresión
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/xml application/javascript application/json image/svg+xml font/ttf font/otf application/x-font-ttf
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/xml application/javascript text/javascript application/json image/svg+xml font/ttf font/otf application/x-font-ttf
 </IfModule>
 
 # Caché del navegador
@@ -58,12 +58,16 @@ RewriteRule ^(.*[^/])$ /$1/ [R=301,L]
   ExpiresByType font/ttf "access plus 1 year"
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 month"
 </IfModule>
 
 <IfModule mod_mime.c>
   AddType font/woff2 .woff2
   AddType font/ttf .ttf
   AddType image/webp .webp
+  AddType image/avif .avif
   AddType application/octet-stream .bcmap
 </IfModule>
 

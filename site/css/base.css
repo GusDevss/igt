@@ -63,3 +63,13 @@ input,select,textarea{font:inherit}
 [data-reveal]{clip-path:inset(0 100% 0 0)}
 [data-reveal].is-in{animation:revealSkew .8s cubic-bezier(.4,0,.2,1) both}
 @keyframes revealSkew{0%{clip-path:inset(0 100% 0 0);transform:translateX(30px)}100%{clip-path:inset(0);transform:none}}
+
+/* Fondos responsivos (AVIF con respaldo WebP) y carga diferida */
+.bg{background-image:var(--bw)}
+@supports (background-image:image-set(url(a.avif) type("image/avif"))){.bg{background-image:image-set(var(--ba) type("image/avif"),var(--bw) type("image/webp"))}}
+@media (max-width:767px){
+  .bg{background-image:var(--sw)}
+  @supports (background-image:image-set(url(a.avif) type("image/avif"))){.bg{background-image:image-set(var(--sa) type("image/avif"),var(--sw) type("image/webp"))}}
+}
+.bg--lazy:not(.bg-on){background-image:none!important}
+.no-js .bg--lazy{background-image:var(--bw)!important}

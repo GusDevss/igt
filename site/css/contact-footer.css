@@ -47,7 +47,7 @@
 
 /* --- Pie --- */
 .ftr{color:var(--text)}
-.ftr__main{padding:129px 0 0;min-height:455px;background:url(/img/footer-bg.webp) top center/cover no-repeat}
+.ftr__main{padding:129px 0 0;min-height:455px;background-position:top center;background-size:cover;background-repeat:no-repeat}
 .ftr__grid{display:grid;grid-template-columns:498fr 413fr 389fr}
 .ftr__logo{display:block;width:178px}
 .ftr__claim{max-width:258px;margin:20px 0 0;font-family:var(--f-head);font-weight:700;font-size:30px;line-height:34px;letter-spacing:3px;text-transform:uppercase;color:#fff}

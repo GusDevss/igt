@@ -2,10 +2,10 @@
 {% import "partials/ui.html" as ui with context %}
 {% import "partials/blocks.html" as bl with context %}
 {% block main_class %}home{% endblock %}
-{% block preload %}<link rel="preload" as="image" href="{{ img_url('2023/09/bg1-1.png', 1920) }}" fetchpriority="high">{% endblock %}
+{% block preload %}{{ bg_preload('2023/09/bg1-1.png') }}{% endblock %}
 {% block content %}
 {# --- Portada --- #}
-<section class="hero" style="--bg:url({{ img_url('2023/09/bg1-1.png', 1920) }});--bg-sm:url({{ img_url('2023/09/bg1-1.png', 768) }})">
+<section class="hero" {{ bg('2023/09/bg1-1.png', lazy=False) }}>
   {{ ui.stroke('FITNESS', 'hero__fit', animate=False) }}
   <img class="hero__vec" src="{{ img_url('2023/09/Vector1.png', 480) }}" width="465" height="453" alt="" aria-hidden="true">
   <div class="wrap hero__grid">
@@ -14,12 +14,12 @@
       <h1 class="hero__t"><span>Equipo para gimnasio</span> profesional y residencial en Querétaro</h1>
       {{ ui.btn('Cotiza tus equipos', href='#contacto', ic='far-plus', accent=True, cls='btn--icr') }}
     </div>
-    <div class="hero__img">{{ picture('2026/09/igt-jungla-buge.webp', 'Multiestación jungla BUGE, equipo para gimnasio profesional en Querétaro', sizes="(min-width:768px) 692px, 100vw", priority=True, max_w=1536) }}</div>
+    <div class="hero__img">{{ picture('2026/09/igt-jungla-buge.webp', 'Multiestación jungla BUGE, equipo para gimnasio profesional en Querétaro', sizes="(min-width:768px) 692px, 100vw", priority=True, max_w=1536, skip_mobile=True) }}</div>
   </div>
 </section>
 
 {# --- Tipos de proyecto --- #}
-<section class="projects" id="proyecto" aria-labelledby="proj-t" style="--bg:url({{ img_url('2023/09/bg-home3-12.png', 1920) }})">
+<section class="projects" id="proyecto" aria-labelledby="proj-t" {{ bg('2023/09/bg-home3-12.png') }}>
   <div class="wrap">
     <div class="stitle stitle--center projects__title">
       {{ ui.stroke('Proyecto', 'stitle__bg') }}
@@ -60,7 +60,7 @@
       <h2 class="stitle__h stitle__h--lg" id="cats-t">Equipo por categoría</h2>
     </div>
   </div>
-  <ul class="cats__grid" style="--bg:url({{ img_url('2023/08/Ellipse-coming.png', 1024) }})">
+  <ul class="cats__grid" {{ bg('2023/08/Ellipse-coming.png', big=893, small=600) }}>
     {% for href, t, img, wide in [
       ('/multifuncionales/', 'Multifuncionales', '2023/09/igt-multifuncionales.webp', True),
       ('/peso-integrado/', 'Peso integrado', '2023/09/igt-buge-peso-integrado-maquinas.webp', False),
@@ -79,7 +79,7 @@
 </section>
 
 {# --- Quiénes somos --- #}
-<section class="who" aria-labelledby="who-t" style="--bg:url({{ img_url('2023/09/Vector3.png', 1920) }})">
+<section class="who" aria-labelledby="who-t" {{ bg('2023/09/Vector3.png') }}>
   <div class="wrap who__grid">
     <div class="who__img">{{ picture('2023/09/img-home2-1.png', 'Atleta entrenando con mancuerna – Integral Gym Tech', sizes="(min-width:768px) 638px, 100vw") }}</div>
     <div class="who__text">

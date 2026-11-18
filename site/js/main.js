@@ -290,6 +290,19 @@ function justify() {
   addEventListener('resize', () => { clearTimeout(t); t = setTimeout(all, 80); }, { passive: true });
 }
 
+/* ------------------------------------------------------------ fondos diferidos y animaciones solo en pantalla */
+function lazyStuff() {
+  const bgs = $$('.bg--lazy');
+  const strokes = $$('svg.stroke--draw');
+  if (!('IntersectionObserver' in window)) { bgs.forEach((e) => e.classList.add('bg-on')); return; }
+  const io = new IntersectionObserver((en) => en.forEach((x) => {
+    if (x.isIntersecting) { x.target.classList.add('bg-on'); io.unobserve(x.target); }
+  }), { rootMargin: '600px 0px' });
+  bgs.forEach((e) => io.observe(e));
+  const play = new IntersectionObserver((en) => en.forEach((x) => x.target.classList.toggle('is-off', !x.isIntersecting)));
+  strokes.forEach((s) => { s.classList.add('is-off'); play.observe(s); });
+}
+
 /* ------------------------------------------------------------ lightbox (galerías y video) */
 function lightbox() {
   const items = $$('[data-lightbox]');
@@ -429,6 +442,7 @@ function catalogs() {
 
 root.classList.remove('no-js');
 stickyHeader();
+lazyStuff();
 overlays();
 search();
 strokes();
