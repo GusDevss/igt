@@ -244,6 +244,53 @@ function carousels() {
   });
 }
 
+/* ------------------------------------------------------------ galerías "justified" (filas que llenan el ancho) */
+function justify() {
+  const gals = $$('[data-justify]');
+  if (!gals.length) return;
+  const GAP = 10;
+  const layout = (g) => {
+    const o = JSON.parse(g.dataset.justify);
+    const items = $$('.gal__item', g);
+    const ratios = items.map((a) => parseFloat(a.style.getPropertyValue('--r')) || 1);
+    const W = g.clientWidth;
+    if (!W) return;
+    const H = innerWidth <= 1366 ? o.hl : o.h;
+    const rows = [];
+    let start = 0; let acc = 0; let widths = [];
+    for (let i = 0; i < items.length; i++) {
+      let w = Math.round(H * ratios[i]);
+      if (w > W) w = W;
+      const next = acc + w;
+      if (next > W && W - acc < next - W && i > start) {
+        rows.push({ from: start, to: i, sum: acc, widths }); start = i; acc = 0; widths = []; i -= 1; continue;
+      }
+      widths.push(w); acc = next;
+      if (i === items.length - 1) rows.push({ from: start, to: i + 1, sum: (acc / W >= 0.7 ? acc : W), widths });
+    }
+    let y = 0;
+    rows.forEach((r) => {
+      const n = r.to - r.from;
+      const avail = W - (n - 1) * GAP;
+      let x = 0; let h = 0;
+      for (let k = 0; k < n; k++) {
+        const it = items[r.from + k];
+        const w = (r.widths[k] / r.sum) * avail;
+        if (!k) h = w / ratios[r.from];
+        Object.assign(it.style, { left: x + 'px', top: y + 'px', width: w + 'px', height: h + 'px' });
+        x += w + GAP;
+      }
+      y += h + GAP;
+    });
+    g.style.height = Math.max(0, y - GAP) + 'px';
+    g.classList.add('is-justified');
+  };
+  const all = () => gals.forEach(layout);
+  all();
+  let t = 0;
+  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(all, 80); }, { passive: true });
+}
+
 /* ------------------------------------------------------------ lightbox (galerías y video) */
 function lightbox() {
   const items = $$('[data-lightbox]');
@@ -392,6 +439,7 @@ cursor();
 counters();
 tabs();
 carousels();
+justify();
 lightbox();
 forms();
 whatsapp();

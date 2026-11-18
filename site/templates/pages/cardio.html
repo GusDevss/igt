@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/product.html" as pr with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap prod">
+  {{ pr.hero('2023/09/igt-buge-cardio-elipticas.jpg', 'Elípticas BUGE de cardio profesional en gimnasio comercial', 'phero--narrow') }}
+  {{ ui.page_title('Cardio', 'prod__title') }}
+  {{ pr.sub('Equipo de Cardio Profesional: Uso Rudo, Durabilidad y Seguridad Real') }}
+  <p class="mt-28">En <strong>Integral Gym Tech</strong> equipamos <strong>gimnasios, hoteles, estudios y programas de bienestar corporativo</strong> con equipo de cardio diseñado para el uso intensivo que exige un entorno comercial — no equipo doméstico forzado a operar como si fuera profesional.</p>
+  {{ pr.head('Ventajas de trabajar con equipo profesional', 'mt-40') }}
+  <p class="mt-30">Si administras un gimnasio, hotel, estudio de Pilates o programa de bienestar corporativo, el equipo que eliges habla de tu marca. Te ayudamos a especificar el equipo correcto según el volumen de uso, el espacio disponible y el perfil de tus usuarios.</p>
+  {{ pr.features([('fal-dumbbell','Resistencia'),('far-shield-check','Seguridad'),('far-gem','Durabilidad'),('far-handshake-alt','Respaldo'),('fal-user-check','Experiencia')], 'mt-30 feats--hide-sm') }}
+  <p class="mt-39"><strong>Resiste el uso rudo todos los días.</strong> Estructura reforzada, motores de grado comercial y componentes pensados para operar muchas horas diarias sin perder rendimiento ni precisión.<br><strong>Seguridad desde el diseño</strong>. Sistemas de paro de emergencia, superficies antideslizantes y tolerancias de peso pensadas para usuarios de distintos niveles y condición física.<br><strong>Menor costo</strong> total de propiedad. Menos fallas, menos tiempo de inactividad y refacciones disponibles: tu inversión rinde más años que el equipo genérico.<br><strong>Respaldo real</strong>, no solo la venta. Garantía, mantenimiento preventivo y soporte técnico directo cuando lo necesitas.<br><strong>Mejor experiencia para tus usuarios.</strong> Un equipo confiable retiene clientes: nadie regresa a una banda que truena o una bici que rechina.</p>
+  <div class="mt-30">{{ pr.gallery(['2026/09/igt-buge-caminadora-01.jpeg','2026/09/igt-buge-caminadora-02.jpeg','2026/09/igt-buge-caminadora-03.jpeg','2026/09/igt-buge-caminadora-profesional_01.jpeg','2026/09/igt-buge-caminadora-profesional_02.jpeg','2026/09/igt-buge-caminadora-profesional_03.jpeg','2026/09/igt-buge-caminadora-profesional_04.jpeg','2026/09/igt-buge-cardio-bicicleta.jpeg','2026/09/igt-buge-cardio-escaladora-01.jpeg'], 'cardio', alt_prefix='Caminadoras, bicicletas y escaladoras BUGE de cardio profesional') }}</div>
+  {{ pr.head('Catálogo', 'mt-80') }}
+  <p class="mt-30 mb-0">Un gimnasio no es solo un espacio para entrenar; es un centro de desconexión, comunidad y salud. En <strong>Integral Gym Tech</strong>, sabemos que la clave para retener a tus clientes y disparar tus ventas está en ofrecerles una experiencia impecable.</p>
+  <p>Explora nuestro catálogo y equipa tu centro con tecnología de vanguardia, resistencia garantizada y el soporte directo que tu negocio necesita.</p>
+  {{ pr.book('2026/09/igt-cardio-buge.pdf', 'Cardio BUGE') }}
+</div>
+{% endblock %}

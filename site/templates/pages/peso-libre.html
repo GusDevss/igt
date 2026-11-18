@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/product.html" as pr with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap prod">
+  {{ pr.hero('2026/09/igt-buge-peso-libre-mancuernas.webp', 'Área de peso libre con mancuernas BUGE en gimnasio profesional') }}
+  {{ ui.page_title('Peso libre', 'prod__title') }}
+  {{ pr.sub('Equipamiento de peso libre profesional') }}
+  <p class="mt-28">Fabricada con acero de alto calibre, acabados anticorrosivos y componentes de uso rudo, nuestra línea de peso libre está construida para operar de forma continua en espacios de alto flujo comercial.</p>
+  {{ pr.bullets([['Equipos','Racks','Estructurales','Barras olímpicas'],['Discos','Bumpers','Mancuernas']], 'mt-16') }}
+  <p class="mt-23">Equipo que combinan máxima resistencia, bajo mantenimiento y biomecánica avanzada para garantizar la seguridad de tus usuarios.</p>
+  {{ pr.gallery(['2026/09/igt-buge-peso-libre-mancuernas.webp','2026/09/igt-buge-peso-libre-01.webp','2026/09/igt-buge-peso-libre-barras.webp','2026/09/igt-buge-peso-libre-02.webp','2026/09/igt-buge-peso-libre-discos.webp'], 'pesolibre', alt_prefix='Mancuernas, barras, discos y racks BUGE de peso libre') }}
+  {{ pr.head('Catálogo', 'mt-60') }}
+  <p class="mt-30">El área de peso libre es el corazón de cualquier gimnasio de alto rendimiento. Desde mancuernas y bumpers de grado comercial, hasta racks y barras olímpicas de máxima precisión, nuestra línea BUGE está diseñada para soportar el uso rudo diario. Equipa tus instalaciones con la durabilidad y biomecánica que tus usuarios exigen.</p>
+  {{ pr.book('2026/09/igt-peso-libre-buge.pdf', 'Peso libre BUGE') }}
+</div>
+{% endblock %}

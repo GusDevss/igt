@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap lease">
+  <section class="lease__row">
+    <div class="lease__text">
+      {{ ui.page_title('Arrendamiento financiero / leasing') }}
+      <p class="lease__p">Equipa o renueva tu gimnasio sin descapitalizarte. Con nuestro esquema de arrendamiento financiero puedes adquirir el equipo que necesitas y distribuir el pago en el tiempo, conservando capital para operar y hacer crecer tu negocio. Una alternativa flexible para invertir hoy en los equipos que necesitas.</p>
+    </div>
+    <div class="lease__media">{{ picture('2026/09/igt-arrendamiento-leasing-gym.webp', 'Arrendamiento financiero (leasing) de equipo para gimnasio', sizes="(min-width:768px) 620px, 100vw", priority=True) }}</div>
+  </section>
+  <section class="lease__row lease__row--rev">
+    <div class="lease__text">
+      <h2 class="lease__h2">Mensualidades fijas</h2>
+      <p>Llévatelo a mensualidades con pagos fijos</p>
+    </div>
+    <div class="lease__media">{{ picture('2026/10/igt-leasing-pago-a-mensualidades-fijas.webp', 'Pago de equipo de gimnasio a mensualidades fijas con tarjeta', sizes="(min-width:768px) 620px, 100vw") }}</div>
+  </section>
+</div>
+{% endblock %}

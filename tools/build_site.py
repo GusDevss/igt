@@ -118,6 +118,55 @@ def bg_set(src, widths=(768, 1366, 1920)):
     return Markup(f"--bg:url({big});--bg-sm:url({small})")
 
 
+# ----------------------------------------------------------------------------- catálogos PDF
+_catalog_cache = {}
+
+
+def catalog(pdf, title):
+    """Renderiza las páginas del PDF a WebP (dos tamaños) y devuelve los datos para el visor."""
+    if pdf in _catalog_cache:
+        return _catalog_cache[pdf]
+    src = _src_path(pdf)
+    name = os.path.splitext(os.path.basename(pdf))[0].lower()
+    cache_dir = os.path.join(CACHE, "catalogos", name)
+    out_dir = os.path.join(OUT, "catalogos", name)
+    os.makedirs(cache_dir, exist_ok=True)
+    os.makedirs(out_dir, exist_ok=True)
+    stamp = os.path.join(cache_dir, ".ok")
+    if not os.path.exists(stamp) or os.path.getmtime(stamp) < os.path.getmtime(src):
+        for f in os.listdir(cache_dir):
+            os.remove(os.path.join(cache_dir, f))
+        subprocess.run(["pdftoppm", "-r", "160", "-png", src, os.path.join(cache_dir, "p")], check=True)
+        for f in sorted(os.listdir(cache_dir)):
+            if not f.endswith(".png"):
+                continue
+            n = int(re.search(r"(\d+)", f).group(1))
+            im = Image.open(os.path.join(cache_dir, f)).convert("RGB")
+            for h, q in ((1300, 78), (700, 74)):
+                r = im.resize((round(im.width * h / im.height), h), Image.LANCZOS)
+                r.save(os.path.join(cache_dir, f"{n:02d}-{h}.webp"), "WEBP", quality=q, method=6)
+            os.remove(os.path.join(cache_dir, f))
+        open(stamp, "w").write("ok")
+    files = sorted(f for f in os.listdir(cache_dir) if f.endswith(".webp"))
+    for f in files:
+        shutil.copy2(os.path.join(cache_dir, f), os.path.join(out_dir, f))
+    shutil.copy2(src, os.path.join(out_dir, os.path.basename(pdf)))
+    count = len([f for f in files if f.endswith("-700.webp")])
+    with Image.open(os.path.join(cache_dir, "01-700.webp")) as im:
+        ratio = round(im.width / im.height, 4)
+    # texto de cada página para el texto alternativo (SEO)
+    txt = subprocess.run(["pdftotext", "-layout", src, "-"], capture_output=True, text=True).stdout.split("\f")
+    alts = []
+    for i in range(count):
+        words = re.sub(r"\s+", " ", txt[i] if i < len(txt) else "").strip()
+        words = re.sub(r"BUGE®?\s*\|?\s*(CATALOGO \d{4}|[A-ZÁÉÍÓÚ ]+)?", "", words).strip()
+        alts.append(f"{title} – página {i + 1}" + (f": {words[:140]}" if words else ""))
+    data = {"base": f"/catalogos/{name}/", "count": count, "ratio": ratio,
+            "pdf": f"/catalogos/{name}/{os.path.basename(pdf)}", "alts": alts, "title": title}
+    _catalog_cache[pdf] = data
+    return data
+
+
 # ----------------------------------------------------------------------------- iconos
 _icons_used = set()
 
@@ -316,7 +365,7 @@ def main():
     js = build_js()
     env = Environment(loader=FileSystemLoader(os.path.join(SITE, "templates")), autoescape=True,
                       trim_blocks=True, lstrip_blocks=True)
-    env.globals.update(picture=picture, img_url=img_url, img_size=img_size, bg_set=bg_set, icon=icon, NAV=NAV,
+    env.globals.update(catalog=catalog, picture=picture, img_url=img_url, img_size=img_size, bg_set=bg_set, icon=icon, NAV=NAV,
                        BUSINESS=seo.BUSINESS, SITE_URL=seo.SITE, YEAR=datetime.date.today().year, JS=js)
     pages = sorted(f[:-5] for f in os.listdir(os.path.join(SITE, "templates", "pages")) if f.endswith(".html"))
     for slug in pages:

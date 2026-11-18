@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/product.html" as pr with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap prod">
+  {{ pr.hero('2023/09/igt-multifuncionales.webp', 'Multiestación multifuncional BUGE tipo jungla para gimnasio') }}
+  {{ ui.page_title('Multifuncionales', 'prod__title') }}
+  {{ pr.sub('Diseñados para maximizar la versatilidad operativa y la rentabilidad del espacio') }}
+  <p class="mt-28">Diseñados para maximizar la versatilidad operativa y la rentabilidad del espacio, nuestra línea de equipos multifuncionales que incluye crossovers, dual adjustable pulleys, junglas de 4 y 8 estaciones y máquinas multi-smith entre otras, está construida con acero estructural de alto calibre para resistir la alta demanda de usuarios.</p>
+  <p class="mt-30">Sus sistemas de poleas ajustables y selectores de carga aseguran trayectorias de movimiento fluidas y precisas. Esta serie permite ejecutar una variedad ilimitada de ejercicios biomecánicamente seguros ofreciendo durabilidad, bajo mantenimiento y una experiencia de entrenamiento superior para usuarios de cualquier nivel.</p>
+  <div class="mt-16">{{ pr.gallery(['2026/09/igt-multifuncionales-jungla.webp','2026/09/igt-multifuncionales-01.webp','2026/09/igt-multifuncionales-02.webp','2026/09/igt-multifuncionales-03.webp'], 'multi', layout='grid', cols=4, alt_prefix='Multifuncionales, crossovers y junglas BUGE') }}</div>
+  {{ pr.bullets([['Crossovers','Dual adjustable pulleys'],['Junglas de 4 y 8 estaciones','Multi-smith']], 'mt-30') }}
+  {{ pr.head('Catálogo', 'mt-63') }}
+  <p class="mt-30">Eficiencia, versatilidad y capacidad. Los equipos multifuncionales BUGE son la solución perfecta para dinamizar tu área de fuerza, reduciendo tiempos de espera al permitir múltiples rutinas en una sola estructura. <b>Adéntrate en nuestro catálogo</b> y conoce nuestra selección de crossovers, multi-smiths y junglas.</p>
+  {{ pr.book('2026/09/igt-multi-estaciones-buge.pdf', 'Multiestaciones BUGE') }}
+</div>
+{% endblock %}

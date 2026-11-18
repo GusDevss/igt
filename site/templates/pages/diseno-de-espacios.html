@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap design">
+  {{ picture('2026/09/WhatsApp-Image-2026-09-28-at-12.19.42-PM.jpeg', 'Render 3D del diseño de un gimnasio con la distribución de equipos BUGE', sizes="(min-width:1330px) 1300px, 100vw", cls="design__img", priority=True) }}
+  {{ ui.page_title('Diseño de espacios', 'design__title') }}
+  <p>Con nuestro servicio de diseño y renderización en 3D, podrás conocer cómo quedará tu espacio, distribuir mejor los equipos, aprovechar cada metro cuadrado y tomar decisiones con mayor seguridad.</p>
+</div>
+{% endblock %}

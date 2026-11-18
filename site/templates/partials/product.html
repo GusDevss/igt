@@ -1,0 +1,57 @@
+{# ---------------------------------------------------------------- bloques de páginas de producto #}
+{% import "partials/ui.html" as ui with context %}
+
+{% macro hero(src, alt, cls='') -%}
+<div class="phero {{ cls }}">{{ picture(src, alt, sizes="(min-width:1330px) 1300px, 100vw", priority=True) }}</div>
+{%- endmacro %}
+
+{% macro sub(text, cls='') -%}
+<p class="psub {{ cls }}">{{ text }}</p>
+{%- endmacro %}
+
+{# Subtítulo con "///" grande a la izquierda #}
+{% macro head(text, cls='', tag='h2') -%}
+<{{ tag }} class="phead {{ cls }}"><svg class="phead__sl" width="57" height="16" viewBox="0 0 57 16" aria-hidden="true"><path d="M24.35.22H16L.63 15.4h8.35zM40.49.22h-8.35L16.77 15.4h8.35zM56.63.22h-8.36L32.9 15.4h8.35z" fill="#FF4D24"/></svg><span>{{ text }}</span></{{ tag }}>
+{%- endmacro %}
+
+{# Lista en dos columnas con viñeta de asterisco #}
+{% macro bullets(cols, cls='') -%}
+<div class="bul {{ cls }}">
+  {% for col in cols %}
+  <ul>
+    {% for it in col %}<li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15.37 3.4 10.67 6.12V.69H7.33v5.43L2.63 3.4.96 6.29l4.7 2.72-4.7 2.72 1.67 2.88 4.7-2.71v5.43h3.34v-5.43l4.7 2.71 1.67-2.88-4.7-2.72 4.7-2.72z" fill="#fff"/></svg><span>{{ it }}</span></li>{% endfor %}
+  </ul>
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{# Galería: layout "justified" (filas que llenan el ancho) o "grid" (columnas 3:2) #}
+{% macro gallery(items, key, layout='justified', cols=4, alt_prefix='') -%}
+<div class="gal gal--{{ layout }}" {% if layout == 'grid' %}style="--cols:{{ cols }}"{% else %}data-justify='{"h":200,"hl":150}'{% endif %}>
+  {% for src in items %}
+  {% set w, h = img_size(src) %}
+  <a class="gal__item" href="{{ img_url(src, 1920) }}" data-lightbox data-group="{{ key }}" style="--r:{{ '%.4f' % (w / h) }}">
+    {{ picture(src, alt_prefix ~ ' – imagen ' ~ loop.index ~ ' – Integral Gym Tech', sizes=("(min-width:768px) " ~ (1300 // cols) ~ "px, 100vw") if layout == 'grid' else "(min-width:768px) 400px, 60vw", max_w=1024) }}
+  </a>
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro features(items, cls='') -%}
+<ul class="feats {{ cls }}">
+  {% for ic, t in items %}{{ ui.feature(ic, t) }}{% endfor %}
+</ul>
+{%- endmacro %}
+
+{# Visor del catálogo (libro). La portada se muestra sin JavaScript; el visor completo se carga al acercarse. #}
+{% macro book(pdf, title, cls='') -%}
+{% set c = catalog(pdf, title) %}
+<div class="book {{ cls }}" data-flipbook data-loader="{{ JS['flipbook.js'] }}" data-book='{{ {"base": c.base, "count": c.count, "ratio": c.ratio, "pdf": c.pdf, "alts": c.alts, "title": c.title} | tojson }}' aria-label="Catálogo {{ title }}" role="region">
+  <div class="book__stage">
+    <div class="book__spread">
+      <img class="book__cover" src="{{ c.base }}01-700.webp" srcset="{{ c.base }}01-700.webp 1x, {{ c.base }}01-1300.webp 2x" alt="{{ c.alts[0] }}" loading="lazy" decoding="async" width="{{ (700 * c.ratio) | round | int }}" height="700">
+    </div>
+  </div>
+  <a class="book__dl" href="{{ c.pdf }}" target="_blank" rel="noopener">Descargar catálogo {{ title }} (PDF)</a>
+</div>
+{%- endmacro %}

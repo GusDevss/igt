@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap svc">
+  {{ ui.page_title('Mantenimiento de equipo', 'svc__title') }}
+  <div class="svc__grid">
+    <div class="svc__media">
+      {{ picture('2026/09/18124d06-9331-4ab2-864e-aafabd5e5c69.jpg', 'Técnico de Integral Gym Tech dando mantenimiento a una multiestación BUGE', sizes="(min-width:768px) 543px, 100vw", priority=True) }}
+    </div>
+    <div class="svc__body">
+      <p class="svc__lead">Mantén tus equipos funcionando de forma segura, eficiente y confiable. Ofrecemos mantenimiento preventivo y correctivo para equipos de gimnasio, ayudándote a reducir fallas, prolongar su vida útil y evitar interrupciones en tu operación. Nuestro servicio local te brinda atención oportuna cuando más la necesitas.</p>
+      <ul class="svc__feats">
+        {{ ui.feature('far-exclamation-triangle', 'Preventivo') }}
+        {{ ui.feature('far-shield-check', 'Correctivo') }}
+        {{ ui.feature('flaticon-pass', 'Diagnóstico') }}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

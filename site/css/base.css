@@ -2,8 +2,13 @@
    Integral Gym Tech – base
    ========================================================================== */
 @font-face{font-family:"Plateia";src:url(/assets/fonts/plateia-bold.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Montserrat";src:url(/assets/fonts/montserrat.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Montserrat";src:url(/assets/fonts/montserrat-italic.woff2) format("woff2");font-weight:100 900;font-style:italic;font-display:swap}
+/* Montserrat se declara peso por peso (igual que el sitio original) para conservar el mismo grosor de las negritas */
+@font-face{font-family:"Montserrat";src:url(/assets/fonts/montserrat.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Montserrat";src:url(/assets/fonts/montserrat.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Montserrat";src:url(/assets/fonts/montserrat.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Montserrat";src:url(/assets/fonts/montserrat.woff2) format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Montserrat";src:url(/assets/fonts/montserrat-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+
 @font-face{font-family:"Roboto";src:url(/assets/fonts/roboto.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 
 :root{

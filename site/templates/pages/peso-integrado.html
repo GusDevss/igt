@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/product.html" as pr with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap prod">
+  {{ pr.hero('2023/09/igt-buge-peso-integrado-maquinas.webp', 'Máquinas de peso integrado BUGE en gimnasio comercial') }}
+  {{ ui.page_title('Peso integrado', 'prod__title') }}
+  <p class="mt-34">Nuestra línea de peso integrado está diseñada para maximizar la eficiencia biomecánica en cada repetición. Equipada con torres de placas completamente carenadas, sistemas de transmisión mediante cable de acero grado aviación o banda reforzada de kevlar, así como mecanismos de ajuste intuitivo, esta serie garantiza un movimiento fluido, convergente y controlado.</p>
+  <p class="mt-16">Gracias a la precisión en sus curvas de fuerza, ofrece una experiencia de entrenamiento segura, cómoda y accesible para usuarios de todos los niveles, reduciendo al mínimo las necesidades de mantenimiento preventivo y optimizando la rentabilidad en espacios de alto flujo comercial.</p>
+  {{ pr.sub('Equipo de peso Integrado') }}
+  <div class="mt-28">{{ pr.gallery(['2023/09/igt-buge-peso-integrado-equipos.webp','2023/09/igt-buge-peso-integrado-aparatos.webp'], 'pesointegrado', layout='grid', cols=2, alt_prefix='Equipo de peso integrado BUGE') }}</div>
+  {{ pr.head('Catálogo', 'mt-60') }}
+  <p class="mt-30">Optimiza el espacio de tu gimnasio con máquinas diseñadas para el tráfico continuo. El peso integrado BUGE garantiza durabilidad comercial, bajo mantenimiento y una experiencia de entrenamiento guiada incomparable. <b>Te invitamos a navegar por nuestro catálogo</b> para conocer la tecnología que transformará tus instalaciones</p>
+  {{ pr.book('2026/09/igt-peso-integrado-buge.pdf', 'Peso integrado BUGE') }}
+</div>
+{% endblock %}

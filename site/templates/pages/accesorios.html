@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/product.html" as pr with context %}
+{% block main_class %}main--pad{% endblock %}
+{% block content %}
+<div class="wrap prod">
+  {{ pr.hero('2023/09/IGT-accesorios.jpg', 'Accesorios de gimnasio: costal, mancuernas y equipo funcional') }}
+  {{ ui.page_title('Accesorios', 'prod__title') }}
+  {{ pr.sub('Potencializa y complementa tu gym con los mejores accesorios') }}
+  <p class="mt-28">Encuentra los accesorios que necesitas para complementar y aprovechar al máximo tus equipos. Contamos con opciones para entrenamiento funcional, fuerza y acondicionamiento, seleccionadas por su calidad, durabilidad y relación costo-beneficio.</p>
+  {{ pr.head('Todo lo que tu zona de entrenamiento necesita', 'mt-56') }}
+  {{ pr.bullets([['Barras profesionales y agarres','Tapetes, bandas y complementos funcionales'],['Mancuernas y pesas rusas','Discos olímpicos y bumpers']], 'mt-30') }}
+  <p class="mt-33">Ya sea que estés equipando un hotel, un estudio de pilates o un área de peso libre, contamos con las herramientas exactas para maximizar los resultados de cada usuario. Explora nuestra gama de productos:</p>
+  <div class="mt-40">{{ pr.gallery(['2026/09/IGT-CINTAS.jpg','2026/09/IGT-TRAMPOLIN-PLEGABLE-FOLDING-TRAMPOLINE-WITH-SPRING.jpg','2026/09/IGT-PAR-DE-MANCUERNAS-HEXAGONALES-HEX-RUBBER-DUMBBELL.jpg','2026/09/IGT-Squat-Rack.jpg','2026/09/IGT-WHEEL-SYTZF106.jpg','2026/09/IGT-TAPETE-MORADO.jpg','2026/09/IGT-BARRA-HEXAGONAL-OLYMPIC-SHRUG-BAR.jpg','2026/09/IGT-BUMPERr-5KG.jpg','2026/09/IGT-CUERDA-DE-SALTO-DE-PVC.jpg','2026/09/IGT-CUERDA-DE-BATALLA-BATTLE-ROPE.jpg','2026/09/IGT-PELOTA-WALL-BALL-12KG.jpg','2026/09/IGT-PESA-RUSA-KETTLEBELL.jpg'], 'accesorios', layout='grid', cols=6, alt_prefix='Accesorios de gimnasio: cintas, trampolín, mancuernas, rack, rueda, tapete, barra, bumper, cuerdas, wall ball y kettlebell') }}</div>
+  {{ pr.features([('fas-weight-hanging','Durabilidad de uso rudo'),('far-cubes','Versatilidad total'),('far-user-shield','Ergonomía y seguridad')], 'mt-40') }}
+  {{ pr.head('Catálogo', 'mt-99') }}
+  <p class="mt-30">El complemento perfecto para cualquier rutina. Equipa tu gimnasio con nuestra línea de accesorios de grado comercial: agarres biomecánicos, mancuernas, pesas rusas y sistemas de almacenamiento. Adéntrate en nuestro catálogo y cuida cada detalle del entrenamiento de tus clientes.</p>
+  {{ pr.book('2026/09/CATOLOGO-ACCESORIOS.pdf', 'Accesorios') }}
+</div>
+{% endblock %}
