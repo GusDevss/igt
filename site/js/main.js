@@ -56,10 +56,11 @@ function overlays() {
       t.setAttribute('aria-expanded', String(on));
     };
     t.addEventListener('click', toggle);
-    $('.mnav__link', li).addEventListener('click', toggle);
+    const link = $('.mnav__link', li);
+    if (!link.hasAttribute('data-real')) link.addEventListener('click', toggle);
   });
   // menú de escritorio: los enlaces "#" no navegan
-  $$('.nav__item.has-sub > .nav__link').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
+  $$('.nav__item.has-sub > .nav__link:not([data-real])').forEach((a) => a.addEventListener('click', (e) => e.preventDefault()));
 }
 
 /* ------------------------------------------------------------ búsqueda (menú móvil) */
@@ -81,6 +82,7 @@ const SEARCH = [
   ['/condominios-residenciales/', 'condominio condominios residencial fraccionamiento'],
   ['/gimnasio-apertura-remodelacion/', 'apertura remodelacion abrir gimnasio'],
   ['/nosotros/', 'nosotros igt empresa quienes somos buge'],
+  ['/productos/', 'productos tienda catalogo comprar venta equipo maquina maquinas rack smith banco mancuerna disco'],
 ];
 function search() {
   $$('[data-search]').forEach((f) => f.addEventListener('submit', (e) => {

@@ -258,21 +258,24 @@ def run_esbuild(entry, out, loader=None):
     subprocess.run(args, check=True)
 
 
-def build_css():
+def build_css(extra=False):
+    """CSS del sitio. Con extra=True incluye también shop.css (solo páginas de la tienda)."""
     order = [l.strip() for l in open(os.path.join(SITE, "css", "_order.txt")) if l.strip() and not l.startswith("#")]
-    tmp = os.path.join(ROOT, ".cache", "bundle.css")
+    if not extra:
+        order = [o for o in order if o != "shop.css"]
+    tmp = os.path.join(ROOT, ".cache", "bundle-shop.css" if extra else "bundle.css")
     os.makedirs(os.path.dirname(tmp), exist_ok=True)
     with open(tmp, "w") as f:
         for name in order:
             f.write(f"/* {name} */\n" + open(os.path.join(SITE, "css", name)).read() + "\n")
-    out = os.path.join(ROOT, ".cache", "bundle.min.css")
+    out = tmp.replace(".css", ".min.css")
     run_esbuild(tmp, out)
     return open(out).read()
 
 
 def build_js():
     res = {}
-    for name in ("main.js", "flipbook.js"):
+    for name in ("main.js", "flipbook.js", "shop.js"):
         src = os.path.join(SITE, "js", name)
         if not os.path.exists(src):
             continue
@@ -284,6 +287,46 @@ def build_js():
     return res
 
 
+# ----------------------------------------------------------------------------- tienda
+SHOP = json.load(open(os.path.join(SITE, "data", "productos.json"), encoding="utf-8"))
+CATS = SHOP["categorias"]
+PRODUCTS = SHOP["productos"]
+for _p in PRODUCTS:
+    _p.setdefault("imagenes", [])
+    _p.setdefault("musculos", [])
+    _p.setdefault("ideal", [])
+    _p.setdefault("ficha", {})
+    _p.setdefault("venta", "pieza")
+    _p.setdefault("destacado", False)
+PRODUCTS_BY_SLUG = {p["slug"]: p for p in PRODUCTS}
+
+
+def _muscles():
+    from collections import Counter
+    c = Counter(m for p in PRODUCTS for m in p["musculos"] if m != "Sistema cardiovascular")
+    return [m for m, n in c.most_common(10)]
+
+
+def register_shop_seo():
+    """Agrega a seo.PAGES la página de catálogo y una entrada por producto."""
+    seo.PAGES["productos"] = (
+        "Productos | Tienda de Equipo para Gimnasio en Querétaro | Integral Gym Tech",
+        f"Catálogo de {len(PRODUCTS)} equipos para gimnasio en existencia: caminadoras, elípticas, máquinas de fuerza, "
+        "racks, máquinas Smith, bancos, mancuernas y accesorios. Filtra por categoría y solicita tu cotización en línea.",
+        ["tienda de equipo para gimnasio", "comprar equipo de gimnasio", "catálogo de aparatos de gimnasio",
+         "equipo de gimnasio en existencia", "máquinas de gimnasio en venta", "precio equipo de gimnasio Querétaro"],
+        "Productos", "CollectionPage", None)
+    for p in PRODUCTS:
+        cat = CATS[p["categoria"]]["nombre"]
+        img = ("/img/" + re.sub(r"\.[a-z0-9]+$", "", p["imagenes"][0]) + "-1024.webp") if p["imagenes"] else None
+        seo.PAGES["productos/" + p["slug"]] = (
+            f"{p['nombre']} | {cat} para gimnasio | Integral Gym Tech",
+            (p["resumen"] + f" Equipo de {cat.lower()} de grado comercial en Querétaro con envío a todo México. Cotiza en línea.")[:300],
+            [p["nombre"].lower(), f"{p['nombre'].lower()} precio", f"{cat.lower()} para gimnasio",
+             f"comprar {p['nombre'].lower()}", f"{p['nombre'].lower()} Querétaro"] + [m.lower() for m in p["musculos"][:3]],
+            p["nombre"], "Product", img)
+
+
 # ----------------------------------------------------------------------------- páginas
 NAV = [
     {"label": "IGT", "href": "/nosotros/"},
@@ -292,7 +335,8 @@ NAV = [
         ("Arrendamiento", "/arrendamiento/", "far-piggy-bank"),
         ("Diseño de espacios", "/diseno-de-espacios/", "far-ruler-triangle"),
     ]},
-    {"label": "Productos", "children": [
+    {"label": "Productos", "href": "/productos/", "children": [
+        ("Todos los productos", "/productos/", "far-layer-group"),
         ("Cardio", "/cardio/", "far-heartbeat"),
         ("Peso libre", "/peso-libre/", "far-dumbbell"),
         ("Peso integrado", "/peso-integrado/", "far-weight-hanging"),
@@ -349,6 +393,26 @@ def json_ld(slug):
             [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": S + "/"}] +
             ([] if slug == "index" else [{"@type": "ListItem", "position": 2, "name": crumb, "item": url}])},
     ]
+    if slug.startswith("productos/"):
+        pr = PRODUCTS_BY_SLUG[slug.split("/", 1)[1]]
+        cat = CATS[pr["categoria"]]["nombre"]
+        graph[-1]["itemListElement"] = [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": S + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Productos", "item": S + "/productos/"},
+            {"@type": "ListItem", "position": 3, "name": cat, "item": S + "/productos/?categoria=" + pr["categoria"]},
+            {"@type": "ListItem", "position": 4, "name": pr["nombre"], "item": url}]
+        graph[2]["@type"] = "ItemPage"
+        node = {"@type": "Product", "@id": url + "#product", "name": pr["nombre"], "description": " ".join(pr["descripcion"]),
+                "category": cat, "url": url, "sku": "IGT-" + pr["slug"].upper()[:24],
+                "brand": {"@type": "Brand", "name": "Integral Gym Tech"},
+                "additionalProperty": [{"@type": "PropertyValue", "name": k, "value": v} for k, v in pr["ficha"].items()]}
+        if pr["imagenes"]:
+            node["image"] = [S + "/img/" + re.sub(r"\.[a-z0-9]+$", "", i) + "-1024.webp" for i in pr["imagenes"]]
+        graph.append(node)
+    if slug == "productos":
+        graph.append({"@type": "ItemList", "name": "Catálogo de equipo para gimnasio", "numberOfItems": len(PRODUCTS),
+                      "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": p["nombre"],
+                                           "url": S + "/productos/" + p["slug"] + "/"} for i, p in enumerate(PRODUCTS)]})
     if stype == "Service":
         graph.append({"@type": "Service", "name": crumb, "serviceType": crumb, "description": desc,
                       "provider": {"@id": org}, "areaServed": "México", "url": url})
@@ -391,11 +455,15 @@ def main():
     os.makedirs(os.path.join(OUT, "assets"), exist_ok=True)
     build_sprite()
     css = build_css()
+    css_shop = build_css(extra=True)
     js = build_js()
     env = Environment(loader=FileSystemLoader(os.path.join(SITE, "templates")), autoescape=True,
                       trim_blocks=True, lstrip_blocks=True)
     env.globals.update(catalog=catalog, picture=picture, img_url=img_url, img_size=img_size, bg=bg, bg_preload=bg_preload, icon=icon, NAV=NAV,
-                       BUSINESS=seo.BUSINESS, SITE_URL=seo.SITE, YEAR=datetime.date.today().year, JS=js)
+                       BUSINESS=seo.BUSINESS, SITE_URL=seo.SITE, YEAR=datetime.date.today().year, JS=js,
+                       CATS=CATS, PRODUCTS=PRODUCTS, MUSCLES=_muscles(),
+                       PRODUCTS_SORTED=sorted(PRODUCTS, key=lambda p: (not p["destacado"], not p["imagenes"])), ITEMLIST="", PRODUCT_LD="")
+    register_shop_seo()
     pages = sorted(f[:-5] for f in os.listdir(os.path.join(SITE, "templates", "pages")) if f.endswith(".html"))
     for slug in pages:
         _icons_used.clear()
@@ -403,7 +471,8 @@ def main():
         url = seo.SITE + ("/" if slug == "index" else f"/{slug}/")
         ctx = dict(slug=slug, path=("/" if slug == "index" else f"/{slug}/"), title=title, description=desc,
                    keywords=", ".join(dict.fromkeys(kws + seo.BASE_KW)), canonical=url, crumb=crumb,
-                   og_image=seo.SITE + (ogimg or "/img/og-igt.jpg"), json_ld=json_ld(slug), css=Markup(css))
+                   og_image=seo.SITE + (ogimg or "/img/og-igt.jpg"), json_ld=json_ld(slug),
+                   css=Markup(css_shop if slug == "productos" else css))
         out = env.get_template(f"pages/{slug}.html").render(**ctx)
         out = merge_bg_class(out)
         out = minify_html(out)
@@ -411,7 +480,28 @@ def main():
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         open(dest, "w").write(out)
         print(f"  {dest[len(ROOT)+1:]:45} {len(out)//1024:4d} KB")
-    write_sitemap(pages)
+    # páginas de producto
+    tpl = env.get_template("layouts/producto.html")
+    for p in PRODUCTS:
+        _icons_used.clear()
+        slug = "productos/" + p["slug"]
+        title, desc, kws, crumb, stype, ogimg = seo.PAGES[slug]
+        url = f"{seo.SITE}/{slug}/"
+        same = [r for r in PRODUCTS if r["categoria"] == p["categoria"] and r is not p]
+        same.sort(key=lambda r: (not r["imagenes"], not r["destacado"]))
+        related = same[:4]
+        if len(related) < 4:
+            related += [r for r in PRODUCTS if r is not p and r not in related and r["imagenes"]][:4 - len(related)]
+        ctx = dict(slug=slug, path="/productos/", title=title, description=desc,
+                   keywords=", ".join(dict.fromkeys(kws + seo.BASE_KW)), canonical=url, crumb=crumb,
+                   og_image=seo.SITE + (ogimg or "/img/og-igt.jpg"), json_ld=json_ld(slug), css=Markup(css_shop),
+                   p=p, related=related)
+        out = minify_html(merge_bg_class(tpl.render(**ctx)))
+        dest = os.path.join(OUT, slug, "index.html")
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        open(dest, "w").write(out)
+    print(f"  {len(PRODUCTS)} páginas de producto en public/productos/")
+    write_sitemap(pages + ["productos/" + p["slug"] for p in PRODUCTS])
 
 
 def write_sitemap(pages):
@@ -420,7 +510,7 @@ def write_sitemap(pages):
         if s == "404":
             continue
         loc = seo.SITE + ("/" if s == "index" else f"/{s}/")
-        pr = "1.0" if s == "index" else ("0.3" if s in ("terminos-y-condiciones", "politica-devoluciones") else "0.8")
+        pr = "1.0" if s == "index" else ("0.3" if s in ("terminos-y-condiciones", "politica-devoluciones") else ("0.7" if s.startswith("productos/") else "0.8"))
         rows.append(f"  <url><loc>{loc}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{pr}</priority></url>")
     open(os.path.join(OUT, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

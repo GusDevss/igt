@@ -1,10 +1,10 @@
 {% macro menu(mobile=False) %}
 <ul class="{{ 'mnav__list' if mobile else 'nav' }}">
   {% for item in NAV %}
-  {% set active = (item.href == path) or (item.children and (item.children | selectattr(1, 'equalto', path) | list)) %}
+  {% set active = (item.href == path) or (item.children and (item.children | selectattr(1, 'equalto', path) | list)) or (item.href == '/productos/' and path.startswith('/productos/')) %}
   <li class="{{ 'mnav__item' if mobile else 'nav__item' }}{% if item.children %} has-sub{% endif %}{% if active %} is-active{% endif %}">
     {% if item.children %}
-      <a href="#" class="{{ 'mnav__link' if mobile else 'nav__link' }}" aria-haspopup="true">{{ item.label }}</a>
+      <a href="{{ item.href or '#' }}" class="{{ 'mnav__link' if mobile else 'nav__link' }}"{% if not item.href %} aria-haspopup="true"{% endif %}{% if item.href %} data-real{% endif %}>{{ item.label }}</a>
       {% if mobile %}<button class="mnav__toggle" type="button" aria-label="Abrir submenú {{ item.label }}" aria-expanded="false">{{ icon('caseicon-angle-arrow-down') }}</button>{% endif %}
       <ul class="{{ 'mnav__sub' if mobile else 'nav__sub' }}">
         {% for label, href, ic in item.children %}

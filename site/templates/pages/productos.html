@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/shop.html" as shop with context %}
+{% block main_class %}shop-main{% endblock %}
+{% block content %}
+<section class="shop-hero" {{ bg('2023/09/bg-home3-12.png', lazy=False) }}>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a><span>/</span><span aria-current="page">Productos</span></nav>
+    <div class="shop-hero__in">
+      {{ ui.stroke('CATÁLOGO', 'shop-hero__bg') }}
+      {{ ui.kicker('Equipo en existencia', 'shop-hero__k') }}
+      <h1 class="shop-hero__t">Productos</h1>
+      <p class="shop-hero__p">Equipo para gimnasio profesional listo para tu proyecto. Filtra por categoría o zona muscular, explora cada equipo y arma tu cotización en minutos.</p>
+      <ul class="shop-hero__stats">
+        <li><b>{{ PRODUCTS | length }}</b><span>equipos disponibles</span></li>
+        <li><b>4</b><span>categorías</span></li>
+        <li><b>100%</b><span>grado comercial</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="wrap shop" data-shop>
+  <aside class="shop__side" aria-label="Filtros">
+    <div class="shop__box">
+      <p class="shop__h">Categorías</p>
+      <ul class="shop__cats" role="list">
+        <li><button type="button" class="fcat is-on" data-filter-cat="" aria-pressed="true">{{ icon('far-layer-group') }}<span>Todos los productos</span><b>{{ PRODUCTS | length }}</b></button></li>
+        {% for key, c in CATS.items() %}
+        <li><button type="button" class="fcat" data-filter-cat="{{ key }}" aria-pressed="false">{{ icon(c.icono) }}<span>{{ c.nombre }}</span><b>{{ PRODUCTS | selectattr('categoria', 'equalto', key) | list | length }}</b></button></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="shop__box">
+      <p class="shop__h">Zona muscular</p>
+      <div class="shop__chips">
+        {% for m in MUSCLES %}<button type="button" class="chip" data-filter-musc="{{ m }}" aria-pressed="false">{{ m }}</button>{% endfor %}
+      </div>
+    </div>
+    <div class="shop__box shop__help">
+      {{ icon('fal-phone-rotary', 'shop__help-ic') }}
+      <p class="shop__h">¿Necesitas asesoría?</p>
+      <p>Te ayudamos a elegir el equipo ideal para tu espacio y presupuesto.</p>
+      <a href="https://wa.me/5214421270018?text=Hola%2C%20necesito%20asesor%C3%ADa%20para%20elegir%20equipo" target="_blank" rel="noopener">{{ icon('fab-whatsapp') }} 442 127 0018</a>
+    </div>
+  </aside>
+
+  <div class="shop__main">
+    <div class="shop__bar">
+      <div class="shop__search">
+        {{ icon('far-search') }}
+        <label class="sr" for="shop-q">Buscar productos</label>
+        <input id="shop-q" type="search" placeholder="Buscar equipo, músculo o categoría…" autocomplete="off" data-filter-q>
+      </div>
+      <div class="shop__sort">
+        <label for="shop-sort">Ordenar</label>
+        <div class="select"><select id="shop-sort" data-sort>
+          <option value="feat">Destacados</option>
+          <option value="az">Nombre A – Z</option>
+          <option value="za">Nombre Z – A</option>
+          <option value="cat">Categoría</option>
+        </select>{{ icon('caseicon-angle-arrow-down', 'select__ic') }}</div>
+      </div>
+    </div>
+    <div class="shop__info">
+      <p data-shop-count>Mostrando {{ PRODUCTS | length }} productos</p>
+      <div class="shop__active" data-active></div>
+    </div>
+    <div class="shop__grid" data-grid>
+      {% for p in PRODUCTS_SORTED %}{{ shop.card(p) }}{% endfor %}
+    </div>
+    <div class="shop__none" data-none hidden>
+      {{ icon('far-search', 'shop__none-ic') }}
+      <p class="shop__h">Sin resultados</p>
+      <p>No encontramos equipos con esos filtros. <button type="button" class="link" data-reset>Limpiar filtros</button> o <a href="#contacto">pídenos el equipo que buscas</a>.</p>
+    </div>
+  </div>
+</div>
+{{ shop.quote_drawer() }}
+{% endblock %}
+{% block scripts %}<script src="{{ JS['shop.js'] }}" defer></script>{% endblock %}

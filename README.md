@@ -62,6 +62,20 @@ Qué hace el build:
 - Crea un sprite SVG con los iconos usados.
 - Escribe `sitemap.xml`.
 
+## Tienda de productos (`/productos/`)
+
+- Catálogo con filtros por categoría y zona muscular, buscador, orden y URL compartible (`/productos/?categoria=cardio&musculo=Glúteos`).
+- Una página por producto en `/productos/<slug>/`: galería con zoom, descripción, características, ficha técnica, productos relacionados y botón de WhatsApp.
+- **Mi cotización**: el visitante agrega equipos y cantidades (se guarda en su navegador) y envía la lista por correo (mismo `enviar.php`, a los 4 destinatarios) o por WhatsApp.
+- No se muestra proveedor ni modelo.
+
+Los productos viven en `site/data/productos.json`. Para agregar o editar uno:
+
+1. Copia la imagen a `source/assets/uploads/productos/` (jpg, png o webp, idealmente cuadrada y con fondo claro).
+2. En el producto, pon la ruta en `"imagenes": ["productos/archivo.jpg"]` (puede haber varias; la primera es la principal). Sin imagen se muestra el aviso "Imagen próximamente".
+3. Campos: `slug` (URL), `nombre`, `categoria` (`cardio`, `peso-libre`, `peso-integrado`, `accesorios`), `resumen`, `descripcion` (párrafos), `caracteristicas`, `musculos`, `ideal`, `ficha` (opcional, tabla técnica), `venta` (`"kilo"` para productos por peso) y `destacado` (true/false).
+4. Ejecuta el build: se generan la página del producto, su SEO y su entrada en el sitemap.
+
 ## SEO
 
 Cada página tiene título, descripción y palabras clave propias (`tools/seo.py`), canonical, Open Graph/Twitter, un solo `<h1>`, textos alternativos descriptivos y datos estructurados JSON-LD (LocalBusiness con dirección, horario, teléfono y calificación, WebPage, BreadcrumbList, Service u OfferCatalog). Las URLs son las mismas que en WordPress y `.htaccess` redirige las antiguas.

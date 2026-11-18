@@ -1,0 +1,68 @@
+{# ---------------------------------------------------------------- tienda: tarjetas y piezas comunes #}
+{% import "partials/ui.html" as ui with context %}
+
+{# Imagen del producto o marcador "imagen próximamente" #}
+{% macro media(p, sizes="(min-width:1200px) 300px, (min-width:768px) 45vw, 100vw", priority=False, idx=0) -%}
+{% if p.imagenes %}
+{{ picture(p.imagenes[idx], p.nombre ~ ' – ' ~ CATS[p.categoria].nombre ~ ' – equipo para gimnasio en Querétaro', sizes=sizes, cls="pimg", max_w=1200, priority=priority) }}
+{% else %}
+<span class="pimg pimg--ph" role="img" aria-label="{{ p.nombre }} – imagen próximamente">
+  {{ icon(CATS[p.categoria].icono, 'pimg__ic') }}
+  <span class="pimg__t">Imagen próximamente</span>
+</span>
+{% endif %}
+{%- endmacro %}
+
+{% macro card(p, lazy=True) -%}
+<article class="prd" data-cat="{{ p.categoria }}" data-name="{{ p.nombre | lower }}" data-tags="{{ (p.musculos + [CATS[p.categoria].nombre, p.resumen]) | join(' ') | lower }}" data-musc="{{ p.musculos | join('|') }}" data-feat="{{ 1 if p.destacado else 0 }}">
+  <a class="prd__media" href="/productos/{{ p.slug }}/" tabindex="-1" aria-hidden="true">
+    {{ media(p) }}
+    <span class="prd__cat">{{ CATS[p.categoria].nombre }}</span>
+    {% if p.destacado %}<span class="prd__badge">Destacado</span>{% endif %}
+  </a>
+  <div class="prd__body">
+    <h3 class="prd__t"><a href="/productos/{{ p.slug }}/">{{ p.nombre }}</a></h3>
+    <p class="prd__d">{{ p.resumen }}</p>
+    <div class="prd__foot">
+      <a class="prd__more" href="/productos/{{ p.slug }}/">Ver detalles <svg width="25" height="8" viewBox="0 0 25 8" aria-hidden="true"><path d="M0 4h23M20 1l3.5 3L20 7" stroke="currentColor" fill="none"/></svg></a>
+      <button class="prd__add" type="button" data-quote-add data-slug="{{ p.slug }}" data-name="{{ p.nombre }}" data-unit="{{ 'kg' if p.venta == 'kilo' else 'pza' }}" aria-label="Agregar {{ p.nombre }} a la cotización">{{ icon('far-plus') }}<span>Cotizar</span></button>
+    </div>
+  </div>
+</article>
+{%- endmacro %}
+
+{# Botón flotante + panel "Mi cotización" #}
+{% macro quote_drawer() -%}
+<button class="qbtn" type="button" data-open="quote" aria-controls="quote" aria-expanded="false">
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M7 4h10l1 3H6l1-3Zm-2 4h14l-1.2 11.2A2 2 0 0 1 15.8 21H8.2a2 2 0 0 1-2-1.8L5 8Zm4 3v6m3-6v6m3-6v6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+  <span>Mi cotización</span><b class="qbtn__n" data-quote-count>0</b>
+</button>
+<div class="panel quote" id="quote" aria-hidden="true">
+  <div class="panel__overlay" data-close></div>
+  <aside class="panel__box quote__box" role="dialog" aria-modal="true" aria-labelledby="quote-t">
+    <button class="panel__close" type="button" data-close aria-label="Cerrar"></button>
+    {{ ui.kicker('Lista de equipo', 'quote__k') }}
+    <h2 class="quote__t" id="quote-t">Mi cotización</h2>
+    <p class="quote__empty" data-quote-empty>Aún no agregas productos. Explora el <a href="/productos/">catálogo</a> y presiona <b>Cotizar</b> en los equipos que te interesen.</p>
+    <ul class="quote__list" data-quote-list></ul>
+    <form class="quote__form" action="/enviar.php" method="post" novalidate data-quote-form>
+      <input type="hidden" name="pagina" value="productos">
+      <input type="hidden" name="ts" value="">
+      <input type="hidden" name="select-100" value="Cotización de productos">
+      <input type="hidden" name="productos" value="">
+      <div class="form__hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="quote__fields">
+        <label class="sr" for="q-nombre">Nombre</label><input id="q-nombre" name="your-name" placeholder="Nombre *" required autocomplete="name">
+        <label class="sr" for="q-correo">Correo</label><input id="q-correo" type="email" name="your-email" placeholder="Correo *" required autocomplete="email">
+        <label class="sr" for="q-tel">Teléfono</label><input id="q-tel" type="tel" name="your-tel" placeholder="Teléfono *" required autocomplete="tel">
+        <label class="sr" for="q-msg">Comentarios</label><textarea id="q-msg" name="textarea-823" rows="3" placeholder="Comentarios (ciudad, tipo de proyecto, fecha estimada…)"></textarea>
+      </div>
+      <p class="quote__out" role="status" aria-live="polite"></p>
+      <div class="quote__actions">
+        <button class="btn quote__send" type="submit"><span class="btn__txt">Enviar cotización</span>{{ icon('far-angle-double-right', 'btn__ic') }}</button>
+        <a class="quote__wa" href="https://wa.me/5214421270018" target="_blank" rel="noopener" data-quote-wa>{{ icon('fab-whatsapp') }} Enviar por WhatsApp</a>
+      </div>
+    </form>
+  </aside>
+</div>
+{%- endmacro %}

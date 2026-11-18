@@ -5,3 +5,4 @@ components.css
 contact-footer.css
 pages.css
 home.css
+shop.css

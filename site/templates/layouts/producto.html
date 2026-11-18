@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% import "partials/ui.html" as ui with context %}
+{% import "partials/shop.html" as shop with context %}
+{% set c = CATS[p.categoria] %}
+{% block main_class %}shop-main{% endblock %}
+{% block content %}
+<div class="wrap pdp">
+  <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a><span>/</span><a href="/productos/">Productos</a><span>/</span><a href="/productos/?categoria={{ p.categoria }}">{{ c.nombre }}</a><span>/</span><span aria-current="page">{{ p.nombre }}</span></nav>
+
+  <div class="pdp__grid">
+    <div class="pdp__gallery" data-gallery>
+      <div class="pdp__stage{% if p.imagenes %} is-zoomable{% endif %}" data-zoom>
+        {% for i in range(p.imagenes | length) %}
+        <div class="pdp__slide{% if loop.first %} is-on{% endif %}" data-slide="{{ loop.index0 }}">{{ shop.media(p, sizes="(min-width:1024px) 620px, 100vw", priority=loop.first, idx=i) }}</div>
+        {% else %}
+        <div class="pdp__slide is-on">{{ shop.media(p) }}</div>
+        {% endfor %}
+        <span class="prd__cat">{{ c.nombre }}</span>
+        {% if p.imagenes %}<span class="pdp__hint">{{ icon('far-search') }} Pasa el cursor para ampliar</span>{% endif %}
+      </div>
+      {% if p.imagenes | length > 1 %}
+      <div class="pdp__thumbs">
+        {% for i in range(p.imagenes | length) %}
+        <button type="button" class="pdp__thumb{% if loop.first %} is-on{% endif %}" data-thumb="{{ i }}" aria-label="Ver imagen {{ i + 1 }}">{{ shop.media(p, sizes="96px", idx=i) }}</button>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="pdp__info">
+      <a class="pdp__cat" href="/productos/?categoria={{ p.categoria }}">{{ icon(c.icono) }} {{ c.nombre }}</a>
+      <h1 class="pdp__t">{{ p.nombre }}</h1>
+      <p class="pdp__lead">{{ p.resumen }}</p>
+      <ul class="pdp__meta">
+        <li>{{ icon('far-shield-check') }}<span><b>Disponible</b> · Equipo de grado comercial</span></li>
+        {% if p.venta == 'kilo' %}<li>{{ icon('fas-weight-hanging') }}<span><b>Venta por kilo</b> · arma tu juego con los pesos que necesites</span></li>{% endif %}
+      </ul>
+      {% if p.musculos %}
+      <div class="pdp__chips"><span class="pdp__lbl">Zona muscular</span>{% for m in p.musculos %}<a class="chip" href="/productos/?musculo={{ m | urlencode }}">{{ m }}</a>{% endfor %}</div>
+      {% endif %}
+
+      <div class="pdp__buy">
+        <div class="qty" data-qty>
+          <button type="button" data-step="-1" aria-label="Disminuir cantidad">−</button>
+          <label class="sr" for="qty">Cantidad</label>
+          <input id="qty" type="number" inputmode="numeric" min="1" value="1" data-qty-input>
+          <button type="button" data-step="1" aria-label="Aumentar cantidad">+</button>
+          <span class="qty__u">{{ 'kg' if p.venta == 'kilo' else 'pzas' }}</span>
+        </div>
+        <button class="btn btn--red pdp__add" type="button" data-quote-add data-slug="{{ p.slug }}" data-name="{{ p.nombre }}" data-unit="{{ 'kg' if p.venta == 'kilo' else 'pza' }}" data-use-qty><span class="btn__txt">Agregar a cotización</span>{{ icon('far-plus', 'btn__ic') }}</button>
+      </div>
+      <a class="pdp__wa" href="https://wa.me/5214421270018?text={{ ('Hola, me interesa cotizar: ' ~ p.nombre ~ ' (' ~ SITE_URL ~ '/productos/' ~ p.slug ~ '/)') | urlencode }}" target="_blank" rel="noopener">{{ icon('fab-whatsapp') }} Cotizar por WhatsApp</a>
+
+      <ul class="pdp__trust">
+        <li>{{ icon('far-shipping-fast') }}<span>Envíos a todo México</span></li>
+        <li>{{ icon('far-tools') }}<span>Instalación y soporte técnico</span></li>
+        <li>{{ icon('far-piggy-bank') }}<span>Arrendamiento a mensualidades fijas</span></li>
+        <li>{{ icon('far-ruler-triangle') }}<span>Diseño 3D de tu espacio</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="pdp__tabs" data-tabs aria-label="Información del producto">
+    <div class="pdp__tablist" role="tablist">
+      <button role="tab" id="t-desc" aria-controls="p-desc" aria-selected="true" tabindex="0">Descripción</button>
+      <button role="tab" id="t-feat" aria-controls="p-feat" aria-selected="false" tabindex="-1">Características</button>
+      {% if p.ficha %}<button role="tab" id="t-spec" aria-controls="p-spec" aria-selected="false" tabindex="-1">Ficha técnica</button>{% endif %}
+    </div>
+    <div class="pdp__panel" role="tabpanel" id="p-desc" aria-labelledby="t-desc">
+      <div class="pdp__desc">
+        <div>{% for par in p.descripcion %}<p>{{ par }}</p>{% endfor %}</div>
+        {% if p.ideal %}<div class="pdp__ideal"><p class="pdp__lbl">Ideal para</p><ul>{% for i in p.ideal %}<li>{{ icon('far-shield-check') }}{{ i }}</li>{% endfor %}</ul></div>{% endif %}
+      </div>
+    </div>
+    <div class="pdp__panel" role="tabpanel" id="p-feat" aria-labelledby="t-feat" hidden>
+      <ul class="pdp__feats">{% for f in p.caracteristicas %}<li><span>{{ '%02d' % loop.index }}</span>{{ f }}</li>{% endfor %}</ul>
+    </div>
+    {% if p.ficha %}
+    <div class="pdp__panel" role="tabpanel" id="p-spec" aria-labelledby="t-spec" hidden>
+      <table class="pdp__spec"><tbody>{% for k, v in p.ficha.items() %}<tr><th scope="row">{{ k }}</th><td>{{ v }}</td></tr>{% endfor %}</tbody></table>
+      <p class="pdp__note">Especificaciones de referencia; pueden variar ligeramente según el lote. Solicita la ficha técnica completa a un asesor.</p>
+    </div>
+    {% endif %}
+  </section>
+
+  {% if related %}
+  <section class="pdp__rel" aria-labelledby="rel-t">
+    <div class="pdp__rel-h">
+      <h2 class="phead" id="rel-t"><svg class="phead__sl" width="57" height="16" viewBox="0 0 57 16" aria-hidden="true"><path d="M24.35.22H16L.63 15.4h8.35zM40.49.22h-8.35L16.77 15.4h8.35zM56.63.22h-8.36L32.9 15.4h8.35z" fill="#FF4D24"/></svg><span>También te puede interesar</span></h2>
+      <a class="prd__more" href="/productos/?categoria={{ p.categoria }}">Ver todo {{ c.nombre | lower }} <svg width="25" height="8" viewBox="0 0 25 8" aria-hidden="true"><path d="M0 4h23M20 1l3.5 3L20 7" stroke="currentColor" fill="none"/></svg></a>
+    </div>
+    <div class="shop__grid shop__grid--4">{% for r in related %}{{ shop.card(r) }}{% endfor %}</div>
+  </section>
+  {% endif %}
+</div>
+{{ shop.quote_drawer() }}
+{% endblock %}
+{% block scripts %}<script src="{{ JS['shop.js'] }}" defer></script>{% endblock %}

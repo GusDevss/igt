@@ -85,7 +85,8 @@ $telefono = limpiar('your-tel', 40);
 $asunto   = limpiar('your-subject');
 $proyecto = limpiar('select-100');
 $mensaje  = limpiar('textarea-823', 2000);
-$pagina   = preg_replace('/[^a-z0-9\-]/', '', limpiar('pagina', 80));
+$pagina   = trim(preg_replace('/[^a-z0-9\-\/]/', '', limpiar('pagina', 120)), '/');
+$productos = limpiar('productos', 4000);
 
 $errores = [];
 if ($nombre === '')   $errores['your-name']  = 'Por favor, completa este campo.';
@@ -107,6 +108,7 @@ $filas = [
     'Teléfono'         => $telefono,
     'Asunto'           => $asunto !== '' ? $asunto : '—',
     'Tipo de proyecto' => $proyecto,
+    'Productos'        => $productos !== '' ? $productos : '—',
     'Mensaje'          => $mensaje !== '' ? $mensaje : '—',
     'Página'           => $urlPagina,
     'Fecha'            => $fecha . ' (hora del centro de México)',
@@ -126,7 +128,7 @@ foreach ($filas as $k => $v) {
     $texto .= "$k: $v\n";
 }
 
-$tituloCorreo = 'Nueva cotización web: ' . $nombre . ($proyecto ? ' – ' . $proyecto : '');
+$tituloCorreo = $productos !== '' ? 'Cotización de productos: ' . $nombre : 'Nueva cotización web: ' . $nombre . ($proyecto ? ' – ' . $proyecto : '');
 
 $enviado = $SMTP
     ? enviarSmtp($SMTP, $REMITENTE, $NOMBRE_REMITENTE, $DESTINATARIOS, $correo, $nombre, $tituloCorreo, $html, $texto)
