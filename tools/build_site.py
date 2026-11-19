@@ -320,7 +320,8 @@ def register_shop_seo():
         cat = CATS[p["categoria"]]["nombre"]
         img = ("/img/" + re.sub(r"\.[a-z0-9]+$", "", p["imagenes"][0]) + "-1024.webp") if p["imagenes"] else None
         seo.PAGES["productos/" + p["slug"]] = (
-            f"{p['nombre']} | {cat} para gimnasio | Integral Gym Tech",
+            (f"{p['nombre']} | {cat} para gimnasio | Integral Gym Tech" if len(p['nombre']) + len(cat) < 28
+             else f"{p['nombre']} | Integral Gym Tech"),
             (p["resumen"] + f" Equipo de {cat.lower()} de grado comercial en Querétaro con envío a todo México. Cotiza en línea.")[:300],
             [p["nombre"].lower(), f"{p['nombre'].lower()} precio", f"{cat.lower()} para gimnasio",
              f"comprar {p['nombre'].lower()}", f"{p['nombre'].lower()} Querétaro"] + [m.lower() for m in p["musculos"][:3]],
@@ -377,12 +378,14 @@ def json_ld(slug):
          "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
                                         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                                         "opens": "09:00", "closes": "18:00"}],
-         "areaServed": [{"@type": "State", "name": "Querétaro"}, {"@type": "Country", "name": "México"}],
+         "areaServed": [{"@type": "State", "name": "Querétaro"}, {"@type": "City", "name": "San Luis Potosí"},
+                        {"@type": "City", "name": "León, Guanajuato"}, {"@type": "Country", "name": "México"}],
          "hasMap": b["maps"], "sameAs": [b["facebook"], b["instagram"]],
-         "brand": {"@type": "Brand", "name": "BUGE"},
+         "brand": {"@type": "Brand", "name": "BUGE Fitness"},
          "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "74", "bestRating": "5"},
          "knowsAbout": ["Equipo para gimnasio", "Equipamiento de gimnasios", "Mantenimiento de equipo fitness",
-                        "Arrendamiento de equipo de gimnasio", "Diseño de gimnasios", "Pilates"]},
+                        "Arrendamiento de equipo de gimnasio", "Diseño de gimnasios", "Pilates",
+                        "Equipamiento para gimnasios comerciales", "Reformer de Pilates profesional"]},
         {"@type": "WebSite", "@id": S + "/#website", "url": S + "/", "name": "IntegralGYMTech",
          "inLanguage": "es-MX", "publisher": {"@id": org}},
         {"@type": stype if stype in ("WebPage", "AboutPage", "CollectionPage") else "WebPage",
@@ -459,6 +462,8 @@ def main():
     js = build_js()
     env = Environment(loader=FileSystemLoader(os.path.join(SITE, "templates")), autoescape=True,
                       trim_blocks=True, lstrip_blocks=True)
+    env.filters["faq_item"] = lambda qa: {"@type": "Question", "name": qa[0],
+                                          "acceptedAnswer": {"@type": "Answer", "text": qa[1]}}
     env.globals.update(catalog=catalog, picture=picture, img_url=img_url, img_size=img_size, bg=bg, bg_preload=bg_preload, icon=icon, NAV=NAV,
                        BUSINESS=seo.BUSINESS, SITE_URL=seo.SITE, YEAR=datetime.date.today().year, JS=js,
                        CATS=CATS, PRODUCTS=PRODUCTS, MUSCLES=_muscles(),

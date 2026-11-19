@@ -1,356 +1,1266 @@
 {
   "categorias": {
-    "cardio": {"nombre": "Cardio", "icono": "far-heartbeat", "pagina": "/cardio/", "intro": "Caminadoras, elípticas, escaladoras, bicicletas y remos de grado comercial para uso intensivo."},
-    "peso-libre": {"nombre": "Peso libre", "icono": "far-dumbbell", "pagina": "/peso-libre/", "intro": "Racks, máquinas de carga con discos, bancos y equipo de fuerza de uso rudo."},
-    "peso-integrado": {"nombre": "Peso integrado", "icono": "far-weight-hanging", "pagina": "/peso-integrado/", "intro": "Máquinas selectorizadas y guiadas para un entrenamiento de fuerza seguro y eficiente."},
-    "accesorios": {"nombre": "Accesorios", "icono": "fas-dumbbell", "pagina": "/accesorios/", "intro": "Mancuernas, discos, bancos, barras, racks y complementos para cada zona de entrenamiento."}
+    "cardio": {
+      "nombre": "Cardio",
+      "icono": "far-heartbeat",
+      "pagina": "/cardio/",
+      "intro": "Caminadoras, elípticas, escaladoras, bicicletas y remos de grado comercial para uso intensivo."
+    },
+    "peso-libre": {
+      "nombre": "Peso libre",
+      "icono": "far-dumbbell",
+      "pagina": "/peso-libre/",
+      "intro": "Racks, máquinas de carga con discos, bancos y equipo de fuerza de uso rudo."
+    },
+    "peso-integrado": {
+      "nombre": "Peso integrado",
+      "icono": "far-weight-hanging",
+      "pagina": "/peso-integrado/",
+      "intro": "Máquinas selectorizadas y guiadas para un entrenamiento de fuerza seguro y eficiente."
+    },
+    "accesorios": {
+      "nombre": "Accesorios",
+      "icono": "fas-dumbbell",
+      "pagina": "/accesorios/",
+      "intro": "Mancuernas, discos, bancos, barras, racks y complementos para cada zona de entrenamiento."
+    }
   },
   "productos": [
     {
-      "slug": "medio-rack", "nombre": "Medio Rack (Half Rack)", "categoria": "peso-libre", "destacado": true,
-      "imagenes": ["productos/medio-rack.webp"],
+      "slug": "medio-rack",
+      "nombre": "Medio Rack (Half Rack)",
+      "categoria": "peso-libre",
+      "destacado": true,
+      "imagenes": [
+        "productos/medio-rack.webp"
+      ],
       "resumen": "Estación de fuerza compacta para sentadilla, press y dominadas con almacenamiento de discos integrado.",
       "descripcion": [
         "El medio rack es el corazón de cualquier área de peso libre: concentra sentadilla, press de banca, press militar, peso muerto en rack y dominadas en una sola estación compacta.",
         "Su estructura de acero reforzado y los soportes de seguridad ajustables permiten entrenar con cargas altas de forma segura, mientras que los postes de almacenamiento mantienen los discos ordenados y al alcance."
       ],
-      "caracteristicas": ["Estructura de acero de alto calibre para uso comercial", "Ganchos y brazos de seguridad ajustables en altura", "Barra para dominadas con múltiples agarres", "Postes laterales para almacenar discos olímpicos", "Huella compacta, ideal para optimizar espacios"],
-      "musculos": ["Piernas", "Glúteos", "Pecho", "Hombros", "Espalda"],
-      "ideal": ["Gimnasios comerciales", "Box de entrenamiento funcional", "Gimnasio en casa"]
+      "caracteristicas": [
+        "Estructura de acero de alto calibre para uso comercial",
+        "Ganchos y brazos de seguridad ajustables en altura",
+        "Barra para dominadas con múltiples agarres",
+        "Postes laterales para almacenar discos olímpicos",
+        "Huella compacta, ideal para optimizar espacios"
+      ],
+      "musculos": [
+        "Piernas",
+        "Glúteos",
+        "Pecho",
+        "Hombros",
+        "Espalda"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Box de entrenamiento funcional",
+        "Gimnasio en casa"
+      ]
     },
     {
-      "slug": "prensa-de-pierna-sentado", "nombre": "Prensa de Pierna Sentado", "categoria": "peso-integrado", "destacado": true,
-      "imagenes": ["productos/prensa-de-pierna-sentado.jpg"],
+      "slug": "prensa-de-pierna-sentado",
+      "nombre": "Prensa de Pierna Sentado",
+      "categoria": "peso-integrado",
+      "destacado": true,
+      "imagenes": [
+        "productos/prensa-de-pierna-sentado.jpg"
+      ],
       "resumen": "Máquina selectorizada para trabajar cuádriceps, glúteos e isquiotibiales con total control de la carga.",
       "descripcion": [
         "La prensa de pierna sentado permite entrenar el tren inferior completo con la espalda apoyada y una trayectoria guiada, reduciendo la carga sobre la columna.",
         "Su torre de placas con selector rápido facilita el cambio de peso entre usuarios, lo que la hace ideal para gimnasios con alto flujo."
       ],
-      "caracteristicas": ["Torre de placas carenada con selector de peso", "Respaldo y asiento ergonómicos con ajuste de posición", "Plataforma amplia para distintas posiciones de pie", "Transmisión por cable de alta resistencia", "Movimiento suave y biomecánica natural"],
-      "musculos": ["Cuádriceps", "Glúteos", "Isquiotibiales"],
-      "ideal": ["Gimnasios comerciales", "Hoteles", "Gimnasios corporativos"]
+      "caracteristicas": [
+        "Torre de placas carenada con selector de peso",
+        "Respaldo y asiento ergonómicos con ajuste de posición",
+        "Plataforma amplia para distintas posiciones de pie",
+        "Transmisión por cable de alta resistencia",
+        "Movimiento suave y biomecánica natural"
+      ],
+      "musculos": [
+        "Cuádriceps",
+        "Glúteos",
+        "Isquiotibiales"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles",
+        "Gimnasios corporativos"
+      ]
     },
     {
-      "slug": "pec-fly-deltoide-posterior", "nombre": "Pec Fly / Deltoide Posterior", "categoria": "peso-integrado",
-      "imagenes": ["productos/pec-fly-deltoide-posterior.jpg"],
+      "slug": "pec-fly-deltoide-posterior",
+      "nombre": "Pec Fly / Deltoide Posterior",
+      "categoria": "peso-integrado",
+      "imagenes": [
+        "productos/pec-fly-deltoide-posterior.jpg"
+      ],
       "resumen": "Máquina doble función para aperturas de pecho y trabajo de deltoide posterior en una sola estación.",
       "descripcion": [
         "Combina dos ejercicios en una misma máquina: aperturas de pecho (pec fly) y aperturas inversas para deltoide posterior, ahorrando espacio sin sacrificar calidad de movimiento.",
         "Los brazos ajustables permiten adaptar el rango de movimiento a cada usuario y cambiar de ejercicio en segundos."
       ],
-      "caracteristicas": ["Dos ejercicios en una sola estación", "Brazos de movimiento ajustables", "Torre de placas con selector de peso", "Asiento con ajuste de altura", "Ideal para optimizar espacio en el área de fuerza"],
-      "musculos": ["Pecho", "Hombro posterior", "Espalda alta"],
-      "ideal": ["Gimnasios comerciales", "Hoteles", "Universidades"]
+      "caracteristicas": [
+        "Dos ejercicios en una sola estación",
+        "Brazos de movimiento ajustables",
+        "Torre de placas con selector de peso",
+        "Asiento con ajuste de altura",
+        "Ideal para optimizar espacio en el área de fuerza"
+      ],
+      "musculos": [
+        "Pecho",
+        "Hombro posterior",
+        "Espalda alta"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles",
+        "Universidades"
+      ]
     },
     {
-      "slug": "press-de-pecho-selectorizado", "nombre": "Press de Pecho Selectorizado", "categoria": "peso-integrado",
-      "imagenes": ["productos/press-de-pecho-selectorizado.jpg"],
+      "slug": "press-de-pecho-selectorizado",
+      "nombre": "Press de Pecho Selectorizado",
+      "categoria": "peso-integrado",
+      "imagenes": [
+        "productos/press-de-pecho-selectorizado.jpg"
+      ],
       "resumen": "Press de pecho guiado con torre de placas para un empuje seguro y controlado.",
       "descripcion": [
         "El press de pecho selectorizado reproduce el movimiento del press de banca con una trayectoria guiada, ideal para principiantes y para trabajo de volumen en usuarios avanzados.",
         "Las empuñaduras multiagarre y el asiento ajustable permiten trabajar distintas zonas del pectoral con comodidad."
       ],
-      "caracteristicas": ["Trayectoria convergente y natural", "Empuñaduras con múltiples agarres", "Asiento ajustable en altura", "Torre de placas con selector rápido", "Estructura de acero para uso intensivo"],
-      "musculos": ["Pecho", "Tríceps", "Hombro anterior"],
-      "ideal": ["Gimnasios comerciales", "Gimnasios corporativos", "Clínicas de fisioterapia"]
+      "caracteristicas": [
+        "Trayectoria convergente y natural",
+        "Empuñaduras con múltiples agarres",
+        "Asiento ajustable en altura",
+        "Torre de placas con selector rápido",
+        "Estructura de acero para uso intensivo"
+      ],
+      "musculos": [
+        "Pecho",
+        "Tríceps",
+        "Hombro anterior"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Gimnasios corporativos",
+        "Clínicas de fisioterapia"
+      ]
     },
     {
-      "slug": "abductor-aductor-de-cadera", "nombre": "Abductor / Aductor de Cadera", "categoria": "peso-integrado", "destacado": true,
-      "imagenes": ["productos/abductor-aductor-de-cadera.png"],
+      "slug": "abductor-aductor-de-cadera",
+      "nombre": "Abductor / Aductor de Cadera",
+      "categoria": "peso-integrado",
+      "destacado": true,
+      "imagenes": [
+        "productos/abductor-aductor-de-cadera.png"
+      ],
       "resumen": "Máquina doble para trabajar la parte interna y externa de la cadera con un solo ajuste.",
       "descripcion": [
         "Permite alternar entre ejercicios de abducción (glúteo medio y cadera externa) y aducción (aductores) en la misma estación, una de las máquinas más solicitadas en cualquier gimnasio.",
         "Su sistema de ajuste rápido de rango de movimiento facilita el uso para todos los niveles."
       ],
-      "caracteristicas": ["Doble función: abducción y aducción", "Selector de rango de movimiento", "Almohadillas acolchadas de alta densidad", "Torre de placas carenada", "Respaldo ergonómico"],
-      "musculos": ["Glúteo medio", "Aductores", "Cadera"],
-      "ideal": ["Gimnasios comerciales", "Estudios boutique", "Hoteles"]
+      "caracteristicas": [
+        "Doble función: abducción y aducción",
+        "Selector de rango de movimiento",
+        "Almohadillas acolchadas de alta densidad",
+        "Torre de placas carenada",
+        "Respaldo ergonómico"
+      ],
+      "musculos": [
+        "Glúteo medio",
+        "Aductores",
+        "Cadera"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Estudios boutique",
+        "Hoteles"
+      ]
     },
     {
-      "slug": "extension-y-curl-femoral", "nombre": "Extensión de Pierna / Curl Femoral Acostado", "categoria": "peso-integrado",
-      "imagenes": ["productos/extension-y-curl-femoral.jpg"],
+      "slug": "extension-y-curl-femoral",
+      "nombre": "Extensión de Pierna / Curl Femoral Acostado",
+      "categoria": "peso-integrado",
+      "imagenes": [
+        "productos/extension-y-curl-femoral.jpg"
+      ],
       "resumen": "Estación combinada para extensión de cuádriceps y curl femoral en una sola máquina.",
       "descripcion": [
         "Esta máquina combinada permite trabajar cuádriceps (extensión) e isquiotibiales (curl femoral acostado) sin cambiar de equipo, ideal para espacios donde cada metro cuenta.",
         "Los rodillos ajustables y el respaldo regulable se adaptan a usuarios de diferentes estaturas."
       ],
-      "caracteristicas": ["Dos ejercicios en una sola estación", "Rodillos acolchados ajustables", "Respaldo con varias posiciones", "Torre de placas con selector de peso", "Cambio de ejercicio rápido"],
-      "musculos": ["Cuádriceps", "Isquiotibiales"],
-      "ideal": ["Gimnasios comerciales", "Condominios", "Hoteles"]
+      "caracteristicas": [
+        "Dos ejercicios en una sola estación",
+        "Rodillos acolchados ajustables",
+        "Respaldo con varias posiciones",
+        "Torre de placas con selector de peso",
+        "Cambio de ejercicio rápido"
+      ],
+      "musculos": [
+        "Cuádriceps",
+        "Isquiotibiales"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Condominios",
+        "Hoteles"
+      ]
     },
     {
-      "slug": "curl-femoral-sentado", "nombre": "Curl Femoral Sentado", "categoria": "peso-integrado",
-      "imagenes": ["productos/curl-femoral-sentado.jpg"],
+      "slug": "curl-femoral-sentado",
+      "nombre": "Curl Femoral Sentado",
+      "categoria": "peso-integrado",
+      "imagenes": [
+        "productos/curl-femoral-sentado.jpg"
+      ],
       "resumen": "Aislamiento de isquiotibiales en posición sentada, cómoda y segura para la espalda baja.",
       "descripcion": [
         "El curl femoral sentado aísla los isquiotibiales con una postura estable que protege la zona lumbar, ofreciendo un estímulo completo en todo el rango de movimiento.",
         "El rodillo de muslo y el ajuste del respaldo garantizan una alineación correcta de la rodilla con el eje de giro."
       ],
-      "caracteristicas": ["Postura sentada que protege la zona lumbar", "Rodillo de fijación de muslo ajustable", "Ajuste de respaldo para alinear la rodilla", "Torre de placas con selector de peso", "Tapicería resistente de uso comercial"],
-      "musculos": ["Isquiotibiales", "Pantorrilla"],
-      "ideal": ["Gimnasios comerciales", "Clínicas de fisioterapia", "Universidades"]
+      "caracteristicas": [
+        "Postura sentada que protege la zona lumbar",
+        "Rodillo de fijación de muslo ajustable",
+        "Ajuste de respaldo para alinear la rodilla",
+        "Torre de placas con selector de peso",
+        "Tapicería resistente de uso comercial"
+      ],
+      "musculos": [
+        "Isquiotibiales",
+        "Pantorrilla"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Clínicas de fisioterapia",
+        "Universidades"
+      ]
     },
     {
-      "slug": "banco-multiajustable", "nombre": "Banco Multiajustable", "categoria": "accesorios", "destacado": true,
-      "imagenes": ["productos/banco-multiajustable.jpg"],
-      "resumen": "Banco de inclinación variable para trabajo con mancuernas y barra: plano, inclinado y declinado.",
+      "slug": "banco-multiajustable",
+      "nombre": "Banco Ajustable para Pesas Multifuncional",
+      "categoria": "accesorios",
+      "destacado": true,
+      "imagenes": [
+        "productos/banco-multiajustable.jpg"
+      ],
+      "resumen": "Banco ajustable para pesas de inclinación variable: plano, inclinado y declinado. Un banco de pesas multifuncional para mancuernas y barra.",
       "descripcion": [
         "Un banco versátil e indispensable para cualquier zona de peso libre: ajusta el respaldo y el asiento para realizar press, remos, curls y una gran variedad de ejercicios.",
         "Su estructura robusta y la tapicería de alta densidad garantizan estabilidad incluso con cargas pesadas."
       ],
-      "caracteristicas": ["Respaldo con múltiples ángulos de inclinación", "Asiento ajustable independiente", "Estructura de acero reforzado", "Tapicería de alta densidad y fácil limpieza", "Ruedas y manija para moverlo con facilidad"],
-      "musculos": ["Pecho", "Hombros", "Espalda", "Brazos"],
-      "ideal": ["Gimnasios comerciales", "Gimnasio en casa", "Hoteles"]
+      "caracteristicas": [
+        "Respaldo con múltiples ángulos de inclinación",
+        "Asiento ajustable independiente",
+        "Estructura de acero reforzado",
+        "Tapicería de alta densidad y fácil limpieza",
+        "Ruedas y manija para moverlo con facilidad"
+      ],
+      "musculos": [
+        "Pecho",
+        "Hombros",
+        "Espalda",
+        "Brazos"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Gimnasio en casa",
+        "Hoteles"
+      ]
     },
     {
-      "slug": "prensa-de-pierna-lineal", "nombre": "Prensa de Pierna Lineal 45°", "categoria": "peso-integrado",
-      "imagenes": ["productos/prensa-de-pierna-lineal.jpg"],
+      "slug": "prensa-de-pierna-lineal",
+      "nombre": "Prensa de Pierna Lineal 45°",
+      "categoria": "peso-integrado",
+      "imagenes": [
+        "productos/prensa-de-pierna-lineal.jpg"
+      ],
       "resumen": "Prensa de 45° de carga con discos para entrenamientos de pierna de alta intensidad.",
       "descripcion": [
         "La prensa lineal de 45° es la elección clásica para trabajar piernas con cargas altas. Su carro se desliza sobre rieles lineales para un movimiento suave y estable.",
         "Los topes de seguridad ajustables y las manijas de bloqueo permiten entrenar al máximo con total confianza."
       ],
-      "caracteristicas": ["Carro sobre rieles lineales de baja fricción", "Plataforma amplia antiderrapante", "Topes de seguridad ajustables", "Postes de carga para discos olímpicos", "Respaldo con ángulo ergonómico"],
-      "musculos": ["Cuádriceps", "Glúteos", "Isquiotibiales", "Pantorrilla"],
-      "ideal": ["Gimnasios comerciales", "Centros de alto rendimiento", "Universidades"]
+      "caracteristicas": [
+        "Carro sobre rieles lineales de baja fricción",
+        "Plataforma amplia antiderrapante",
+        "Topes de seguridad ajustables",
+        "Postes de carga para discos olímpicos",
+        "Respaldo con ángulo ergonómico"
+      ],
+      "musculos": [
+        "Cuádriceps",
+        "Glúteos",
+        "Isquiotibiales",
+        "Pantorrilla"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Centros de alto rendimiento",
+        "Universidades"
+      ]
     },
     {
-      "slug": "belt-squat", "nombre": "Belt Squat", "categoria": "peso-libre",
-      "imagenes": ["productos/belt-squat.jpg"],
+      "slug": "belt-squat",
+      "nombre": "Belt Squat",
+      "categoria": "peso-libre",
+      "imagenes": [
+        "productos/belt-squat.jpg"
+      ],
       "resumen": "Sentadilla con cinturón que carga las piernas sin comprimir la columna.",
       "descripcion": [
         "El belt squat coloca la carga en la cadera mediante un cinturón, permitiendo sentadillas profundas y pesadas sin carga axial sobre la espalda.",
         "Es ideal para atletas, personas en rehabilitación de espalda y para aumentar el volumen de trabajo de piernas con seguridad."
       ],
-      "caracteristicas": ["Carga en la cadera, sin presión en la columna", "Plataforma amplia y estable", "Manijas de apoyo para mayor control", "Postes de carga para discos olímpicos", "Construcción de acero de uso rudo"],
-      "musculos": ["Cuádriceps", "Glúteos", "Aductores"],
-      "ideal": ["Gimnasios comerciales", "Centros de alto rendimiento", "Clínicas de fisioterapia"]
+      "caracteristicas": [
+        "Carga en la cadera, sin presión en la columna",
+        "Plataforma amplia y estable",
+        "Manijas de apoyo para mayor control",
+        "Postes de carga para discos olímpicos",
+        "Construcción de acero de uso rudo"
+      ],
+      "musculos": [
+        "Cuádriceps",
+        "Glúteos",
+        "Aductores"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Centros de alto rendimiento",
+        "Clínicas de fisioterapia"
+      ]
     },
     {
-      "slug": "maquina-smith", "nombre": "Máquina Smith", "categoria": "peso-libre", "destacado": true,
-      "imagenes": ["productos/maquina-smith.webp"],
+      "slug": "maquina-smith",
+      "nombre": "Máquina Smith Profesional",
+      "categoria": "peso-libre",
+      "destacado": true,
+      "imagenes": [
+        "productos/maquina-smith.webp"
+      ],
       "resumen": "Barra guiada con seguros en múltiples alturas para entrenar pesado con seguridad.",
       "descripcion": [
         "La máquina Smith guía la barra en un recorrido vertical para realizar sentadillas, press de banca, press militar, zancadas y hip thrust con total control.",
         "Sus seguros en múltiples alturas permiten detener la barra en cualquier punto, lo que la hace perfecta para entrenar sin compañero."
       ],
-      "caracteristicas": ["Barra guiada sobre rieles de baja fricción", "Seguros de bloqueo en múltiples alturas", "Topes de seguridad ajustables", "Postes para almacenar discos", "Compatible con bancos ajustables"],
-      "musculos": ["Piernas", "Glúteos", "Pecho", "Hombros"],
-      "ideal": ["Gimnasios comerciales", "Hoteles", "Gimnasios corporativos"]
+      "caracteristicas": [
+        "Barra guiada sobre rieles de baja fricción",
+        "Seguros de bloqueo en múltiples alturas",
+        "Topes de seguridad ajustables",
+        "Postes para almacenar discos",
+        "Compatible con bancos ajustables"
+      ],
+      "musculos": [
+        "Piernas",
+        "Glúteos",
+        "Pecho",
+        "Hombros"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles",
+        "Gimnasios corporativos"
+      ]
     },
     {
-      "slug": "hip-thrust-walk-through", "nombre": "Hip Thrust Walk-Through", "categoria": "peso-libre",
-      "imagenes": ["productos/hip-thrust-walk-through.webp"],
-      "resumen": "Máquina de empuje de cadera con acceso frontal para un trabajo de glúteo cómodo y efectivo.",
+      "slug": "hip-thrust-walk-through",
+      "nombre": "Máquina de Hip Thrust Walk-Through",
+      "categoria": "peso-libre",
+      "imagenes": [
+        "productos/hip-thrust-walk-through.webp"
+      ],
+      "resumen": "Máquina de hip thrust para gimnasio con acceso frontal: la máquina de glúteos más cómoda y efectiva para tu área de fuerza.",
       "descripcion": [
         "Diseñada para el ejercicio más efectivo de glúteo: el hip thrust. Su acceso tipo walk-through permite colocarse en segundos, sin barras ni almohadillas adicionales.",
         "El cinturón de carga y el respaldo acolchado brindan estabilidad para trabajar con cargas altas."
       ],
-      "caracteristicas": ["Acceso frontal walk-through", "Brazo de carga con postes para discos", "Respaldo acolchado de alta densidad", "Plataforma antiderrapante", "Ideal para zonas de glúteo"],
-      "musculos": ["Glúteos", "Isquiotibiales"],
-      "ideal": ["Gimnasios comerciales", "Estudios boutique", "Gimnasios femeninos"]
+      "caracteristicas": [
+        "Acceso frontal walk-through",
+        "Brazo de carga con postes para discos",
+        "Respaldo acolchado de alta densidad",
+        "Plataforma antiderrapante",
+        "Ideal para zonas de glúteo"
+      ],
+      "musculos": [
+        "Glúteos",
+        "Isquiotibiales"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Estudios boutique",
+        "Gimnasios femeninos"
+      ]
     },
     {
-      "slug": "hip-thrust-smith-3d", "nombre": "Hip Thrust Smith 3D", "categoria": "peso-libre",
-      "imagenes": ["productos/hip-thrust-smith-3d.webp"],
+      "slug": "hip-thrust-smith-3d",
+      "nombre": "Máquina de Hip Thrust Smith 3D",
+      "categoria": "peso-libre",
+      "imagenes": [
+        "productos/hip-thrust-smith-3d.webp"
+      ],
       "resumen": "Hip thrust con recorrido Smith multidireccional para trabajar glúteo desde distintos ángulos.",
       "descripcion": [
         "Combina el hip thrust con un sistema tipo Smith de movimiento tridimensional, permitiendo variar el ángulo de empuje y trabajar el glúteo de forma más completa.",
         "Una máquina de alto impacto visual y funcional que distingue a cualquier zona de entrenamiento de glúteo."
       ],
-      "caracteristicas": ["Recorrido Smith con movimiento 3D", "Banco integrado con respaldo acolchado", "Seguros de bloqueo en varias alturas", "Postes de carga para discos olímpicos", "Construcción de acero reforzado"],
-      "musculos": ["Glúteos", "Isquiotibiales", "Core"],
-      "ideal": ["Gimnasios comerciales", "Estudios boutique", "Centros de alto rendimiento"]
+      "caracteristicas": [
+        "Recorrido Smith con movimiento 3D",
+        "Banco integrado con respaldo acolchado",
+        "Seguros de bloqueo en varias alturas",
+        "Postes de carga para discos olímpicos",
+        "Construcción de acero reforzado"
+      ],
+      "musculos": [
+        "Glúteos",
+        "Isquiotibiales",
+        "Core"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Estudios boutique",
+        "Centros de alto rendimiento"
+      ]
     },
     {
-      "slug": "bicicleta-de-spinning", "nombre": "Bicicleta de Spinning", "categoria": "cardio", "destacado": true,
-      "imagenes": ["productos/bicicleta-de-spinning.webp"],
+      "slug": "bicicleta-de-spinning",
+      "nombre": "Bicicleta de Spinning",
+      "categoria": "cardio",
+      "destacado": true,
+      "imagenes": [
+        "productos/bicicleta-de-spinning.webp"
+      ],
       "resumen": "Bicicleta de ciclismo indoor de uso comercial para clases grupales y entrenamiento individual.",
       "descripcion": [
         "Bicicleta de spinning con estructura robusta y pedaleo fluido, pensada para clases de ciclismo indoor de alta intensidad y uso diario en gimnasios.",
         "Sus ajustes de asiento y manubrio se adaptan a usuarios de distintas estaturas, y la resistencia regulable permite desde rodadas suaves hasta sprints."
       ],
-      "caracteristicas": ["Volante de inercia para pedaleo suave", "Resistencia ajustable", "Asiento y manubrio con ajuste vertical y horizontal", "Pedales con canastilla y compatibles con clip", "Ruedas frontales para moverla fácilmente"],
-      "musculos": ["Piernas", "Glúteos", "Sistema cardiovascular"],
-      "ideal": ["Salas de ciclismo", "Gimnasios comerciales", "Gimnasio en casa"]
+      "caracteristicas": [
+        "Volante de inercia para pedaleo suave",
+        "Resistencia ajustable",
+        "Asiento y manubrio con ajuste vertical y horizontal",
+        "Pedales con canastilla y compatibles con clip",
+        "Ruedas frontales para moverla fácilmente"
+      ],
+      "musculos": [
+        "Piernas",
+        "Glúteos",
+        "Sistema cardiovascular"
+      ],
+      "ideal": [
+        "Salas de ciclismo",
+        "Gimnasios comerciales",
+        "Gimnasio en casa"
+      ]
     },
     {
-      "slug": "caminadora-comercial", "nombre": "Caminadora Comercial", "categoria": "cardio", "destacado": true,
-      "imagenes": ["productos/caminadora-comercial.png"],
+      "slug": "caminadora-comercial",
+      "nombre": "Caminadora Comercial",
+      "categoria": "cardio",
+      "destacado": true,
+      "imagenes": [
+        "productos/caminadora-comercial.png"
+      ],
       "resumen": "Caminadora de 3.0 HP con inclinación de hasta 15° y velocidad de hasta 20 km/h.",
       "descripcion": [
         "Caminadora de grado comercial diseñada para operar muchas horas al día. Su motor de 3.0 HP y su amplia superficie de carrera ofrecen una experiencia estable tanto para caminar como para correr.",
         "La pantalla LCD de 18.5\" con indicadores LED, la inclinación de 0 a 15° y la velocidad de hasta 20 km/h permiten programar entrenamientos para cualquier nivel."
       ],
-      "caracteristicas": ["Motor de 3.0 HP", "Velocidad de 0 a 20 km/h", "Inclinación de 0 a 15°", "Pantalla LCD de 18.5\" / LED", "Banda de 2.5 mm y tabla de 25 mm"],
-      "ficha": {"Motor": "3.0 HP", "Velocidad": "0 – 20 km/h", "Inclinación": "0 – 15°", "Área de carrera": "1345 × 620 mm", "Carga máxima": "180 kg", "Pantalla": "LCD 18.5\" / LED", "Alimentación": "220 V, 8.6 A", "Dimensiones": "2110 × 880 × 1530 mm", "Peso": "180 kg"},
-      "musculos": ["Piernas", "Glúteos", "Sistema cardiovascular"],
-      "ideal": ["Gimnasios comerciales", "Hoteles", "Gimnasios corporativos"]
+      "caracteristicas": [
+        "Motor de 3.0 HP",
+        "Velocidad de 0 a 20 km/h",
+        "Inclinación de 0 a 15°",
+        "Pantalla LCD de 18.5\" / LED",
+        "Banda de 2.5 mm y tabla de 25 mm"
+      ],
+      "ficha": {
+        "Motor": "3.0 HP",
+        "Velocidad": "0 – 20 km/h",
+        "Inclinación": "0 – 15°",
+        "Área de carrera": "1345 × 620 mm",
+        "Carga máxima": "180 kg",
+        "Pantalla": "LCD 18.5\" / LED",
+        "Alimentación": "220 V, 8.6 A",
+        "Dimensiones": "2110 × 880 × 1530 mm",
+        "Peso": "180 kg"
+      },
+      "musculos": [
+        "Piernas",
+        "Glúteos",
+        "Sistema cardiovascular"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles",
+        "Gimnasios corporativos"
+      ]
     },
     {
-      "slug": "caminadora-curva", "nombre": "Caminadora Curva sin Motor", "categoria": "cardio", "destacado": true,
-      "imagenes": ["productos/caminadora-curva.png", "productos/caminadora-curva-2.jpg"],
+      "slug": "caminadora-curva",
+      "nombre": "Caminadora Curva sin Motor",
+      "categoria": "cardio",
+      "destacado": true,
+      "imagenes": [
+        "productos/caminadora-curva.png",
+        "productos/caminadora-curva-2.jpg"
+      ],
       "resumen": "Caminadora curva impulsada por el usuario, sin electricidad, ideal para sprints y HIIT.",
       "descripcion": [
         "La caminadora curva funciona sin motor: es el propio usuario quien marca la velocidad, lo que la convierte en la herramienta ideal para sprints, entrenamiento de intervalos y acondicionamiento atlético.",
         "Al no requerir conexión eléctrica, puede ubicarse en cualquier zona del gimnasio y su mantenimiento es mínimo."
       ],
-      "caracteristicas": ["Sin motor: impulsada por el usuario", "No requiere conexión eléctrica", "Superficie curva para una zancada natural", "Pantalla LED con métricas de entrenamiento", "Mantenimiento mínimo"],
-      "ficha": {"Área de carrera": "1700 × 440 mm", "Carga máxima": "150 kg", "Pantalla": "LED", "Dimensiones": "1800 × 970 × 1630 mm", "Peso": "168 kg"},
-      "musculos": ["Piernas", "Glúteos", "Core", "Sistema cardiovascular"],
-      "ideal": ["Box de entrenamiento funcional", "Centros de alto rendimiento", "Gimnasios comerciales"]
+      "caracteristicas": [
+        "Sin motor: impulsada por el usuario",
+        "No requiere conexión eléctrica",
+        "Superficie curva para una zancada natural",
+        "Pantalla LED con métricas de entrenamiento",
+        "Mantenimiento mínimo"
+      ],
+      "ficha": {
+        "Área de carrera": "1700 × 440 mm",
+        "Carga máxima": "150 kg",
+        "Pantalla": "LED",
+        "Dimensiones": "1800 × 970 × 1630 mm",
+        "Peso": "168 kg"
+      },
+      "musculos": [
+        "Piernas",
+        "Glúteos",
+        "Core",
+        "Sistema cardiovascular"
+      ],
+      "ideal": [
+        "Box de entrenamiento funcional",
+        "Centros de alto rendimiento",
+        "Gimnasios comerciales"
+      ]
     },
     {
-      "slug": "eliptica-comercial", "nombre": "Elíptica Comercial", "categoria": "cardio",
-      "imagenes": ["productos/eliptica-comercial.png"],
+      "slug": "eliptica-comercial",
+      "nombre": "Elíptica Comercial",
+      "categoria": "cardio",
+      "imagenes": [
+        "productos/eliptica-comercial.png"
+      ],
       "resumen": "Elíptica de bajo impacto para trabajo cardiovascular de cuerpo completo, soporta hasta 200 kg.",
       "descripcion": [
         "La elíptica ofrece un entrenamiento cardiovascular de cuerpo completo con un movimiento fluido y de bajo impacto para las articulaciones, perfecto para usuarios de todos los niveles.",
         "Su estructura robusta soporta hasta 200 kg y su pantalla LED muestra las métricas principales del entrenamiento."
       ],
-      "caracteristicas": ["Movimiento de bajo impacto", "Trabajo de tren superior e inferior", "Pantalla LED", "Carga máxima de 200 kg", "Estructura de uso comercial"],
-      "ficha": {"Carga máxima": "200 kg", "Pantalla": "LED", "Dimensiones": "2220 × 640 × 1235 mm", "Peso": "151 kg"},
-      "musculos": ["Piernas", "Glúteos", "Brazos", "Sistema cardiovascular"],
-      "ideal": ["Gimnasios comerciales", "Hoteles", "Condominios"]
+      "caracteristicas": [
+        "Movimiento de bajo impacto",
+        "Trabajo de tren superior e inferior",
+        "Pantalla LED",
+        "Carga máxima de 200 kg",
+        "Estructura de uso comercial"
+      ],
+      "ficha": {
+        "Carga máxima": "200 kg",
+        "Pantalla": "LED",
+        "Dimensiones": "2220 × 640 × 1235 mm",
+        "Peso": "151 kg"
+      },
+      "musculos": [
+        "Piernas",
+        "Glúteos",
+        "Brazos",
+        "Sistema cardiovascular"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles",
+        "Condominios"
+      ]
     },
     {
-      "slug": "escaladora-stair-climber", "nombre": "Escaladora (Stair Climber)", "categoria": "cardio",
-      "imagenes": ["productos/escaladora-stair-climber.png"],
+      "slug": "escaladora-stair-climber",
+      "nombre": "Escaladora Profesional para Gimnasio (Stair Climber)",
+      "categoria": "cardio",
+      "imagenes": [
+        "productos/escaladora-stair-climber.png"
+      ],
       "resumen": "Escalera infinita para quemar calorías y fortalecer piernas y glúteos con alta intensidad.",
       "descripcion": [
         "La escaladora simula subir escaleras de forma continua, uno de los ejercicios cardiovasculares más exigentes y efectivos para tonificar piernas y glúteos.",
         "Sus escalones amplios, los pasamanos laterales y la pantalla LED/LCD brindan una experiencia segura e intuitiva."
       ],
-      "caracteristicas": ["Escalones giratorios amplios y antiderrapantes", "Pasamanos laterales y frontales", "Pantalla LED / LCD", "Estructura robusta de uso comercial", "Alta demanda calórica por sesión"],
-      "ficha": {"Pantalla": "LED / LCD", "Dimensiones": "1420 × 810 × 2400 mm", "Peso": "205 kg"},
-      "musculos": ["Piernas", "Glúteos", "Pantorrilla", "Sistema cardiovascular"],
-      "ideal": ["Gimnasios comerciales", "Hoteles", "Gimnasios corporativos"]
+      "caracteristicas": [
+        "Escalones giratorios amplios y antiderrapantes",
+        "Pasamanos laterales y frontales",
+        "Pantalla LED / LCD",
+        "Estructura robusta de uso comercial",
+        "Alta demanda calórica por sesión"
+      ],
+      "ficha": {
+        "Pantalla": "LED / LCD",
+        "Dimensiones": "1420 × 810 × 2400 mm",
+        "Peso": "205 kg"
+      },
+      "musculos": [
+        "Piernas",
+        "Glúteos",
+        "Pantorrilla",
+        "Sistema cardiovascular"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles",
+        "Gimnasios corporativos"
+      ]
     },
-
-    {"slug": "abductor-de-pie", "nombre": "Abductor de Pie", "categoria": "peso-libre", "imagenes": [],
+    {
+      "slug": "abductor-de-pie",
+      "nombre": "Abductor de Pie",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Máquina para trabajo de glúteo medio y cadera en posición de pie.",
-      "descripcion": ["El abductor de pie trabaja el glúteo medio y la cadera en una postura funcional, similar a los movimientos de la vida diaria y del deporte.", "Su estructura estable y los apoyos acolchados permiten un trabajo unilateral controlado."],
-      "caracteristicas": ["Trabajo unilateral en posición de pie", "Apoyos acolchados ajustables", "Agarraderas para mayor estabilidad", "Carga con discos olímpicos", "Construcción de uso rudo"],
-      "musculos": ["Glúteo medio", "Cadera"], "ideal": ["Gimnasios comerciales", "Estudios boutique"]},
-    {"slug": "maquina-multifuncional", "nombre": "Máquina Multifuncional", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "El abductor de pie trabaja el glúteo medio y la cadera en una postura funcional, similar a los movimientos de la vida diaria y del deporte.",
+        "Su estructura estable y los apoyos acolchados permiten un trabajo unilateral controlado."
+      ],
+      "caracteristicas": [
+        "Trabajo unilateral en posición de pie",
+        "Apoyos acolchados ajustables",
+        "Agarraderas para mayor estabilidad",
+        "Carga con discos olímpicos",
+        "Construcción de uso rudo"
+      ],
+      "musculos": [
+        "Glúteo medio",
+        "Cadera"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Estudios boutique"
+      ]
+    },
+    {
+      "slug": "maquina-multifuncional",
+      "nombre": "Máquina Multifuncional",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Estación multifuncional para entrenar el cuerpo completo en un solo equipo.",
-      "descripcion": ["Una sola máquina para decenas de ejercicios: poleas, press, remos y trabajo de piernas, ideal para optimizar el espacio sin limitar las opciones de entrenamiento.", "Perfecta para condominios, hoteles y gimnasios que buscan versatilidad."],
-      "caracteristicas": ["Múltiples ejercicios en una sola estación", "Poleas ajustables en altura", "Accesorios de agarre incluidos", "Estructura de acero reforzado", "Optimiza el espacio"],
-      "musculos": ["Cuerpo completo"], "ideal": ["Condominios", "Hoteles", "Gimnasio en casa"]},
-    {"slug": "sentadilla-pendulo", "nombre": "Sentadilla de Péndulo", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "Una sola máquina para decenas de ejercicios: poleas, press, remos y trabajo de piernas, ideal para optimizar el espacio sin limitar las opciones de entrenamiento.",
+        "Perfecta para condominios, hoteles y gimnasios que buscan versatilidad."
+      ],
+      "caracteristicas": [
+        "Múltiples ejercicios en una sola estación",
+        "Poleas ajustables en altura",
+        "Accesorios de agarre incluidos",
+        "Estructura de acero reforzado",
+        "Optimiza el espacio"
+      ],
+      "musculos": [
+        "Cuerpo completo"
+      ],
+      "ideal": [
+        "Condominios",
+        "Hoteles",
+        "Gimnasio en casa"
+      ]
+    },
+    {
+      "slug": "sentadilla-pendulo",
+      "nombre": "Sentadilla de Péndulo",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Sentadilla guiada en arco para un trabajo intenso de cuádriceps con la espalda protegida.",
-      "descripcion": ["La sentadilla de péndulo guía el cuerpo en un arco natural que maximiza el trabajo de cuádriceps y glúteos sin sobrecargar la espalda baja.", "Una máquina favorita de atletas y culturistas por su estímulo profundo y seguro."],
-      "caracteristicas": ["Recorrido en arco tipo péndulo", "Respaldo y hombreras acolchadas", "Plataforma amplia antiderrapante", "Carga con discos olímpicos", "Topes de seguridad"],
-      "musculos": ["Cuádriceps", "Glúteos"], "ideal": ["Gimnasios comerciales", "Centros de alto rendimiento"]},
-    {"slug": "sentadilla-con-cinturon", "nombre": "Sentadilla con Cinturón", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "La sentadilla de péndulo guía el cuerpo en un arco natural que maximiza el trabajo de cuádriceps y glúteos sin sobrecargar la espalda baja.",
+        "Una máquina favorita de atletas y culturistas por su estímulo profundo y seguro."
+      ],
+      "caracteristicas": [
+        "Recorrido en arco tipo péndulo",
+        "Respaldo y hombreras acolchadas",
+        "Plataforma amplia antiderrapante",
+        "Carga con discos olímpicos",
+        "Topes de seguridad"
+      ],
+      "musculos": [
+        "Cuádriceps",
+        "Glúteos"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Centros de alto rendimiento"
+      ]
+    },
+    {
+      "slug": "sentadilla-con-cinturon",
+      "nombre": "Sentadilla con Cinturón",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Sentadilla con carga en la cadera para entrenar piernas pesado sin presión en la columna.",
-      "descripcion": ["La carga se coloca en la cadera mediante un cinturón, permitiendo sentadillas profundas y seguras sin carga axial sobre la espalda.", "Ideal para aumentar el volumen de entrenamiento de piernas en usuarios de todos los niveles."],
-      "caracteristicas": ["Carga en la cadera mediante cinturón", "Plataforma amplia y estable", "Manijas de apoyo", "Carga con discos olímpicos", "Construcción de uso rudo"],
-      "musculos": ["Cuádriceps", "Glúteos", "Aductores"], "ideal": ["Gimnasios comerciales", "Centros de alto rendimiento"]},
-    {"slug": "press-de-pecho-con-discos", "nombre": "Press de Pecho con Discos", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "La carga se coloca en la cadera mediante un cinturón, permitiendo sentadillas profundas y seguras sin carga axial sobre la espalda.",
+        "Ideal para aumentar el volumen de entrenamiento de piernas en usuarios de todos los niveles."
+      ],
+      "caracteristicas": [
+        "Carga en la cadera mediante cinturón",
+        "Plataforma amplia y estable",
+        "Manijas de apoyo",
+        "Carga con discos olímpicos",
+        "Construcción de uso rudo"
+      ],
+      "musculos": [
+        "Cuádriceps",
+        "Glúteos",
+        "Aductores"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Centros de alto rendimiento"
+      ]
+    },
+    {
+      "slug": "press-de-pecho-con-discos",
+      "nombre": "Press de Pecho con Discos",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Press de pecho de carga libre con brazos independientes para un empuje natural.",
-      "descripcion": ["Press de pecho de carga con discos con brazos independientes, que permiten trabajar cada lado por separado y corregir desbalances musculares.", "Su trayectoria convergente imita el movimiento natural del press con mancuernas."],
-      "caracteristicas": ["Brazos independientes (iso-lateral)", "Trayectoria convergente", "Asiento ajustable", "Carga con discos olímpicos", "Empuñaduras ergonómicas"],
-      "musculos": ["Pecho", "Tríceps", "Hombro anterior"], "ideal": ["Gimnasios comerciales", "Centros de alto rendimiento"]},
-    {"slug": "press-de-pecho-agarre-ancho", "nombre": "Press de Pecho con Agarre Ancho", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "Press de pecho de carga con discos con brazos independientes, que permiten trabajar cada lado por separado y corregir desbalances musculares.",
+        "Su trayectoria convergente imita el movimiento natural del press con mancuernas."
+      ],
+      "caracteristicas": [
+        "Brazos independientes (iso-lateral)",
+        "Trayectoria convergente",
+        "Asiento ajustable",
+        "Carga con discos olímpicos",
+        "Empuñaduras ergonómicas"
+      ],
+      "musculos": [
+        "Pecho",
+        "Tríceps",
+        "Hombro anterior"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Centros de alto rendimiento"
+      ]
+    },
+    {
+      "slug": "press-de-pecho-agarre-ancho",
+      "nombre": "Press de Pecho con Agarre Ancho",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Variante de press de pecho con agarre amplio para enfatizar la parte externa del pectoral.",
-      "descripcion": ["El agarre ancho incrementa el estiramiento del pectoral y enfatiza su porción externa, complementando el press convencional.", "Los brazos independientes permiten un trabajo equilibrado de ambos lados."],
-      "caracteristicas": ["Agarre ancho de gran rango", "Brazos independientes", "Asiento ajustable", "Carga con discos olímpicos", "Estructura de acero reforzado"],
-      "musculos": ["Pecho", "Hombro anterior"], "ideal": ["Gimnasios comerciales"]},
-    {"slug": "press-de-pecho-inclinado", "nombre": "Press de Pecho Inclinado", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "El agarre ancho incrementa el estiramiento del pectoral y enfatiza su porción externa, complementando el press convencional.",
+        "Los brazos independientes permiten un trabajo equilibrado de ambos lados."
+      ],
+      "caracteristicas": [
+        "Agarre ancho de gran rango",
+        "Brazos independientes",
+        "Asiento ajustable",
+        "Carga con discos olímpicos",
+        "Estructura de acero reforzado"
+      ],
+      "musculos": [
+        "Pecho",
+        "Hombro anterior"
+      ],
+      "ideal": [
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "press-de-pecho-inclinado",
+      "nombre": "Press de Pecho Inclinado",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Press inclinado de carga libre para desarrollar la parte superior del pecho.",
-      "descripcion": ["El press inclinado enfoca el trabajo en la porción clavicular del pectoral y el hombro anterior, clave para un desarrollo completo del pecho.", "Su diseño iso-lateral permite entrenar cada brazo de forma independiente."],
-      "caracteristicas": ["Ángulo de inclinación fijo y ergonómico", "Brazos independientes", "Asiento ajustable", "Carga con discos olímpicos", "Empuñaduras antideslizantes"],
-      "musculos": ["Pecho superior", "Hombro anterior", "Tríceps"], "ideal": ["Gimnasios comerciales"]},
-    {"slug": "jalon-de-espalda", "nombre": "Jalón de Espalda", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "El press inclinado enfoca el trabajo en la porción clavicular del pectoral y el hombro anterior, clave para un desarrollo completo del pecho.",
+        "Su diseño iso-lateral permite entrenar cada brazo de forma independiente."
+      ],
+      "caracteristicas": [
+        "Ángulo de inclinación fijo y ergonómico",
+        "Brazos independientes",
+        "Asiento ajustable",
+        "Carga con discos olímpicos",
+        "Empuñaduras antideslizantes"
+      ],
+      "musculos": [
+        "Pecho superior",
+        "Hombro anterior",
+        "Tríceps"
+      ],
+      "ideal": [
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "jalon-de-espalda",
+      "nombre": "Jalón de Espalda",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Jalón al pecho de carga libre para desarrollar dorsales con un movimiento natural.",
-      "descripcion": ["El jalón de espalda de carga libre trabaja el dorsal ancho con una trayectoria convergente y brazos independientes.", "El rodillo de muslos mantiene al usuario estable para concentrarse en la técnica."],
-      "caracteristicas": ["Brazos independientes con trayectoria convergente", "Rodillo de sujeción ajustable", "Asiento ajustable", "Carga con discos olímpicos", "Agarres ergonómicos"],
-      "musculos": ["Dorsales", "Bíceps", "Espalda alta"], "ideal": ["Gimnasios comerciales"]},
-    {"slug": "remo-en-maquina", "nombre": "Remo en Máquina", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "El jalón de espalda de carga libre trabaja el dorsal ancho con una trayectoria convergente y brazos independientes.",
+        "El rodillo de muslos mantiene al usuario estable para concentrarse en la técnica."
+      ],
+      "caracteristicas": [
+        "Brazos independientes con trayectoria convergente",
+        "Rodillo de sujeción ajustable",
+        "Asiento ajustable",
+        "Carga con discos olímpicos",
+        "Agarres ergonómicos"
+      ],
+      "musculos": [
+        "Dorsales",
+        "Bíceps",
+        "Espalda alta"
+      ],
+      "ideal": [
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "remo-en-maquina",
+      "nombre": "Remo en Máquina",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Remo sentado de carga libre con apoyo de pecho para una espalda más fuerte y estable.",
-      "descripcion": ["El remo con apoyo de pecho elimina el balanceo y protege la zona lumbar, permitiendo concentrar el esfuerzo en la espalda media.", "Los brazos independientes ayudan a equilibrar la fuerza entre ambos lados."],
-      "caracteristicas": ["Apoyo de pecho acolchado", "Brazos independientes", "Múltiples agarres", "Carga con discos olímpicos", "Asiento ajustable"],
-      "musculos": ["Espalda media", "Dorsales", "Bíceps"], "ideal": ["Gimnasios comerciales", "Universidades"]},
-    {"slug": "banco-militar", "nombre": "Banco Militar", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "El remo con apoyo de pecho elimina el balanceo y protege la zona lumbar, permitiendo concentrar el esfuerzo en la espalda media.",
+        "Los brazos independientes ayudan a equilibrar la fuerza entre ambos lados."
+      ],
+      "caracteristicas": [
+        "Apoyo de pecho acolchado",
+        "Brazos independientes",
+        "Múltiples agarres",
+        "Carga con discos olímpicos",
+        "Asiento ajustable"
+      ],
+      "musculos": [
+        "Espalda media",
+        "Dorsales",
+        "Bíceps"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Universidades"
+      ]
+    },
+    {
+      "slug": "banco-militar",
+      "nombre": "Banco Militar para Press de Hombro",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Banco con soportes para press militar sentado con barra.",
-      "descripcion": ["El banco militar ofrece un respaldo vertical y soportes para barra que permiten realizar press de hombro sentado con cargas altas y total seguridad.", "Un básico para el desarrollo de hombros en cualquier área de peso libre."],
-      "caracteristicas": ["Respaldo vertical acolchado", "Soportes para barra olímpica", "Plataforma para observador", "Estructura de acero reforzado", "Tapicería de uso rudo"],
-      "musculos": ["Hombros", "Tríceps"], "ideal": ["Gimnasios comerciales"]},
-    {"slug": "remo-t", "nombre": "Remo T", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "El banco militar ofrece un respaldo vertical y soportes para barra que permiten realizar press de hombro sentado con cargas altas y total seguridad.",
+        "Un básico para el desarrollo de hombros en cualquier área de peso libre."
+      ],
+      "caracteristicas": [
+        "Respaldo vertical acolchado",
+        "Soportes para barra olímpica",
+        "Plataforma para observador",
+        "Estructura de acero reforzado",
+        "Tapicería de uso rudo"
+      ],
+      "musculos": [
+        "Hombros",
+        "Tríceps"
+      ],
+      "ideal": [
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "remo-t",
+      "nombre": "Remo T",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Remo en T con apoyo de pecho para construir una espalda gruesa y fuerte.",
-      "descripcion": ["El remo T es uno de los ejercicios más efectivos para el grosor de la espalda. Su apoyo de pecho reduce la tensión en la zona lumbar.", "Los agarres múltiples permiten variar el énfasis entre dorsales y espalda media."],
-      "caracteristicas": ["Apoyo de pecho ajustable", "Agarres múltiples", "Plataforma antiderrapante", "Carga con discos olímpicos", "Construcción de uso rudo"],
-      "musculos": ["Espalda media", "Dorsales", "Bíceps"], "ideal": ["Gimnasios comerciales"]},
-    {"slug": "prensa-de-pierna-vertical", "nombre": "Prensa de Pierna Vertical", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "El remo T es uno de los ejercicios más efectivos para el grosor de la espalda. Su apoyo de pecho reduce la tensión en la zona lumbar.",
+        "Los agarres múltiples permiten variar el énfasis entre dorsales y espalda media."
+      ],
+      "caracteristicas": [
+        "Apoyo de pecho ajustable",
+        "Agarres múltiples",
+        "Plataforma antiderrapante",
+        "Carga con discos olímpicos",
+        "Construcción de uso rudo"
+      ],
+      "musculos": [
+        "Espalda media",
+        "Dorsales",
+        "Bíceps"
+      ],
+      "ideal": [
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "prensa-de-pierna-vertical",
+      "nombre": "Prensa de Pierna Vertical",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Prensa vertical de carga libre para un trabajo intenso de piernas en poco espacio.",
-      "descripcion": ["La prensa vertical permite trabajar cuádriceps y glúteos con gran rango de movimiento ocupando un espacio mínimo.", "Su respaldo ergonómico y los topes de seguridad ofrecen un entrenamiento controlado."],
-      "caracteristicas": ["Huella compacta", "Respaldo ergonómico", "Topes de seguridad", "Carga con discos olímpicos", "Plataforma antiderrapante"],
-      "musculos": ["Cuádriceps", "Glúteos", "Isquiotibiales"], "ideal": ["Gimnasios comerciales", "Estudios boutique"]},
-    {"slug": "patada-de-gluteo", "nombre": "Patada de Glúteo", "categoria": "peso-libre", "imagenes": [],
+      "descripcion": [
+        "La prensa vertical permite trabajar cuádriceps y glúteos con gran rango de movimiento ocupando un espacio mínimo.",
+        "Su respaldo ergonómico y los topes de seguridad ofrecen un entrenamiento controlado."
+      ],
+      "caracteristicas": [
+        "Huella compacta",
+        "Respaldo ergonómico",
+        "Topes de seguridad",
+        "Carga con discos olímpicos",
+        "Plataforma antiderrapante"
+      ],
+      "musculos": [
+        "Cuádriceps",
+        "Glúteos",
+        "Isquiotibiales"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Estudios boutique"
+      ]
+    },
+    {
+      "slug": "patada-de-gluteo",
+      "nombre": "Máquina de Glúteos (Patada de Glúteo)",
+      "categoria": "peso-libre",
+      "imagenes": [],
       "resumen": "Máquina de patada trasera para aislar y tonificar el glúteo mayor.",
-      "descripcion": ["La patada de glúteo aísla el glúteo mayor con un movimiento de extensión de cadera controlado y seguro.", "Su soporte de pecho y las agarraderas dan estabilidad para enfocarse en la contracción."],
-      "caracteristicas": ["Soporte de pecho y brazos acolchado", "Placa de empuje para el pie", "Carga con discos olímpicos", "Trabajo unilateral", "Estructura estable"],
-      "musculos": ["Glúteos", "Isquiotibiales"], "ideal": ["Gimnasios comerciales", "Estudios boutique"]},
-    {"slug": "remo-de-aire", "nombre": "Remo de Aire", "categoria": "cardio", "imagenes": [],
+      "descripcion": [
+        "La patada de glúteo aísla el glúteo mayor con un movimiento de extensión de cadera controlado y seguro.",
+        "Su soporte de pecho y las agarraderas dan estabilidad para enfocarse en la contracción."
+      ],
+      "caracteristicas": [
+        "Soporte de pecho y brazos acolchado",
+        "Placa de empuje para el pie",
+        "Carga con discos olímpicos",
+        "Trabajo unilateral",
+        "Estructura estable"
+      ],
+      "musculos": [
+        "Glúteos",
+        "Isquiotibiales"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Estudios boutique"
+      ]
+    },
+    {
+      "slug": "remo-de-aire",
+      "nombre": "Remo de Aire para Gimnasio",
+      "categoria": "cardio",
+      "imagenes": [],
       "resumen": "Remadora con resistencia por aire para un entrenamiento cardiovascular de cuerpo completo.",
-      "descripcion": ["El remo de aire combina trabajo cardiovascular y de fuerza: involucra piernas, core, espalda y brazos en cada palada.", "La resistencia por aire aumenta conforme el usuario rema más fuerte, ideal para HIIT y entrenamiento funcional."],
-      "caracteristicas": ["Resistencia por aire progresiva", "Monitor con métricas de entrenamiento", "Riel largo para usuarios de distintas estaturas", "Asiento ergonómico", "Se guarda fácilmente"],
-      "musculos": ["Cuerpo completo", "Sistema cardiovascular"], "ideal": ["Box de entrenamiento funcional", "Gimnasios comerciales"]},
-    {"slug": "esquiadora-de-aire", "nombre": "Esquiadora de Aire", "categoria": "cardio", "imagenes": [],
+      "descripcion": [
+        "El remo de aire combina trabajo cardiovascular y de fuerza: involucra piernas, core, espalda y brazos en cada palada.",
+        "La resistencia por aire aumenta conforme el usuario rema más fuerte, ideal para HIIT y entrenamiento funcional."
+      ],
+      "caracteristicas": [
+        "Resistencia por aire progresiva",
+        "Monitor con métricas de entrenamiento",
+        "Riel largo para usuarios de distintas estaturas",
+        "Asiento ergonómico",
+        "Se guarda fácilmente"
+      ],
+      "musculos": [
+        "Cuerpo completo",
+        "Sistema cardiovascular"
+      ],
+      "ideal": [
+        "Box de entrenamiento funcional",
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "esquiadora-de-aire",
+      "nombre": "Máquina de Esquí para Gimnasio (Ski de Aire)",
+      "categoria": "cardio",
+      "imagenes": [],
       "resumen": "Simulador de esquí nórdico con resistencia por aire para tren superior y core.",
-      "descripcion": ["La esquiadora de aire reproduce el movimiento del esquí nórdico, con un fuerte enfoque en tren superior, core y acondicionamiento cardiovascular.", "Ocupa poco espacio y es una de las favoritas en entrenamiento funcional y HIIT."],
-      "caracteristicas": ["Resistencia por aire progresiva", "Monitor con métricas de entrenamiento", "Huella compacta", "Trabajo de tren superior y core", "Ideal para HIIT"],
-      "musculos": ["Hombros", "Espalda", "Core", "Sistema cardiovascular"], "ideal": ["Box de entrenamiento funcional", "Gimnasios comerciales"]},
-    {"slug": "rack-para-mancuernas", "nombre": "Rack para Mancuernas", "categoria": "accesorios", "imagenes": [],
+      "descripcion": [
+        "La esquiadora de aire reproduce el movimiento del esquí nórdico, con un fuerte enfoque en tren superior, core y acondicionamiento cardiovascular.",
+        "Ocupa poco espacio y es una de las favoritas en entrenamiento funcional y HIIT."
+      ],
+      "caracteristicas": [
+        "Resistencia por aire progresiva",
+        "Monitor con métricas de entrenamiento",
+        "Huella compacta",
+        "Trabajo de tren superior y core",
+        "Ideal para HIIT"
+      ],
+      "musculos": [
+        "Hombros",
+        "Espalda",
+        "Core",
+        "Sistema cardiovascular"
+      ],
+      "ideal": [
+        "Box de entrenamiento funcional",
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "rack-para-mancuernas",
+      "nombre": "Rack para Mancuernas",
+      "categoria": "accesorios",
+      "imagenes": [],
       "resumen": "Rack de almacenamiento para mantener las mancuernas ordenadas y al alcance.",
-      "descripcion": ["Un rack resistente que mantiene tu zona de mancuernas ordenada, segura y con buena imagen.", "Su diseño facilita tomar y regresar las mancuernas, mejorando el flujo del área de peso libre."],
-      "caracteristicas": ["Estructura de acero de uso comercial", "Niveles para distintos pesos", "Soportes que protegen las mancuernas", "Fácil acceso", "Mejora el orden del área"],
-      "musculos": [], "ideal": ["Gimnasios comerciales", "Hoteles", "Gimnasio en casa"]},
-    {"slug": "barra-olimpica-de-sentadilla", "nombre": "Barra Olímpica de Sentadilla", "categoria": "accesorios", "imagenes": [],
+      "descripcion": [
+        "Un rack resistente que mantiene tu zona de mancuernas ordenada, segura y con buena imagen.",
+        "Su diseño facilita tomar y regresar las mancuernas, mejorando el flujo del área de peso libre."
+      ],
+      "caracteristicas": [
+        "Estructura de acero de uso comercial",
+        "Niveles para distintos pesos",
+        "Soportes que protegen las mancuernas",
+        "Fácil acceso",
+        "Mejora el orden del área"
+      ],
+      "musculos": [],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles",
+        "Gimnasio en casa"
+      ]
+    },
+    {
+      "slug": "barra-olimpica-de-sentadilla",
+      "nombre": "Barra Olímpica de Sentadilla",
+      "categoria": "accesorios",
+      "imagenes": [],
       "resumen": "Barra especializada para sentadilla con mayor comodidad en hombros y espalda.",
-      "descripcion": ["Barra diseñada para sentadilla que mejora la postura y reduce la tensión en hombros y muñecas.", "Compatible con discos olímpicos y racks estándar."],
-      "caracteristicas": ["Compatible con discos olímpicos", "Acero de alta resistencia", "Diseño enfocado en sentadilla", "Mangas con rodamiento suave", "Moleteado de agarre seguro"],
-      "musculos": ["Piernas", "Glúteos", "Core"], "ideal": ["Gimnasios comerciales", "Centros de alto rendimiento"]},
-    {"slug": "mancuernas", "nombre": "Mancuernas", "categoria": "accesorios", "venta": "kilo", "imagenes": [],
+      "descripcion": [
+        "Barra diseñada para sentadilla que mejora la postura y reduce la tensión en hombros y muñecas.",
+        "Compatible con discos olímpicos y racks estándar."
+      ],
+      "caracteristicas": [
+        "Compatible con discos olímpicos",
+        "Acero de alta resistencia",
+        "Diseño enfocado en sentadilla",
+        "Mangas con rodamiento suave",
+        "Moleteado de agarre seguro"
+      ],
+      "musculos": [
+        "Piernas",
+        "Glúteos",
+        "Core"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Centros de alto rendimiento"
+      ]
+    },
+    {
+      "slug": "mancuernas",
+      "nombre": "Mancuernas",
+      "categoria": "accesorios",
+      "venta": "kilo",
+      "imagenes": [],
       "resumen": "Mancuernas de uso comercial disponibles en distintos pesos. Venta por kilo.",
-      "descripcion": ["Mancuernas resistentes para el uso diario de un gimnasio: el accesorio más versátil para trabajar todo el cuerpo.", "Arma tu juego completo con los pesos que necesites; se cotizan por kilo."],
-      "caracteristicas": ["Diferentes pesos disponibles", "Recubrimiento resistente", "Agarre ergonómico moleteado", "Ideales para rack de mancuernas", "Venta por kilo"],
-      "musculos": ["Cuerpo completo"], "ideal": ["Gimnasios comerciales", "Hoteles", "Gimnasio en casa"]},
-    {"slug": "discos-ahulados-olimpicos", "nombre": "Discos Ahulados Olímpicos", "categoria": "accesorios", "venta": "kilo", "imagenes": [],
+      "descripcion": [
+        "Mancuernas resistentes para el uso diario de un gimnasio: el accesorio más versátil para trabajar todo el cuerpo.",
+        "Arma tu juego completo con los pesos que necesites; se cotizan por kilo."
+      ],
+      "caracteristicas": [
+        "Diferentes pesos disponibles",
+        "Recubrimiento resistente",
+        "Agarre ergonómico moleteado",
+        "Ideales para rack de mancuernas",
+        "Venta por kilo"
+      ],
+      "musculos": [
+        "Cuerpo completo"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles",
+        "Gimnasio en casa"
+      ]
+    },
+    {
+      "slug": "discos-ahulados-olimpicos",
+      "nombre": "Discos Ahulados Olímpicos",
+      "categoria": "accesorios",
+      "venta": "kilo",
+      "imagenes": [],
       "resumen": "Discos olímpicos con recubrimiento de hule que protegen el piso y reducen el ruido. Venta por kilo.",
-      "descripcion": ["Discos olímpicos con recubrimiento de hule, ideales para racks, máquinas de carga libre y barras olímpicas.", "El hule protege tus pisos y equipos y reduce el ruido en el área de peso libre. Se cotizan por kilo."],
-      "caracteristicas": ["Compatibles con barras olímpicas", "Recubrimiento de hule protector", "Menor ruido y desgaste", "Diferentes pesos disponibles", "Venta por kilo"],
-      "musculos": [], "ideal": ["Gimnasios comerciales", "Box de entrenamiento funcional"]},
-    {"slug": "mancuernas-hammer", "nombre": "Mancuernas Hammer", "categoria": "accesorios", "venta": "kilo", "imagenes": [],
+      "descripcion": [
+        "Discos olímpicos con recubrimiento de hule, ideales para racks, máquinas de carga libre y barras olímpicas.",
+        "El hule protege tus pisos y equipos y reduce el ruido en el área de peso libre. Se cotizan por kilo."
+      ],
+      "caracteristicas": [
+        "Compatibles con barras olímpicas",
+        "Recubrimiento de hule protector",
+        "Menor ruido y desgaste",
+        "Diferentes pesos disponibles",
+        "Venta por kilo"
+      ],
+      "musculos": [],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Box de entrenamiento funcional"
+      ]
+    },
+    {
+      "slug": "mancuernas-hammer",
+      "nombre": "Mancuernas Hammer",
+      "categoria": "accesorios",
+      "venta": "kilo",
+      "imagenes": [],
       "resumen": "Mancuernas de diseño premium para zonas de peso libre de alto nivel. Venta por kilo.",
-      "descripcion": ["Mancuernas de diseño premium que elevan la imagen de tu área de peso libre sin sacrificar resistencia.", "Disponibles en distintos pesos y cotizadas por kilo."],
-      "caracteristicas": ["Diseño premium", "Agarre ergonómico", "Diferentes pesos disponibles", "Alta durabilidad", "Venta por kilo"],
-      "musculos": ["Cuerpo completo"], "ideal": ["Gimnasios comerciales", "Hoteles"]},
-    {"slug": "power-bag-10-kg", "nombre": "Power Bag 10 kg", "categoria": "accesorios", "imagenes": [],
+      "descripcion": [
+        "Mancuernas de diseño premium que elevan la imagen de tu área de peso libre sin sacrificar resistencia.",
+        "Disponibles en distintos pesos y cotizadas por kilo."
+      ],
+      "caracteristicas": [
+        "Diseño premium",
+        "Agarre ergonómico",
+        "Diferentes pesos disponibles",
+        "Alta durabilidad",
+        "Venta por kilo"
+      ],
+      "musculos": [
+        "Cuerpo completo"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Hoteles"
+      ]
+    },
+    {
+      "slug": "power-bag-10-kg",
+      "nombre": "Power Bag 10 kg",
+      "categoria": "accesorios",
+      "imagenes": [],
       "resumen": "Saco de entrenamiento funcional de 10 kg con múltiples agarres.",
-      "descripcion": ["El power bag es ideal para entrenamiento funcional: cargadas, lanzamientos, sentadillas y zancadas con carga inestable.", "Sus múltiples agarres permiten una gran variedad de ejercicios."],
-      "caracteristicas": ["Peso de 10 kg", "Múltiples agarres", "Material resistente", "Carga inestable para trabajo de core", "Ideal para circuitos"],
-      "musculos": ["Cuerpo completo", "Core"], "ideal": ["Box de entrenamiento funcional", "Gimnasios comerciales"]},
-    {"slug": "power-bag-15-kg", "nombre": "Power Bag 15 kg", "categoria": "accesorios", "imagenes": [],
+      "descripcion": [
+        "El power bag es ideal para entrenamiento funcional: cargadas, lanzamientos, sentadillas y zancadas con carga inestable.",
+        "Sus múltiples agarres permiten una gran variedad de ejercicios."
+      ],
+      "caracteristicas": [
+        "Peso de 10 kg",
+        "Múltiples agarres",
+        "Material resistente",
+        "Carga inestable para trabajo de core",
+        "Ideal para circuitos"
+      ],
+      "musculos": [
+        "Cuerpo completo",
+        "Core"
+      ],
+      "ideal": [
+        "Box de entrenamiento funcional",
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "power-bag-15-kg",
+      "nombre": "Power Bag 15 kg",
+      "categoria": "accesorios",
+      "imagenes": [],
       "resumen": "Saco de entrenamiento funcional de 15 kg con múltiples agarres.",
-      "descripcion": ["El power bag de 15 kg es perfecto para circuitos funcionales de intensidad media-alta.", "Sus agarres permiten cargadas, arrastres, sentadillas y trabajo de core."],
-      "caracteristicas": ["Peso de 15 kg", "Múltiples agarres", "Material resistente", "Carga inestable para trabajo de core", "Ideal para circuitos"],
-      "musculos": ["Cuerpo completo", "Core"], "ideal": ["Box de entrenamiento funcional", "Gimnasios comerciales"]},
-    {"slug": "power-bag-20-kg", "nombre": "Power Bag 20 kg", "categoria": "accesorios", "imagenes": [],
+      "descripcion": [
+        "El power bag de 15 kg es perfecto para circuitos funcionales de intensidad media-alta.",
+        "Sus agarres permiten cargadas, arrastres, sentadillas y trabajo de core."
+      ],
+      "caracteristicas": [
+        "Peso de 15 kg",
+        "Múltiples agarres",
+        "Material resistente",
+        "Carga inestable para trabajo de core",
+        "Ideal para circuitos"
+      ],
+      "musculos": [
+        "Cuerpo completo",
+        "Core"
+      ],
+      "ideal": [
+        "Box de entrenamiento funcional",
+        "Gimnasios comerciales"
+      ]
+    },
+    {
+      "slug": "power-bag-20-kg",
+      "nombre": "Power Bag 20 kg",
+      "categoria": "accesorios",
+      "imagenes": [],
       "resumen": "Saco de entrenamiento funcional de 20 kg para trabajo de fuerza y potencia.",
-      "descripcion": ["El power bag de 20 kg lleva el entrenamiento funcional a otro nivel con cargas desafiantes para fuerza y potencia.", "Ideal para atletas y circuitos avanzados."],
-      "caracteristicas": ["Peso de 20 kg", "Múltiples agarres", "Material resistente", "Carga inestable para trabajo de core", "Ideal para fuerza y potencia"],
-      "musculos": ["Cuerpo completo", "Core"], "ideal": ["Box de entrenamiento funcional", "Centros de alto rendimiento"]},
-    {"slug": "tapete-de-yoga-pvc", "nombre": "Tapete de Yoga PVC", "categoria": "accesorios", "imagenes": [],
+      "descripcion": [
+        "El power bag de 20 kg lleva el entrenamiento funcional a otro nivel con cargas desafiantes para fuerza y potencia.",
+        "Ideal para atletas y circuitos avanzados."
+      ],
+      "caracteristicas": [
+        "Peso de 20 kg",
+        "Múltiples agarres",
+        "Material resistente",
+        "Carga inestable para trabajo de core",
+        "Ideal para fuerza y potencia"
+      ],
+      "musculos": [
+        "Cuerpo completo",
+        "Core"
+      ],
+      "ideal": [
+        "Box de entrenamiento funcional",
+        "Centros de alto rendimiento"
+      ]
+    },
+    {
+      "slug": "tapete-de-yoga-pvc",
+      "nombre": "Tapete de Yoga PVC",
+      "categoria": "accesorios",
+      "imagenes": [],
       "resumen": "Tapete de PVC antiderrapante para yoga, pilates, estiramiento y trabajo de piso.",
-      "descripcion": ["Tapete de PVC cómodo y antiderrapante para clases de yoga, pilates, estiramientos y ejercicios de core.", "Fácil de limpiar y enrollar, ideal para salones de clases grupales."],
-      "caracteristicas": ["Superficie antiderrapante", "Material PVC fácil de limpiar", "Amortiguación cómoda", "Ligero y fácil de guardar", "Ideal para clases grupales"],
-      "musculos": [], "ideal": ["Estudios de yoga y pilates", "Hoteles", "Gimnasio en casa"]},
-    {"slug": "costal-de-box", "nombre": "Costal de Box", "categoria": "accesorios", "imagenes": [],
+      "descripcion": [
+        "Tapete de PVC cómodo y antiderrapante para clases de yoga, pilates, estiramientos y ejercicios de core.",
+        "Fácil de limpiar y enrollar, ideal para salones de clases grupales."
+      ],
+      "caracteristicas": [
+        "Superficie antiderrapante",
+        "Material PVC fácil de limpiar",
+        "Amortiguación cómoda",
+        "Ligero y fácil de guardar",
+        "Ideal para clases grupales"
+      ],
+      "musculos": [],
+      "ideal": [
+        "Estudios de yoga y pilates",
+        "Hoteles",
+        "Gimnasio en casa"
+      ]
+    },
+    {
+      "slug": "costal-de-box",
+      "nombre": "Costal de Box",
+      "categoria": "accesorios",
+      "imagenes": [],
       "resumen": "Costal de golpeo para box, kickboxing y entrenamiento de acondicionamiento.",
-      "descripcion": ["Costal resistente para entrenamiento de box y artes marciales, excelente para acondicionamiento cardiovascular y liberación de estrés.", "Su relleno uniforme y sus costuras reforzadas soportan el uso intensivo de un gimnasio."],
-      "caracteristicas": ["Costuras reforzadas", "Relleno uniforme", "Cadenas o correas para colgar", "Material de alta resistencia", "Ideal para box y kickboxing"],
-      "musculos": ["Hombros", "Brazos", "Core", "Sistema cardiovascular"], "ideal": ["Gimnasios comerciales", "Academias de box", "Gimnasio en casa"]}
+      "descripcion": [
+        "Costal resistente para entrenamiento de box y artes marciales, excelente para acondicionamiento cardiovascular y liberación de estrés.",
+        "Su relleno uniforme y sus costuras reforzadas soportan el uso intensivo de un gimnasio."
+      ],
+      "caracteristicas": [
+        "Costuras reforzadas",
+        "Relleno uniforme",
+        "Cadenas o correas para colgar",
+        "Material de alta resistencia",
+        "Ideal para box y kickboxing"
+      ],
+      "musculos": [
+        "Hombros",
+        "Brazos",
+        "Core",
+        "Sistema cardiovascular"
+      ],
+      "ideal": [
+        "Gimnasios comerciales",
+        "Academias de box",
+        "Gimnasio en casa"
+      ]
+    }
   ]
 }

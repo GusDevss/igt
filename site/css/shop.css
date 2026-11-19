@@ -268,3 +268,32 @@
 .prd__add,.prd__more{white-space:nowrap}
 @media (hover:none){.pdp__hint{display:none}}
 @media (max-width:767px){.qbtn:not(.has-items){display:none}}
+
+/* --- Contenido SEO y preguntas frecuentes del catálogo --- */
+.shop-seo{padding:40px 0 100px;border-top:1px solid rgba(255,255,255,.06)}
+.shop-seo__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:start;padding-top:60px}
+.shop-seo__k{font-size:14px;gap:10px}
+.shop-seo__t{margin:12px 0 22px;font-size:36px;line-height:46px}
+.shop-seo__intro p{margin:0 0 16px}
+.shop-seo__intro a:not(.btn){color:#fff;text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:3px}
+.shop-seo__intro a:not(.btn):hover{color:var(--orange)}
+.shop-seo__intro strong{color:#fff}
+.shop-seo__cta{margin-top:14px}
+.shop-seo__cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.shop-seo__cards a{display:flex;flex-direction:column;gap:8px;height:100%;padding:24px;border:1px solid rgba(255,255,255,.08);background:#171415;transition:.3s}
+.shop-seo__cards a:hover{border-color:var(--orange);transform:translateY(-4px)}
+.shop-seo__cards b{font-family:var(--f-head);font-size:16px;line-height:22px;letter-spacing:.8px;text-transform:uppercase;color:#fff}
+.shop-seo__cards span{font-size:14px;line-height:23px}
+.shop-faq{max-width:900px;margin:80px auto 0}
+.shop-faq__t{margin-bottom:24px;font-size:28px;line-height:36px;text-align:center}
+.shop-faq__i{border-bottom:1px solid rgba(255,255,255,.1)}
+.shop-faq__i summary{position:relative;display:block;padding:20px 40px 20px 0;cursor:pointer;font-weight:600;font-size:16px;line-height:24px;color:#fff;list-style:none}
+.shop-faq__i summary::-webkit-details-marker{display:none}
+.shop-faq__i summary span{position:absolute;right:6px;top:50%;width:14px;height:14px;margin-top:-7px}
+.shop-faq__i summary span::before,.shop-faq__i summary span::after{content:"";position:absolute;left:0;top:6px;width:14px;height:2px;background:var(--orange);transition:transform .3s}
+.shop-faq__i summary span::after{transform:rotate(90deg)}
+.shop-faq__i[open] summary span::after{transform:none}
+.shop-faq__i summary:hover{color:var(--orange)}
+.shop-faq__i p{margin:0 0 20px;padding-right:40px}
+@media (max-width:1023px){.shop-seo__grid{grid-template-columns:1fr;gap:40px}}
+@media (max-width:767px){.shop-seo__t{font-size:26px;line-height:34px}.shop-seo__cards{grid-template-columns:1fr}.shop-seo{padding-bottom:60px}.shop-faq{margin-top:60px}}

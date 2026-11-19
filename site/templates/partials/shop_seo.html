@@ -1,0 +1,38 @@
+{# Contenido de apoyo SEO al final del catálogo (visible, útil para el comprador) #}
+{% import "partials/ui.html" as ui with context %}
+{% set FAQ = [
+  ('¿Cómo solicito una cotización de equipo para gimnasio?', 'Agrega los equipos que te interesan con el botón «Cotizar», indica cantidades y envía tu lista desde «Mi cotización» o por WhatsApp. Un asesor te responde con precios, tiempos de entrega y opciones de pago.'),
+  ('¿Manejan paquetes de equipo para abrir un gimnasio?', 'Sí. Armamos paquetes de equipo para gimnasio comercial según tu espacio, presupuesto y tipo de usuario: cardio, fuerza, peso libre y accesorios, con diseño 3D del área y opción de arrendamiento a mensualidades fijas.'),
+  ('¿Venden reformer de Pilates profesional?', 'Sí, contamos con reformers de Pilates profesionales para estudios y gimnasios, además de cadillac y accesorios. Pide el precio del reformer de Pilates y la disponibilidad en Querétaro.'),
+  ('¿Hacen envíos fuera de Querétaro?', 'Enviamos e instalamos en todo México, incluidos San Luis Potosí, León y el resto del Bajío, con soporte técnico y mantenimiento preventivo.'),
+  ('¿Qué marcas manejan?', 'Somos distribuidores de equipos BUGE Fitness en México y trabajamos con fabricantes de máquinas de gimnasio de uso rudo para hoteles, condominios, universidades y gimnasios comerciales.'),
+] %}
+<section class="shop-seo" aria-labelledby="seo-t">
+  <div class="wrap">
+    <div class="shop-seo__grid">
+      <div class="shop-seo__intro">
+        {{ ui.kicker('Equipamiento comercial', 'shop-seo__k') }}
+        <h2 class="shop-seo__t" id="seo-t">Equipamiento para gimnasios comerciales</h2>
+        <p>En Integral Gym Tech seleccionamos <strong>máquinas de gimnasio de uso rudo</strong> para proyectos que operan todos los días: gimnasios comerciales, <a href="/hoteles/">equipamiento para gimnasios de hoteles</a>, <a href="/condominios-residenciales/">equipo de gimnasio para condominios</a> y casas club, y <a href="/universidades/">equipo para gimnasios universitarios</a>.</p>
+        <p>Si estás buscando <a href="/gimnasio-apertura-remodelacion/">aparatos para abrir un gimnasio</a>, te armamos paquetes de equipo a la medida con diseño del espacio, instalación, arrendamiento y servicio técnico.</p>
+        <a class="btn btn--red shop-seo__cta" href="#contacto"><span class="btn__txt" data-wobble>Cotización de equipo para gimnasio</span>{{ icon('far-plus', 'btn__ic') }}</a>
+      </div>
+      <ul class="shop-seo__cards">
+        <li><a href="/productos/?categoria=cardio"><b>Cardio profesional</b><span>Caminadora curva sin motor, remo de aire para gimnasio, máquina de esquí y escaladora profesional.</span></a></li>
+        <li><a href="/productos/?categoria=peso-libre"><b>Fuerza profesional</b><span>Máquina Smith profesional, máquina de hip thrust y máquinas de glúteos para gimnasio.</span></a></li>
+        <li><a href="/pilates/"><b>Pilates Reformer</b><span>Venta de reformer de Pilates profesional y equipamiento para estudios de Pilates en Querétaro.</span></a></li>
+        <li><a href="/productos/?categoria=accesorios"><b>Bancos y trampolines</b><span>Banco ajustable para pesas, banco para press de banca, trampolín fitness y mini trampolín para cardio.</span></a></li>
+      </ul>
+    </div>
+    <div class="shop-faq">
+      <h2 class="shop-faq__t">Preguntas frecuentes</h2>
+      {% for q, a in FAQ %}
+      <details class="shop-faq__i"{% if loop.first %} open{% endif %}>
+        <summary>{{ q }}<span aria-hidden="true"></span></summary>
+        <p>{{ a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": FAQ | map('faq_item') | list} | tojson }}</script>

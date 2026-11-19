@@ -7,23 +7,21 @@ OG_DEFAULT = "/assets/uploads/2026/08/cropped-IGT-logo-back-black.webp"
 BASE_KW = [
     "equipo para gimnasio Querétaro", "aparatos de gimnasio", "venta de equipo de gimnasio",
     "equipo de gimnasio profesional", "Integral Gym Tech", "IGT", "BUGE", "distribuidor BUGE México",
+    "equipamiento para gimnasio comercial", "cotización de equipo para gimnasio",
 ]
 
 # slug: (title, description, [keywords], breadcrumb_name, schema_type, og_image(optional))
 PAGES = {
     "index": (
-        "Equipo para Gimnasio en Querétaro | Venta de Aparatos de Gimnasio Profesional | Integral Gym Tech",
-        "Proveedores líderes de equipo para gimnasio profesional y residencial en Querétaro. Distribuidores exclusivos BUGE: cardio, peso libre, peso integrado, multifuncionales, pilates y accesorios. Arrendamiento, diseño de espacios y mantenimiento. ¡Cotiza hoy!",
-        ["equipamiento de gimnasios", "tienda de aparatos de gimnasio Querétaro", "equipo fitness comercial",
-         "gimnasio en casa", "caminadoras profesionales", "bicicletas de spinning", "mancuernas y discos",
-         "racks y jaulas de potencia", "equipo de pilates reformer", "proveedor de equipo fitness México"],
+        "Equipamiento para Gimnasios Comerciales en Querétaro | Integral Gym Tech",
+        "Equipo para gimnasio profesional y residencial en Querétaro: máquinas de uso rudo, cardio, fuerza, Pilates Reformer y accesorios. Distribuidores de equipos BUGE Fitness en México. Pide tu cotización de equipo para gimnasio.",
+        ["equipamiento para gimnasio comercial", "máquinas de gimnasio de uso rudo", "cotización de equipo para gimnasio", "paquetes de equipo para gimnasio", "Integral Gym Tech Querétaro", "equipos BUGE Fitness México", "máquinas BUGE para gimnasio", "equipamiento para gimnasios en San Luis Potosí", "equipo para gimnasio en León Guanajuato", "tienda de aparatos de gimnasio Querétaro", "proveedor de equipo fitness México"],
         "Inicio", "WebPage", "/assets/uploads/2023/09/Ellipse-3.png",
     ),
     "nosotros": (
-        "Nosotros | Proveedor Líder de Equipo Fitness desde 2008 en Querétaro | Integral Gym Tech",
-        "Conoce a Integral Gym Tech: fundada en Querétaro en 2008, proveedor líder en la industria fitness mexicana y distribuidor exclusivo de la marca BUGE. Equipamos gimnasios, hoteles, empresas, universidades y desarrollos residenciales.",
-        ["quiénes somos Integral Gym Tech", "empresa de equipo de gimnasio en Querétaro", "proveedor fitness México",
-         "equipamiento integral de gimnasios", "distribuidor exclusivo BUGE"],
+        "Integral Gym Tech Querétaro | Distribuidor de Equipos BUGE Fitness en México",
+        "Integral Gym Tech, en Querétaro desde 2008: distribuidor de equipos BUGE Fitness en México y proveedor de equipamiento para gimnasios comerciales, hoteles, condominios y universidades.",
+        ["Integral Gym Tech Querétaro", "equipos BUGE Fitness México", "máquinas BUGE para gimnasio", "distribuidor BUGE México"],
         "Nosotros", "AboutPage", None,
     ),
     "mantenimiento-de-equipo": (
@@ -48,17 +46,15 @@ PAGES = {
         "Diseño de espacios", "Service", None,
     ),
     "cardio": (
-        "Equipo de Cardio Profesional | Caminadoras, Elípticas y Bicicletas BUGE | IGT Querétaro",
-        "Equipo de cardio profesional de uso rudo: caminadoras comerciales, elípticas, bicicletas de spinning, escaladoras y remos BUGE. Durabilidad, seguridad y respaldo real para gimnasios, hoteles y empresas. Consulta el catálogo.",
-        ["equipo de cardio", "caminadoras profesionales", "caminadora comercial", "elípticas para gimnasio",
-         "bicicletas de spinning", "bicicleta recumbente", "remo para gimnasio", "escaladora", "catálogo cardio BUGE"],
+        "Equipo de Cardio Profesional | Caminadoras, Elípticas y Remos | Integral Gym Tech",
+        "Equipo de cardio profesional de uso rudo: caminadoras comerciales, caminadora curva sin motor, elípticas, escaladora profesional, remo de aire y máquina de esquí para gimnasio. Consulta el catálogo.",
+        ["caminadora curva sin motor", "remo de aire para gimnasio", "máquina de esquí para gimnasio", "escaladora profesional para gimnasio", "caminadoras profesionales", "elípticas para gimnasio"],
         "Cardio", "CollectionPage", None,
     ),
     "peso-libre": (
-        "Peso Libre para Gimnasio | Mancuernas, Discos, Barras y Racks | Integral Gym Tech",
-        "Equipo de peso libre para gimnasio profesional y en casa: mancuernas, discos olímpicos, barras, bancos, racks y jaulas de potencia BUGE. Calidad comercial con envíos a todo México. Descarga el catálogo.",
-        ["peso libre", "mancuernas", "discos olímpicos", "barras olímpicas", "bancos para gimnasio",
-         "rack de sentadillas", "jaula de potencia", "catálogo peso libre BUGE"],
+        "Peso Libre para Gimnasio | Bancos, Racks y Máquina Smith | Integral Gym Tech",
+        "Equipo de peso libre de uso rudo: banco ajustable para pesas, banco para press de banca, racks, máquina Smith profesional, mancuernas y discos olímpicos. Descarga el catálogo.",
+        ["banco ajustable para pesas", "banco para press de banca", "máquina Smith profesional", "rack de sentadillas", "mancuernas", "discos olímpicos"],
         "Peso libre", "CollectionPage", None,
     ),
     "peso-integrado": (
@@ -76,17 +72,15 @@ PAGES = {
         "Multifuncionales", "CollectionPage", None,
     ),
     "pilates": (
-        "Equipo de Pilates Profesional | Reformer, Cadillac y Chair | Integral Gym Tech",
-        "Equipo de pilates profesional BUGE: reformer, cadillac, chair, barrel y accesorios para estudios de pilates, clínicas y gimnasios. Calidad, precisión y durabilidad. Consulta el catálogo de pilates.",
-        ["equipo de pilates", "reformer de pilates", "cama de pilates", "cadillac pilates", "silla de pilates",
-         "equipo para estudio de pilates", "catálogo pilates BUGE"],
+        "Reformer de Pilates Profesional en Querétaro | Integral Gym Tech",
+        "Venta de reformer de Pilates profesional en Querétaro: reformers de maple y roble, cadillac y accesorios para estudios y gimnasios. Pide el precio de tu reformer de Pilates y equipa tu estudio.",
+        ["venta de reformer de pilates", "reformer de pilates profesional", "reformer de pilates precio", "reformer de pilates en Querétaro", "equipamiento para estudios de pilates"],
         "Pilates", "CollectionPage", None,
     ),
     "accesorios": (
-        "Accesorios para Gimnasio | Kettlebells, Ligas, Tapetes y Funcional | IGT Querétaro",
-        "Accesorios para gimnasio y entrenamiento funcional: kettlebells, balones medicinales, ligas, cuerdas, tapetes, pisos y más. Durabilidad de uso rudo, versatilidad y seguridad. Descarga el catálogo de accesorios.",
-        ["accesorios para gimnasio", "kettlebells", "balones medicinales", "ligas de resistencia",
-         "piso para gimnasio", "entrenamiento funcional", "catálogo de accesorios"],
+        "Accesorios para Gimnasio | Bancos y Trampolines Fitness | Integral Gym Tech",
+        "Accesorios para gimnasio: banco de pesas multifuncional, trampolín fitness para ejercicio, mini trampolín para cardio, kettlebells, bumpers, cuerdas y tapetes. Catálogo de accesorios de grado comercial.",
+        ["trampolín fitness para ejercicio", "mini trampolín para cardio", "banco de pesas multifuncional", "kettlebells", "accesorios para gimnasio"],
         "Accesorios", "CollectionPage", None,
     ),
     "reacondicionado": (
@@ -97,10 +91,9 @@ PAGES = {
         "Reacondicionado", "CollectionPage", None,
     ),
     "gimnasio-apertura-remodelacion": (
-        "Apertura o Remodelación de Gimnasio | Equipamiento Llave en Mano | Integral Gym Tech",
-        "¿Vas a abrir o remodelar tu gimnasio? Te asesoramos en el diseño, equipamiento y financiamiento de gimnasios comerciales en Querétaro y todo México con equipo profesional BUGE.",
-        ["abrir un gimnasio", "remodelación de gimnasio", "equipar gimnasio comercial", "cuánto cuesta abrir un gimnasio",
-         "proyecto llave en mano gimnasio", "equipamiento de gimnasio comercial"],
+        "Aparatos para Abrir un Gimnasio | Equipamiento Comercial | Integral Gym Tech",
+        "Equipamiento para gimnasios comerciales: paquetes de equipo para abrir o remodelar tu gimnasio con máquinas de uso rudo, diseño de espacios y arrendamiento. Solicita tu cotización de equipo para gimnasio.",
+        ["aparatos para abrir un gimnasio", "equipamiento para gimnasio comercial", "paquetes de equipo para gimnasio", "cotización de equipo para gimnasio", "máquinas de gimnasio de uso rudo", "remodelación de gimnasio"],
         "Apertura o remodelación de gimnasio", "Service", None,
     ),
     "gimnasio-casa": (
@@ -111,10 +104,9 @@ PAGES = {
         "Gimnasio en casa", "Service", None,
     ),
     "condominios-residenciales": (
-        "Gimnasios para Condominios y Desarrollos Residenciales | Integral Gym Tech",
-        "Equipamiento de gimnasios para condominios, fraccionamientos y desarrollos residenciales: equipo durable, seguro y de bajo mantenimiento, con diseño de espacios y servicio técnico.",
-        ["gimnasio para condominio", "gimnasio residencial", "amenidades fitness", "equipo de gimnasio para fraccionamiento",
-         "gimnasio para desarrollos inmobiliarios"],
+        "Equipo de Gimnasio para Condominios y Casas Club | Integral Gym Tech",
+        "Equipo de gimnasio para condominios, fraccionamientos y casas club: máquinas durables, seguras y de bajo mantenimiento con diseño del espacio y servicio técnico.",
+        ["equipo de gimnasio para condominios", "equipamiento para casas club", "gimnasio para fraccionamiento", "gimnasio residencial"],
         "Condominios – residenciales", "Service", None,
     ),
     "clinicas-fisioterapia": (
@@ -125,17 +117,15 @@ PAGES = {
         "Clínicas de fisioterapia", "Service", None,
     ),
     "estudio-pilates": (
-        "Equipa tu Estudio de Pilates | Reformers y Equipo Profesional | Integral Gym Tech",
-        "Todo para tu estudio de pilates: reformers, cadillac, chairs, barrels y accesorios profesionales. Asesoría para abrir o equipar tu estudio de pilates en Querétaro y México.",
-        ["estudio de pilates", "abrir estudio de pilates", "reformer profesional", "equipo de pilates para estudio",
-         "máquinas de pilates"],
+        "Equipamiento para Estudios de Pilates | Reformers | Integral Gym Tech",
+        "Equipamiento para estudios de Pilates: reformers profesionales, cadillac y accesorios. Asesoría para abrir o crecer tu estudio de Pilates en Querétaro y todo México.",
+        ["equipamiento para estudios de pilates", "reformer de pilates profesional", "abrir estudio de pilates", "venta de reformer de pilates"],
         "Estudio de pilates", "Service", None,
     ),
     "hoteles": (
-        "Gimnasios para Hoteles | Equipamiento Fitness Hotelero | Integral Gym Tech",
-        "Equipamiento de gimnasios para hoteles: equipo de cardio y fuerza de grado comercial, diseño del espacio y mantenimiento para ofrecer una experiencia fitness de primer nivel a tus huéspedes.",
-        ["gimnasio para hotel", "equipamiento hotelero fitness", "equipo de gimnasio para hoteles",
-         "amenidades de hotel gimnasio"],
+        "Equipamiento para Gimnasios de Hoteles | Integral Gym Tech",
+        "Equipamiento para gimnasios de hoteles: caminadoras, elípticas y máquinas de fuerza de grado comercial, con diseño del espacio, instalación y mantenimiento en Querétaro y todo México.",
+        ["equipamiento para gimnasios de hoteles", "equipo de gimnasio para hoteles", "gimnasio para hotel", "amenidades fitness hotel"],
         "Hoteles", "Service", None,
     ),
     "empresas": (
@@ -146,10 +136,9 @@ PAGES = {
         "Empresas", "Service", None,
     ),
     "universidades": (
-        "Gimnasios para Universidades y Escuelas | Equipamiento Deportivo | Integral Gym Tech",
-        "Equipamiento de gimnasios para universidades, escuelas y centros deportivos: equipo resistente para uso intensivo, diseño de espacios y servicio técnico especializado.",
-        ["gimnasio universitario", "equipo de gimnasio para escuelas", "equipamiento deportivo universidades",
-         "gimnasio para instituciones educativas"],
+        "Equipo para Gimnasios Universitarios | Integral Gym Tech",
+        "Equipo para gimnasios universitarios y escuelas: máquinas de uso rudo para tráfico intenso, diseño de espacios y soporte técnico especializado.",
+        ["equipo para gimnasios universitarios", "gimnasio universitario", "equipamiento deportivo para universidades"],
         "Universidades", "Service", None,
     ),
     "gubernamentales": (
