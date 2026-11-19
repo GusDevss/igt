@@ -1,7 +1,7 @@
 {# Contenido de apoyo SEO al final del catálogo (visible, útil para el comprador) #}
 {% import "partials/ui.html" as ui with context %}
 {% set FAQ = [
-  ('¿Cómo solicito una cotización de equipo para gimnasio?', 'Agrega los equipos que te interesan con el botón «Cotizar», indica cantidades y envía tu lista desde «Mi cotización» o por WhatsApp. Un asesor te responde con precios, tiempos de entrega y opciones de pago.'),
+  ('¿Cómo solicito una cotización de equipo para gimnasio?', 'En nuestro catálogo de productos agrega los equipos que te interesan con el botón «Cotizar», indica cantidades y envía tu lista desde «Mi cotización» o por WhatsApp. Un asesor te responde con precios, tiempos de entrega y opciones de pago.'),
   ('¿Manejan paquetes de equipo para abrir un gimnasio?', 'Sí. Armamos paquetes de equipo para gimnasio comercial según tu espacio, presupuesto y tipo de usuario: cardio, fuerza, peso libre y accesorios, con diseño 3D del área y opción de arrendamiento a mensualidades fijas.'),
   ('¿Venden reformer de Pilates profesional?', 'Sí, contamos con reformers de Pilates profesionales para estudios y gimnasios, además de cadillac y accesorios. Pide el precio del reformer de Pilates y la disponibilidad en Querétaro.'),
   ('¿Hacen envíos fuera de Querétaro?', 'Enviamos e instalamos en todo México, incluidos San Luis Potosí, León y el resto del Bajío, con soporte técnico y mantenimiento preventivo.'),
@@ -9,7 +9,7 @@
   ('¿Cuál es el precio del equipo para gimnasio?', 'El precio depende del equipo, la cantidad y si armas un paquete de fuerza o un circuito completo. Agrega los productos a tu cotización y te enviamos precios, tiempos de entrega y opciones de arrendamiento.'),
   ('¿Qué marcas manejan?', 'Somos distribuidores de equipos BUGE Fitness en México y trabajamos con fabricantes de máquinas de gimnasio de uso rudo para hoteles, condominios, universidades y gimnasios comerciales.'),
 ] %}
-<section class="shop-seo" aria-labelledby="seo-t">
+<section class="shop-seo shop-seo--about" aria-labelledby="seo-t">
   <div class="wrap">
     <div class="shop-seo__grid">
       <div class="shop-seo__intro">
@@ -18,7 +18,7 @@
         <p>Somos <strong>proveedor de equipos para gimnasio</strong> en Querétaro: aquí puedes comprar equipo para gimnasio comercial, residencial o de rehabilitación y cotizar en línea.</p>
         <p>Seleccionamos <strong>máquinas de gimnasio de uso rudo</strong> para proyectos que operan todos los días: gimnasios comerciales, <a href="/hoteles/">equipamiento para gimnasios de hoteles</a>, <a href="/condominios-residenciales/">equipo de gimnasio para condominios</a> y casas club, y <a href="/universidades/">equipo para gimnasios universitarios</a>.</p>
         <p>Si estás buscando <a href="/gimnasio-apertura-remodelacion/">aparatos para abrir un gimnasio</a>, te armamos paquetes de equipo a la medida con diseño del espacio, instalación, arrendamiento y servicio técnico.</p>
-        <a class="btn btn--red shop-seo__cta" href="#contacto"><span class="btn__txt" data-wobble>Cotización de equipo para gimnasio</span>{{ icon('far-plus', 'btn__ic') }}</a>
+        <a class="btn btn--red shop-seo__cta" href="/productos/"><span class="btn__txt" data-wobble>Cotización de equipo para gimnasio</span>{{ icon('far-plus', 'btn__ic') }}</a>
       </div>
       <ul class="shop-seo__cards">
         <li><a href="/productos/?categoria=cardio"><b>Cardio profesional</b><span>Caminadora curva sin motor, remo de aire para gimnasio, máquina de esquí y escaladora profesional.</span></a></li>
