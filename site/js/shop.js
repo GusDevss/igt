@@ -177,6 +177,7 @@
             out.textContent = '¡Listo! Recibimos tu cotización; un asesor te contactará muy pronto.'; out.className = 'quote__out is-ok';
             list = []; save(list); setTimeout(render, 2500);
             if (window.dataLayer) window.dataLayer.push({ event: 'generate_lead', form: 'cotizacion_productos' });
+            if (typeof window.gtag_report_conversion === 'function') window.gtag_report_conversion();
           } else { out.textContent = res.message || 'No pudimos enviar tu cotización. Inténtalo de nuevo o envíala por WhatsApp.'; out.className = 'quote__out is-err'; }
         } catch (err) { out.textContent = 'No pudimos enviar tu cotización. Envíala por WhatsApp.'; out.className = 'quote__out is-err'; }
       });

@@ -403,6 +403,7 @@ function forms() {
           if (ts) ts.value = String(Date.now());
           if (window.dataLayer) window.dataLayer.push({ event: 'generate_lead', form: 'contacto' });
           if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead');
+          if (typeof window.gtag_report_conversion === 'function') window.gtag_report_conversion();
           if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
         } else if (res.errors) {
           Object.entries(res.errors).forEach(([n, m]) => { const f = form.elements[n]; if (f) tip(f, m); });
@@ -442,7 +443,22 @@ function catalogs() {
   books.forEach((b) => io.observe(b));
 }
 
+/* ------------------------------------------------------------ conversiones de Google Ads en clics de contacto */
+function conversions() {
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="https://wa.me"], a[href^="tel:"]');
+    if (!a || typeof window.gtag_report_conversion !== 'function') return;
+    if (a.target === '_blank') { window.gtag_report_conversion(); return; }
+    e.preventDefault();
+    let done = false;
+    const go = () => { if (!done) { done = true; window.location = a.href; } };
+    window.gtag_report_conversion();
+    setTimeout(go, 300); // no depende de que Google cargue (bloqueadores de anuncios)
+  });
+}
+
 root.classList.remove('no-js');
+conversions();
 stickyHeader();
 lazyStuff();
 overlays();

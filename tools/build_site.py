@@ -310,17 +310,20 @@ def _muscles():
 def register_shop_seo():
     """Agrega a seo.PAGES la página de catálogo y una entrada por producto."""
     seo.PAGES["productos"] = (
-        "Productos | Tienda de Equipo para Gimnasio en Querétaro | Integral Gym Tech",
+        "Comprar Equipo para Gimnasio | Máquinas y Precios | Integral Gym Tech",
         f"Catálogo de {len(PRODUCTS)} equipos para gimnasio en existencia: caminadoras, elípticas, máquinas de fuerza, "
         "racks, máquinas Smith, bancos, mancuernas y accesorios. Filtra por categoría y solicita tu cotización en línea.",
-        ["tienda de equipo para gimnasio", "comprar equipo de gimnasio", "catálogo de aparatos de gimnasio",
+        ["comprar equipo para gimnasio", "venta de equipos para gimnasio", "máquinas para gimnasio", "precio equipo gimnasio",
+         "cotizar equipo para gimnasio", "equipamiento crossfit", "equipo fitness profesional", "máquina de hacer ejercicio",
+         "tienda de equipo para gimnasio", "catálogo de aparatos de gimnasio",
          "equipo de gimnasio en existencia", "máquinas de gimnasio en venta", "precio equipo de gimnasio Querétaro"],
         "Productos", "CollectionPage", None)
     for p in PRODUCTS:
         cat = CATS[p["categoria"]]["nombre"]
         img = ("/img/" + re.sub(r"\.[a-z0-9]+$", "", p["imagenes"][0]) + "-1024.webp") if p["imagenes"] else None
         seo.PAGES["productos/" + p["slug"]] = (
-            (f"{p['nombre']} | {cat} para gimnasio | Integral Gym Tech" if len(p['nombre']) + len(cat) < 28
+            (f"{p['nombre']}: Precio y Cotización | Integral Gym Tech" if p["slug"].startswith("prensa")
+             else f"{p['nombre']} | {cat} para gimnasio | Integral Gym Tech" if len(p['nombre']) + len(cat) < 28
              else f"{p['nombre']} | Integral Gym Tech"),
             (p["resumen"] + f" Equipo de {cat.lower()} de grado comercial en Querétaro con envío a todo México. Cotiza en línea.")[:300],
             [p["nombre"].lower(), f"{p['nombre'].lower()} precio", f"{cat.lower()} para gimnasio",

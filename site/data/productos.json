@@ -87,7 +87,8 @@
       "ideal": [
         "Gimnasios comerciales",
         "Hoteles",
-        "Gimnasios corporativos"
+        "Gimnasios corporativos",
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -147,7 +148,7 @@
       "ideal": [
         "Gimnasios comerciales",
         "Gimnasios corporativos",
-        "Clínicas de fisioterapia"
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -178,7 +179,8 @@
       "ideal": [
         "Gimnasios comerciales",
         "Estudios boutique",
-        "Hoteles"
+        "Hoteles",
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -207,7 +209,8 @@
       "ideal": [
         "Gimnasios comerciales",
         "Condominios",
-        "Hoteles"
+        "Hoteles",
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -235,8 +238,8 @@
       ],
       "ideal": [
         "Gimnasios comerciales",
-        "Clínicas de fisioterapia",
-        "Universidades"
+        "Universidades",
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -268,7 +271,8 @@
       "ideal": [
         "Gimnasios comerciales",
         "Gimnasio en casa",
-        "Hoteles"
+        "Hoteles",
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -329,7 +333,7 @@
       "ideal": [
         "Gimnasios comerciales",
         "Centros de alto rendimiento",
-        "Clínicas de fisioterapia"
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -451,7 +455,8 @@
       "ideal": [
         "Salas de ciclismo",
         "Gimnasios comerciales",
-        "Gimnasio en casa"
+        "Gimnasio en casa",
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -493,7 +498,8 @@
       "ideal": [
         "Gimnasios comerciales",
         "Hoteles",
-        "Gimnasios corporativos"
+        "Gimnasios corporativos",
+        "Clínicas de rehabilitación"
       ]
     },
     {
@@ -570,7 +576,8 @@
       "ideal": [
         "Gimnasios comerciales",
         "Hoteles",
-        "Condominios"
+        "Condominios",
+        "Clínicas de rehabilitación"
       ]
     },
     {

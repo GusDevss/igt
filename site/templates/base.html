@@ -30,6 +30,15 @@
 <link rel="preload" href="/assets/fonts/plateia-bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
 {% block preload %}{% endblock %}
+<!-- Google tag (gtag.js) – Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18533255834"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','AW-18533255834');
+/* Conversión de Google Ads ("Vista de página"): se llama al enviar formularios y al dar clic en WhatsApp o teléfono */
+function gtag_report_conversion(url){var cb=function(){if(typeof url!=='undefined'){window.location=url;}};
+gtag('event','conversion',{'send_to':'AW-18533255834/BxBxCNa7j6cdEJqVrIVF','value':1.0,'currency':'MXN','event_callback':cb});return false;}
+</script>
 <style>{{ css }}</style>
 <script type="application/ld+json">{{ json_ld }}</script>
 </head>
